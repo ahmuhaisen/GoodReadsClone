@@ -1,7 +1,12 @@
+using GoodReadersClone.Application.Features;
 using GoodReadersClone.Domain.Entities;
+using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+using GoodReadersClone.Infrastructure.DataAccess;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GoodReadersClone.Application.Features.Users.Handlers;
+using GoodReadersClone.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +25,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"])
 );
 
+//UOW
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//MediatR
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
+});
+
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 
 

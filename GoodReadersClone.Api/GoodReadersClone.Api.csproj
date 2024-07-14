@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\GoodReadersClone.Application\GoodReadersClone.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoodReadersClone.Application\GoodReadersClone.Application.csproj" />
+    <Folder Include="wwwroot\images\profile-pictures\" />
   </ItemGroup>
 
 </Project>
