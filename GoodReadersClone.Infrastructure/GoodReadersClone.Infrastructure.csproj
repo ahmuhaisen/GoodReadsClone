@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoodReadersClone.Domain\GoodReadersClone.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
