@@ -4,9 +4,7 @@ using System.Transactions;
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 
 
-public class SetUserAsAuthorCommandHandler(
-    UserManager<ApplicationUser> _userManager,
-    RoleManager<IdentityRole> _roleManager)
+public class SetUserAsAuthorCommandHandler(UserManager<ApplicationUser> _userManager)
     : IRequestHandler<SetUserAsAuthorCommand, UserModel>
 {
     public async Task<UserModel> Handle(SetUserAsAuthorCommand request, CancellationToken cancellationToken)
