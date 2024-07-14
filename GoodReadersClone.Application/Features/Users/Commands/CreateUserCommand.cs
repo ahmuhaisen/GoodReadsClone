@@ -4,4 +4,4 @@ using MediatR;
 namespace GoodReadersClone.Application.Features.Users.Commands;
 
 
-public record CreateUserCommand(UserRegisterRequest Request) : IRequest<UsersModel>;
+public record CreateUserCommand(UserRegisterRequest Request) : IRequest<UserModel>;

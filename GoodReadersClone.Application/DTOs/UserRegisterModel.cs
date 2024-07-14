@@ -12,10 +12,3 @@ public class UserRegisterRequest
     public required string Email { get; set; }
     public IFormFile? ProfilePicture { get; set; }
 }
-
-public class UsersModel
-{
-    public string? Message{ get; set; }
-    public string? Id { get; set; }
-    public string? UserName { get; set; }
-}

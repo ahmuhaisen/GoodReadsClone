@@ -1,24 +1,26 @@
-﻿namespace GoodReadersClone.Application.Features.Users.Handlers;
+﻿using GoodReadersClone.Infrastructure.Helpers;
+
+namespace GoodReadersClone.Application.Features.Users.Handlers;
 
 public class CreateUserCommandHandler(
     UserManager<ApplicationUser> _userManager,
     ILogger<CreateUserCommandHandler> _logger,
-    IMapper _mapper) : IRequestHandler<CreateUserCommand, UsersModel>
+    IMapper _mapper) : IRequestHandler<CreateUserCommand, UserModel>
 {
-    public async Task<UsersModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<UserModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         if (request is null || request.Request is null)
-            return new UsersModel { Message = "Request can't be null" };
+            return new UserModel { Message = "Request can't be null" };
 
         var user = _mapper.Map<ApplicationUser>(request.Request);
 
         if (request.Request.ProfilePicture is not null)
         {
             if (!FileManager.IsValidFormat(request.Request.ProfilePicture))
-                return new UsersModel { Message = $"Invalid File Format, Valid Formats:({FileManager.ValidImageFormats})" };
+                return new UserModel { Message = $"Invalid File Format, Valid Formats:({FileManager.ValidImageFormats})" };
 
             if (!FileManager.IsValidImageSize(request.Request.ProfilePicture))
-                return new UsersModel { Message = $"Invalid File Size, Maximum file size: ({FileManager.MaxImageSizeInMB}MB)" };
+                return new UserModel { Message = $"Invalid File Size, Maximum file size: ({FileManager.MaxImageSizeInMB}MB)" };
 
             // user.ProfilePectureURL = FileManager.UpsertImage(request.Request.ProfilePicture, FileManager.ProfilePicturesPath);
         }
@@ -26,8 +28,15 @@ public class CreateUserCommandHandler(
         var result = await _userManager.CreateAsync(user, request.Request.Password);
 
         if (!result.Succeeded)
-            return new UsersModel { Message = result.Errors.FirstOrDefault()?.Description };
+            return new UserModel { Message = result.Errors.FirstOrDefault()?.Description };
 
-        return new UsersModel { Message = "User created successfully", Id = user.Id, UserName = user.UserName };
+        await _userManager.AddToRoleAsync(user, Roles.READER);
+
+        return new UserModel 
+        {
+            Message = "User created successfully",
+            Id = user.Id,
+            Roles = (await _userManager.GetRolesAsync(user)).ToArray()
+        };
     }
 }

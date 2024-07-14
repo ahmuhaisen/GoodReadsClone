@@ -1,11 +1,4 @@
-using GoodReadersClone.Application.Features;
-using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
-using GoodReadersClone.Infrastructure.DataAccess;
-using GoodReadersClone.Infrastructure.DataAccess.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using GoodReadersClone.Application.Features.Users.Handlers;
+using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,26 +10,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Identity
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-//Add AppDbContext
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"])
-);
+builder.Services.RegisterIdentity();
 
-//UOW
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.RegisterApplicationDbContext(builder.Configuration);
 
-//MediatR
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
-});
+builder.Services.RegisterDomainServices();
+
+builder.Services.RegisterMediatR();
 
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
-
 
 
 var app = builder.Build();

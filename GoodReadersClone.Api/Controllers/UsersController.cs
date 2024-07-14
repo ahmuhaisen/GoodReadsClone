@@ -14,12 +14,18 @@ public class UsersController(ISender _sender)
     [HttpPost]
     [Route("register")]
     [AllowAnonymous]
-    public async Task<ActionResult<UsersModel>> Register([FromForm] UserRegisterRequest request)
+    public async Task<ActionResult<UserModel>> Register([FromForm] UserRegisterRequest request)
     {
-
         var result = await _sender.Send(new CreateUserCommand(request));
+        return result;
+    }
 
-
+    [HttpPost]
+    [Route("setUserAsAuthor/{userId}")]
+    [AllowAnonymous]
+    public async Task<ActionResult<UserModel>> SetUserAsAuthor(string userId)
+    {
+        var result = await _sender.Send(new SetUserAsAuthorCommand(userId));
         return result;
     }
 }
