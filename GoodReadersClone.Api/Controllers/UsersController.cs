@@ -1,11 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs;
-using GoodReadersClone.Application.Features.Users.Commands;
-using GoodReadersClone.Application.Features.Users.Queries;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace GoodReadersClone.Api.Controllers;
+﻿namespace GoodReadersClone.Api.Controllers;
 
 
 [ApiController]
@@ -31,22 +24,13 @@ public class UsersController(ISender _sender)
     }
 
     [HttpGet]
-    [Route("getAllUsers")]
-    public async Task<ActionResult<IEnumerable<UserInfoModel>>> GetAllReaders()
+    [Route("getAll")]
+    public async Task<ActionResult<IEnumerable<UserInfoModel>>> GetAll()
     {
         var result = await _sender.Send(new GetAllUsersQuery());
         return result.ToList();
     }
-
-
-    [HttpGet]
-    [Route("getAllAuthors")]
-    public async Task<ActionResult<IEnumerable<UserInfoModel>>> GetAllAuthors()
-    {
-        var result = await _sender.Send(new GetAllAuthorsQuery());
-        return result.ToList();
-    }
-
+       
     [HttpGet]
     [Route("get/{userId}")]
     public async Task<ActionResult<UserInfoModel>> GetById(string userId)

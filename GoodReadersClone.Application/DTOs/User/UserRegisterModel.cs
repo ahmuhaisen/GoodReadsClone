@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace GoodReadersClone.Application.DTOs;
+namespace GoodReadersClone.Application.DTOs.User;
 
 public class UserRegisterRequest
 {

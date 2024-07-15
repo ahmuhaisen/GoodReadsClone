@@ -1,4 +1,5 @@
-﻿using GoodReadersClone.Infrastructure.Helpers;
+﻿using GoodReadersClone.Application.DTOs.User;
+using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 

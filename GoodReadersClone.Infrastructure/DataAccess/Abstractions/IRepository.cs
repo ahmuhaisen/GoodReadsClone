@@ -13,6 +13,7 @@ public interface IRepository<T> where T : class
     Task<T> GetByIdAsync(int id);
 
     Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> GetAllAsync(string[] includes);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, string[] includes);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take);

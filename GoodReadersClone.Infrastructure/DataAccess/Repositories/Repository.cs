@@ -28,6 +28,18 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
         return await _context.Set<T>().ToListAsync();
     }
 
+    public async Task<IEnumerable<T>> GetAllAsync(string[] includes)
+    {
+        IQueryable<T> query = _context.Set<T>();
+
+        if (includes is not null)
+            foreach (var include in includes)
+                query = query.Include(include);
+
+        return await query.ToListAsync();
+    }
+
+
     public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter)
     {
         IQueryable<T> query = _context.Set<T>();

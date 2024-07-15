@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GoodReadersClone.Application.DTOs;
+using GoodReadersClone.Application.DTOs.User;
 using GoodReadersClone.Domain.Entities;
 
 namespace GoodReadersClone.Api.Mapper;
