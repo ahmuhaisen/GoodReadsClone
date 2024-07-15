@@ -23,5 +23,7 @@ public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
 
         builder.Property(x => x.ProfilePectureURL)
             .IsRequired(false);
+
+        builder.HasDiscriminator(x => x.Discrimintator);
     }
 }

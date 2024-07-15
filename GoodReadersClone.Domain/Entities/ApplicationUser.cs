@@ -10,4 +10,6 @@ public class ApplicationUser : IdentityUser
     public DateTime DateOfBirth { get; set; }
     public string? ProfilePectureURL { get; set; }
     public DateTime JoindAt { get; set; }
+
+    public string? Discrimintator {  get; set; }
 }

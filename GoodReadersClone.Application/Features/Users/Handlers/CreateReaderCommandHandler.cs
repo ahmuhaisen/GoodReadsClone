@@ -2,17 +2,18 @@
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 
-public class CreateUserCommandHandler(
+public class CreateReaderCommandHandler(
     UserManager<ApplicationUser> _userManager,
-    ILogger<CreateUserCommandHandler> _logger,
-    IMapper _mapper) : IRequestHandler<CreateUserCommand, UserModel>
+    ILogger<CreateReaderCommandHandler> _logger,
+    IMapper _mapper) : IRequestHandler<CreateReaderCommand, UserModel>
 {
-    public async Task<UserModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<UserModel> Handle(CreateReaderCommand request, CancellationToken cancellationToken)
     {
         if (request is null || request.Request is null)
             return new UserModel { Message = "Request can't be null" };
 
         var user = _mapper.Map<ApplicationUser>(request.Request);
+
 
         if (request.Request.ProfilePicture is not null)
         {
