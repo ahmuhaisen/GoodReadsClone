@@ -5,7 +5,7 @@ namespace GoodReadersClone.Application.Helpers;
 public class FileManager
 {
     public const string ProfilePicturesPath = "\\images\\profile-pictures";
-    public const string BooksCoversPath = "\\images\\Books-covers";
+    public const string BooksCoversPath = "\\images\\books-covers";
 
     public const string ValidImageFormats = "jpg,jpeg,png";
     public const int MaxImageSizeInMB = 3;

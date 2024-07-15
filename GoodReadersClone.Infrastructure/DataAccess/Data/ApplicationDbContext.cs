@@ -1,5 +1,6 @@
 ﻿using GoodReadersClone.Domain.Entities;
 using GoodReadersClone.Infrastructure.DataAccess.Data.Congifurations;
+using GoodReadersClone.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -28,5 +29,12 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins", "security");
         modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "security");
         modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
+
+
+        //Seed Data
+        var databaseSeeder = new DatabaseSeeder();
+
+        modelBuilder.Entity<Genre>().HasData(databaseSeeder.Genres);
+        modelBuilder.Entity<Book>().HasData(databaseSeeder.Books);
     }
 }

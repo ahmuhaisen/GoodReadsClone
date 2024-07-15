@@ -1,4 +1,5 @@
 ﻿using GoodReadersClone.Domain.Entities;
+using GoodReadersClone.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -23,6 +24,7 @@ public class BookConfig : IEntityTypeConfiguration<Book>
             .WithMany(a => a.Books)
             .HasForeignKey(b => b.AuthorId)
             .IsRequired();
+
     }
 }
 
