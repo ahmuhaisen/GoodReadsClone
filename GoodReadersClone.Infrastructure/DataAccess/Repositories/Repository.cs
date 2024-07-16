@@ -20,6 +20,12 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     }
 
     //Read
+    public async Task<bool> IsExist(Expression<Func<T, bool>> filter)
+    {
+        return await _context.Set<T>().AnyAsync(filter);
+    }
+
+
     public async Task<T> GetByIdAsync(int id)
     {
         return await _context.Set<T>().FindAsync(id);

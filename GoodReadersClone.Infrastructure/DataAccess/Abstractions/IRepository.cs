@@ -11,6 +11,8 @@ public interface IRepository<T> where T : class
     T Create(T entity);
 
     //Read
+    Task<bool> IsExist(Expression<Func<T, bool>> filter);
+
     Task<T> GetByIdAsync(int id);
     Task<T?> GetAsync(Expression<Func<T, bool>> filter);
 

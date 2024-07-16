@@ -9,12 +9,14 @@ public class UnitOfWork : IUnitOfWork
 
     public IAuthorRepository AuthorRepository { get; }
     public IBookRepository BookRepository { get; }
+    public IQuoteRepository QuoteRepository { get; }
 
     public UnitOfWork(ApplicationDbContext context)
     {
         _context = context;
         AuthorRepository = new AuthorRepository(_context);
         BookRepository = new BookRepository(_context);
+        QuoteRepository = new QuoteRepository(_context);
     }
 
     public int Save()
