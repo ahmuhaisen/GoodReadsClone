@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoodReadersClone.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240714172901_AddAuthorAndBookAndGenreTablesWithRelationships")]
-    partial class AddAuthorAndBookAndGenreTablesWithRelationships
+    [Migration("20240716080850_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

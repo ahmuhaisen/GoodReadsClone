@@ -3,7 +3,7 @@
 
 [ApiController]
 [Route("users")]
-public class UsersController(ISender _sender)
+public class UsersController(ISender _sender) : ControllerBase
 {
     [HttpPost]
     [Route("registerAsReader")]
@@ -30,7 +30,7 @@ public class UsersController(ISender _sender)
         var result = await _sender.Send(new GetAllUsersQuery());
         return result.ToList();
     }
-       
+
     [HttpGet]
     [Route("get/{userId}")]
     public async Task<ActionResult<UserInfoModel>> GetById(string userId)
@@ -38,6 +38,4 @@ public class UsersController(ISender _sender)
         var result = await _sender.Send(new GetUserByIdQuery(userId));
         return result;
     }
-
-
 }

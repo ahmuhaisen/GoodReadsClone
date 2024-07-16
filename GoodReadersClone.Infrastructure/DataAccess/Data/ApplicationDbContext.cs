@@ -30,11 +30,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "security");
         modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
 
-
-        //Seed Data
-        var databaseSeeder = new DatabaseSeeder();
-
-        modelBuilder.Entity<Genre>().HasData(databaseSeeder.Genres);
-        modelBuilder.Entity<Book>().HasData(databaseSeeder.Books);
     }
 }
