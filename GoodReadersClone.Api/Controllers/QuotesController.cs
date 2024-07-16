@@ -20,4 +20,16 @@ public class QuotesController(ISender _sender) : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpDelete]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Delete(int id)
+    {
+        var result = await _sender.Send(new DeleteQuoteCommand(id));
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
+    }
 }
