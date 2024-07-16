@@ -15,7 +15,7 @@ public class AuthorsController(ISender _sender) : ControllerBase
         var result = await _sender.Send(new GetAuthorInfoByIdQuery(request));
 
         if (!result.Success)
-            return NotFound(result);
+            return NotFound(result.Message);
 
         return result;
     }

@@ -12,7 +12,7 @@ public class GetAllBooksQueryHandler(
 {
     public async Task<ApiResponse> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
     {
-        var books = await _unitOfWork.BookRepository.GetAllAsync(request.Request.PageIndex, request.Request.PageSize);
+        var books = await _unitOfWork.BookRepository.GetAllAsync(request.PageIndex, request.PageSize);
 
         var result = new PaginatedList<BookModel>(
             items: books.Items.Select(x => new BookModel
@@ -26,6 +26,10 @@ public class GetAllBooksQueryHandler(
                 Genres = string.Join(',', x.Genres.Select(y => y.Name))
             }).ToList(), books.PageIndex, books.TotalPages);
 
-        return new ApiResponse(true, null, result);
+        return new ApiResponse
+        {
+            Success = true,
+            Data = result
+        };
     }
 }

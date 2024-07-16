@@ -10,15 +10,19 @@ public class GetAuthorInfoByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHa
         var author = await _unitOfWork.AuthorRepository.GetAsync(request.InfoRequest.AuthorId);
 
         if (author is null)
-            return new ApiResponse(false, "Author not found", null!);
+            return new ApiResponse { Message = "Author not found" };
 
-        return new ApiResponse(true, null, new AuthorInfoModel
+        return new ApiResponse
         {
-            Id = author.Id,
-            FullName = $"{author.FirstName} {author.LastName}",
-            UserName = author.UserName,
-            NumberOfBooks = author.Books.Count(),
-            NoOfFollowers = "Comming Soon"
-        });
+            Success = true,
+            Data = new AuthorInfoModel
+            {
+                Id = author.Id,
+                FullName = $"{author.FirstName} {author.LastName}",
+                UserName = author.UserName,
+                NumberOfBooks = author.Books.Count(),
+                NoOfFollowers = "Comming Soon"
+            }
+        };
     }
 }
