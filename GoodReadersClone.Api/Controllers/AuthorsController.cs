@@ -17,7 +17,7 @@ public class AuthorsController(ISender _sender) : ControllerBase
         if (!result.Success)
             return NotFound(result.Message);
 
-        return result;
+        return Ok(result);
     }
 
     [HttpGet]
@@ -28,5 +28,17 @@ public class AuthorsController(ISender _sender) : ControllerBase
         return Ok(result);
     }
 
-    
+
+    [HttpGet]
+    [Route("getAuthorBooks")]
+    public async Task<ActionResult<ApiResponse>> GetBooks(string authorId)
+    {
+        var result = await _sender.Send(new GetAuthorBooksQuery(authorId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
+    }
+
 }

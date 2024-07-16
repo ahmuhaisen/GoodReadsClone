@@ -25,6 +25,11 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
         return await _context.Set<T>().FindAsync(id);
     }
 
+    public async Task<T?> GetAsync(Expression<Func<T, bool>> filter)
+    {
+        return await _context.Set<T>().FirstOrDefaultAsync(filter);
+    }
+
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await _context.Set<T>().ToListAsync();

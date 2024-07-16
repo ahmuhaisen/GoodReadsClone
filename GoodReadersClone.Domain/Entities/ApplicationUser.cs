@@ -12,4 +12,7 @@ public class ApplicationUser : IdentityUser
     public DateTime JoindAt { get; set; }
 
     public string? Discrimintator {  get; set; }
+
+
+    public List<Quote> Quotes { get; set; }
 }

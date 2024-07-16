@@ -2,6 +2,7 @@
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
 public class AuthorRepository : Repository<Author>, IAuthorRepository
@@ -19,5 +20,10 @@ public class AuthorRepository : Repository<Author>, IAuthorRepository
             .AsNoTracking()
             .Include(a => a.Books)
             .SingleOrDefaultAsync(a => a.Id == id);
+    }
+
+    public bool IsExist(Expression<Func<Author, bool>> condition)
+    {
+        return _context.Authors.Any(condition);
     }
 }

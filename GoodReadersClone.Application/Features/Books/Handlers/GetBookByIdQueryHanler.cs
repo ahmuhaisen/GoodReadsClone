@@ -22,3 +22,24 @@ public class GetBookByIdQueryHanler(
         };
     }
 }
+
+
+public class GetBookByISBNQueryHanler(
+    IUnitOfWork _unitOfWork
+    )
+    : IRequestHandler<GetBookByISBNQuery, ApiResponse>
+{
+    public async Task<ApiResponse> Handle(GetBookByISBNQuery request, CancellationToken cancellationToken)
+    {
+        var result = await _unitOfWork.BookRepository.GetAsync(x => x.ISBN.Equals(request.ISBN));
+
+        if (result == null)
+            return new ApiResponse { Message = "Book not found" };
+
+        return new ApiResponse
+        {
+            Success = true,
+            Data = result
+        };
+    }
+}

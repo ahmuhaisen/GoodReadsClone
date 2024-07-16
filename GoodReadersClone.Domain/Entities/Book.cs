@@ -15,4 +15,6 @@ public class Book : BaseEntity
 
 
     public List<Genre> Genres { get; set; }
+
+    public List<Quote> Quotes { get; set; }
 }

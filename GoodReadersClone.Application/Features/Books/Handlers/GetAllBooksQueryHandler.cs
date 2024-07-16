@@ -23,6 +23,7 @@ public class GetAllBooksQueryHandler(
                 Author = $"{x.Author.FirstName} {x.Author.LastName}",
                 CoverURL = x.CoverURL,
                 FirstPublished = x.FirstPublished,
+                ISBN = x.ISBN,
                 Genres = string.Join(',', x.Genres.Select(y => y.Name))
             }).ToList(), books.PageIndex, books.TotalPages);
 
