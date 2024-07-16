@@ -8,11 +8,13 @@ public class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext _context;
 
     public IAuthorRepository AuthorRepository { get; }
+    public IBookRepository BookRepository { get; }
 
     public UnitOfWork(ApplicationDbContext context)
     {
         _context = context;
         AuthorRepository = new AuthorRepository(_context);
+        BookRepository = new BookRepository(_context);
     }
 
     public int Save()

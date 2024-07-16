@@ -2,5 +2,6 @@
 public interface IUnitOfWork : IDisposable
 {
     IAuthorRepository AuthorRepository { get; }
+    IBookRepository BookRepository { get; }
     int Save();
 }

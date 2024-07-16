@@ -2,7 +2,7 @@
 
 
 [ApiController]
-[Route("users")]
+[Route("[controller]")]
 public class UsersController(ISender _sender) : ControllerBase
 {
     [HttpPost]
