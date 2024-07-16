@@ -8,4 +8,6 @@ public class BookModel
     public string CoverURL { get; set; }
     public string ISBN { get; set; }
     public DateTime FirstPublished { get; set; }
+
+    public string Genres { get; set; }
 }

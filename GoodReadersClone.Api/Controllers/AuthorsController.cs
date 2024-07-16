@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Api.Controllers;
+﻿using GoodReadersClone.Application.DTOs;
+
+namespace GoodReadersClone.Api.Controllers;
 
 
 [ApiController]
@@ -8,9 +10,13 @@ public class AuthorsController(ISender _sender) : ControllerBase
     [HttpGet]
     [Route("getAuthorInfo")]
     [AllowAnonymous]
-    public async Task<ActionResult<AuthorInfoModel>> GetAuthor(AuthorInfoRequest request)
+    public async Task<ActionResult<ApiResponse>> GetAuthor(AuthorInfoRequest request)
     {
         var result = await _sender.Send(new GetAuthorInfoByIdQuery(request));
+
+        if (!result.Success)
+            return NotFound(result);
+
         return result;
     }
 

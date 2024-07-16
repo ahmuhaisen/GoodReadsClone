@@ -1,4 +1,5 @@
-﻿using GoodReadersClone.Application.Features.Books.Queries;
+﻿using GoodReadersClone.Application.DTOs.Books;
+using GoodReadersClone.Application.Features.Books.Queries;
 using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 
@@ -7,12 +8,24 @@ public class GetAllBooksQueryHandler(
     IUnitOfWork _unitOfWork,
     IMapper _mapper
     )
-    : IRequestHandler<GetAllBooksQuery, PaginatedList<Book>>
+    : IRequestHandler<GetAllBooksQuery, ApiResponse>
 {
-    public async Task<PaginatedList<Book>> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
+    public async Task<ApiResponse> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
     {
         var books = await _unitOfWork.BookRepository.GetAllAsync(request.Request.PageIndex, request.Request.PageSize);
 
-        return books;
+        var result = new PaginatedList<BookModel>(
+            items: books.Items.Select(x => new BookModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                Author = $"{x.Author.FirstName} {x.Author.LastName}",
+                CoverURL = x.CoverURL,
+                FirstPublished = x.FirstPublished,
+                Genres = string.Join(',', x.Genres.Select(y => y.Name))
+            }).ToList(), books.PageIndex, books.TotalPages);
+
+        return new ApiResponse(true, null, result);
     }
 }

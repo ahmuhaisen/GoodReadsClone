@@ -1,10 +1,10 @@
-﻿using GoodReadersClone.Domain.Models;
+﻿using Azure.Core;
+using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using GoodReadersClone.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Numerics;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
 
@@ -43,13 +43,19 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
 
     public async Task<PaginatedList<T>> GetAllAsync(int pageIndex, int pageSize)
     {
+        var count = await _context.Set<T>().CountAsync();
+        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+        if (pageIndex <= 0)
+            pageIndex = 1;
+
+        if (pageIndex > totalPages)
+            pageIndex = 1;
+
         var items = await _context.Set<T>()
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
-
-        var count = await _context.Set<T>().CountAsync();
-        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
 
         return new PaginatedList<T>(items, pageIndex, totalPages);
     }
