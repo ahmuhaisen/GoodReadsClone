@@ -25,5 +25,8 @@ public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
             .IsRequired(false);
 
         builder.HasDiscriminator(x => x.Discrimintator);
+            
+            
+            
     }
 }

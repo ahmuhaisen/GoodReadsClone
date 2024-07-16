@@ -34,7 +34,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenre", (string)null);
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
@@ -184,7 +184,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.Quote", b =>
