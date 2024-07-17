@@ -10,30 +10,6 @@ namespace GoodReadersClone.Api.Controllers;
 [Route("[controller]")]
 public class QuotesController(ISender _sender) : ControllerBase
 {
-    [HttpPost]
-    [Route("")]
-    public async Task<ActionResult<ApiResponse>> Create(QuoteModel model)
-    {
-        var result = await _sender.Send(new CreateQuoteCommand(model));
-
-        if(!result.Success)
-            return BadRequest(result.Message);
-
-        return Ok(result);
-    }
-
-    [HttpDelete]
-    [Route("")]
-    public async Task<ActionResult<ApiResponse>> Delete(int id)
-    {
-        var result = await _sender.Send(new DeleteQuoteCommand(id));
-
-        if (!result.Success)
-            return BadRequest(result.Message);
-
-        return Ok(result);
-    }
-
     [HttpGet]
     [Route("getByUserId")]
     public async Task<ActionResult<ApiResponse>> GetByUser(string id)
@@ -51,6 +27,30 @@ public class QuotesController(ISender _sender) : ControllerBase
     public async Task<ActionResult<ApiResponse>> GetByBook(int id)
     {
         var result = await _sender.Send(new GetBookQuotesQuery(id));
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
+    }
+
+    [HttpPost]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Create(QuoteModel model)
+    {
+        var result = await _sender.Send(new CreateQuoteCommand(model));
+
+        if(!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
+    }
+
+    [HttpDelete]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Delete(int id)
+    {
+        var result = await _sender.Send(new DeleteQuoteCommand(id));
 
         if (!result.Success)
             return BadRequest(result.Message);

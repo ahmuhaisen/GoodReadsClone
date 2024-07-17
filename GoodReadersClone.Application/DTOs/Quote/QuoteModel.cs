@@ -7,5 +7,6 @@ public class QuoteModel
     public required string Body { get; set; }
 
     public required string UserId { get; set; }
+
     public required int BookId { get; set; }
 }

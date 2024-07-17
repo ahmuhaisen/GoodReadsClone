@@ -32,7 +32,11 @@ public class CreateQuoteCommandHandler(
         if (result.Id == 0)
             return new ApiResponse { Message = "Failed to add the quote" };
 
-        return new ApiResponse { Success = true, Data = result };
+        return new ApiResponse
+        {
+            Success = true,
+            Data = new { result.Id }
+        };
     }
 }
 

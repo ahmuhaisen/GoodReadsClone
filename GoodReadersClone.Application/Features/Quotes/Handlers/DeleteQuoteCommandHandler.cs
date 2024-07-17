@@ -20,6 +20,11 @@ public class DeleteQuoteCommandHandler(
         if (_unitOfWork.Save() == 0)
             return new ApiResponse { Message = "Failed to delete the quote" };
 
-        return new ApiResponse { Success = true, Data = null };
+        return new ApiResponse
+        {
+            Success = true,
+            Message = "Deleted Successfully",
+            Data = null
+        };
     }
 }
