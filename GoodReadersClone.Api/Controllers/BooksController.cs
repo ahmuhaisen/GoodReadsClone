@@ -55,7 +55,7 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpPut]
-    [Route("")]
+    [Route("{bookId}")]
     public async Task<ActionResult<ApiResponse>> Edit(int bookId, [FromForm] EditBookRequest request)
     {
         var result = await _sender.Send(new EditBookCommand(bookId, request));
@@ -67,9 +67,14 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpDelete]
-    [Route("")]
-    public async Task<ActionResult<ApiResponse>> Delete()
+    [Route("{bookId}")]
+    public async Task<ActionResult<ApiResponse>> Delete(int bookId)
     {
-        return Forbid();
+        var result = await _sender.Send(new DeleteBookCommand(bookId));
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
     }
 }

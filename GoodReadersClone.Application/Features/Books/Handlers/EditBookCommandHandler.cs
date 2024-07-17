@@ -23,7 +23,7 @@ public class EditBookCommandHandler(
         if (request.Request.FirstPublished > DateTime.Now)
             return new ApiResponse { Message = "Invalid FirstPublished Date" };
 
-        if(!string.IsNullOrEmpty(request.Request.Title))
+        if (!string.IsNullOrEmpty(request.Request.Title))
             bookToUpdate.Title = request.Request.Title;
 
         if (!string.IsNullOrEmpty(request.Request.Description))
