@@ -14,7 +14,7 @@ public class ApplicationUser : IdentityUser
     public string? Discrimintator {  get; set; }
 
 
-    public List<Quote> Quotes { get; set; }
+    public ICollection<Quote> Quotes { get; set; } = [];
 
 
     public ICollection<AuthorFollowing> AuthorFollowings { get; set; } = [];
