@@ -21,5 +21,4 @@ public class CreateBookRequest
     public required string Genres { get; set; } //Genre Names separated by a comma
 
     public IFormFile? Cover { get; set; }
-
 }

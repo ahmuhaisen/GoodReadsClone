@@ -13,7 +13,9 @@ public class MappingProfile : Profile
 
         CreateMap<Book, BookModel>().ReverseMap();
         CreateMap<Book, CreateBookRequest>().ForMember(x => x.Genres, f => f.Ignore());
+        CreateMap<Book, EditBookRequest>().ForMember(x => x.Genres, f => f.Ignore());
         CreateMap<CreateBookRequest, Book>().ForMember(x => x.Genres, f => f.Ignore());
+        CreateMap<EditBookRequest, Book>().ForMember(x => x.Genres, f => f.Ignore());
 
         CreateMap<ApplicationUser, UserFullInfoResponse>()
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))

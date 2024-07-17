@@ -56,9 +56,14 @@ public class BooksController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("")]
-    public async Task<ActionResult<ApiResponse>> Edit()
+    public async Task<ActionResult<ApiResponse>> Edit(int bookId, [FromForm] EditBookRequest request)
     {
-        return Forbid();
+        var result = await _sender.Send(new EditBookCommand(bookId, request));
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
     }
 
     [HttpDelete]
