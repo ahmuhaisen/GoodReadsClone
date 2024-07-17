@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace GoodReadersClone.Application.DTOs.User;
+﻿namespace GoodReadersClone.Application.DTOs.User;
 public class UserResponse
 {
     public required string UserName { get; set; }
