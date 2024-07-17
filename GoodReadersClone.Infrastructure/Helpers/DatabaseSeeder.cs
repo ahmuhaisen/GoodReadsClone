@@ -12,6 +12,7 @@ public class DatabaseSeeder
     public IReadOnlyCollection<Genre> Genres { get; } = new List<Genre>();
     public IReadOnlyCollection<Quote> Quotes { get; } = new List<Quote>();
     public IReadOnlyCollection<AuthorFollowing> AuthorFollowings { get; } = new List<AuthorFollowing>();
+    public IReadOnlyCollection<Review> Reviews { get; } = new List<Review>();
 
 
     public DatabaseSeeder()
@@ -20,8 +21,9 @@ public class DatabaseSeeder
         Authors = GenerateAuthors(amount: 150);
         Genres = GenerateGenres();
         Users = GenerateUsers(amount: 500);
-        Quotes = GenerateQuotes(amount:500);
+        Quotes = GenerateQuotes(amount: 500);
         AuthorFollowings = GenerateAuthorFollowings();
+        Reviews = GenerateReviews(amount: 5);
     }
 
 
@@ -171,7 +173,7 @@ public class DatabaseSeeder
             "1db1977e-458c-8684-8916-838248243647",
             "1fbc90a5-12a6-5142-5d0a-b36f49b7a43f",
             "20551761-8d21-2f46-92a1-eb2cd751d472",
-        };   
+        };
 
 
         var QuoteFaker = new Faker<Quote>()
@@ -262,6 +264,24 @@ public class DatabaseSeeder
 
         return authorFollowings;
     }
+
+    public static IReadOnlyCollection<Review> GenerateReviews(int amount)
+    {
+        int counter = 1;
+        var reviewFaker = new Faker<Review>()
+            .RuleFor(r => r.ReaderId, _ => "b6b0221c-7880-9334-80c5-fac5c2ce4c9a")
+            .RuleFor(r => r.BookId, _ => counter++)
+            .RuleFor(r => r.Rating, f => f.Random.Number(0, 5))
+            .RuleFor(r => r.Text, f => f.Lorem.Text())
+            .RuleFor(r => r.CreatedAt, f => f.Date.Past());
+
+        var reviews = Enumerable.Range(1, amount)
+        .Select(i => reviewFaker.Generate())
+        .ToList();
+
+        return reviews;
+    }
+
 
     private static T SeedRow<T>(Faker<T> faker, int rowId) where T : class
     {
