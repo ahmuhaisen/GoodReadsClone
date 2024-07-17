@@ -19,7 +19,11 @@ public class UsersController(ISender _sender) : ControllerBase
     public async Task<ActionResult<UserInfoModel>> GetById(string userId)
     {
         var result = await _sender.Send(new GetUserByIdQuery(userId));
-        return result;
+
+        if (!result.Success) 
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpPost]

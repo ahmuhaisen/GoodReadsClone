@@ -12,6 +12,11 @@ public class MappingProfile : Profile
         CreateMap<UserInfoModel, ApplicationUser>().ReverseMap();
         CreateMap<Book, BookModel>().ReverseMap();
 
+        CreateMap<ApplicationUser, UserFullInfoResponse>()
+            .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+            .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.ProfilePectureURL))
+            .ReverseMap();
+
         CreateMap<ApplicationUser, UserResponse>()
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
             .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.ProfilePectureURL))
