@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using GoodReadersClone.Domain.Models;
+﻿using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using GoodReadersClone.Infrastructure.Helpers;

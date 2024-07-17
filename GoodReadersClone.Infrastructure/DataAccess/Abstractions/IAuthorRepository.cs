@@ -5,5 +5,6 @@ namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 public interface IAuthorRepository : IRepository<Author>
 {
     Task<Author?> GetAsync(string id);
-   bool IsExist(Expression<Func<Author, bool>> condition);
+    Task<IEnumerable<AuthorFollowing>> GetAllFollowersAsync(string authorId);
+    bool IsExist(Expression<Func<Author, bool>> condition);
 }

@@ -22,6 +22,16 @@ public class AuthorRepository : Repository<Author>, IAuthorRepository
             .SingleOrDefaultAsync(a => a.Id == id);
     }
 
+    public async Task<IEnumerable<AuthorFollowing>> GetAllFollowersAsync(string authorId)
+    {
+        var author = await _context.Authors
+            .AsNoTracking()
+            .Include(a => a.Followers)
+            .SingleOrDefaultAsync(a => a.Id == authorId);
+
+        return author!.Followers.ToList();
+    }
+
     public bool IsExist(Expression<Func<Author, bool>> condition)
     {
         return _context.Authors.Any(condition);

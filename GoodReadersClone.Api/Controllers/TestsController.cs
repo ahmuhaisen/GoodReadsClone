@@ -20,17 +20,17 @@ public class TestsController(ApplicationDbContext db, UserManager<ApplicationUse
         //List<Genre> data = seeder.Genres.ToList();
         //List<ApplicationUser> data = seeder.Users.ToList();
         //List<Quote> data = seeder.Quotes.ToList();
-        List<AuthorFollowing> data = seeder.AuthorFollowings.ToList();
+        //List<AuthorFollowing> data = seeder.AuthorFollowings.ToList();
 
 
 
-        db.AddRange(data);
-        var r = db.SaveChanges();
+        //db.AddRange(data);
+        //var r = db.SaveChanges();
 
         //foreach (var user in data)
         //    await manager.AddToRoleAsync(user, Roles.AUTHOR);
 
 
-        return Ok(r);
+        return Ok();
     }
 }
