@@ -1,6 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs;
-
-namespace GoodReadersClone.Api.Controllers;
+﻿namespace GoodReadersClone.Api.Controllers;
 
 
 [ApiController]
@@ -8,11 +6,10 @@ namespace GoodReadersClone.Api.Controllers;
 public class AuthorsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("getAuthorInfo")]
-    [AllowAnonymous]
-    public async Task<ActionResult<ApiResponse>> GetAuthor(AuthorInfoRequest request)
+    [Route("{authorId}")]
+    public async Task<IActionResult> Get(string authorId)
     {
-        var result = await _sender.Send(new GetAuthorInfoByIdQuery(request));
+        var result = await _sender.Send(new GetAuthorInfoByIdQuery(authorId));
 
         if (!result.Success)
             return NotFound(result.Message);
@@ -21,17 +18,21 @@ public class AuthorsController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getAll")]
-    public async Task<ActionResult<IEnumerable<UserInfoModel>>> GetAllAuthors()
+    [Route("")]
+    public async Task<IActionResult> GetAll()
     {
         var result = await _sender.Send(new GetAllAuthorsQuery());
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
         return Ok(result);
     }
 
 
     [HttpGet]
-    [Route("getAuthorBooks")]
-    public async Task<ActionResult<ApiResponse>> GetBooks(string authorId)
+    [Route("getBooks")]
+    public async Task<IActionResult> GetBooks(string authorId)
     {
         var result = await _sender.Send(new GetAuthorBooksQuery(authorId));
 
@@ -40,5 +41,4 @@ public class AuthorsController(ISender _sender) : ControllerBase
 
         return Ok(result);
     }
-
 }

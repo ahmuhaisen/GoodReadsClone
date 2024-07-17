@@ -7,7 +7,7 @@ public class GetAuthorInfoByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHa
 {
     public async Task<ApiResponse> Handle(GetAuthorInfoByIdQuery request, CancellationToken cancellationToken)
     {
-        var author = await _unitOfWork.AuthorRepository.GetAsync(request.InfoRequest.AuthorId);
+        var author = await _unitOfWork.AuthorRepository.GetAsync(request.AuthorId);
 
         if (author is null)
             return new ApiResponse { Message = "Author not found" };
