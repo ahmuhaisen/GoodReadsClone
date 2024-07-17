@@ -4,8 +4,7 @@ namespace GoodReadersClone.Application.DTOs.User;
 public class UserResponse
 {
     public required string UserName { get; set; }
-    public required string FirstName { get; set; }
-    public required string LastName { get; set; }
+    public required string FullName { get; set; }
     public required string DateOfBirth { get; set; }
     public required string Email { get; set; }
     public string? ProfilePicture { get; set; }
@@ -15,8 +14,7 @@ public class UserResponse
         return new UserResponse
         {
             UserName = user.UserName!,
-            FirstName = user.FirstName!,
-            LastName = user.LastName!,
+            FullName = $"{user.FirstName!} {user.LastName!}",
             Email = user.Email!,
             DateOfBirth = user.DateOfBirth.ToShortDateString(),
             ProfilePicture = user.ProfilePectureURL

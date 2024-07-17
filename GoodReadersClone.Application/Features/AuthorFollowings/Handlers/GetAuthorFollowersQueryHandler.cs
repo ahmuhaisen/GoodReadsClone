@@ -1,5 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.AuthorFollowing;
-using GoodReadersClone.Application.DTOs.User;
+﻿using GoodReadersClone.Application.DTOs.User;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 

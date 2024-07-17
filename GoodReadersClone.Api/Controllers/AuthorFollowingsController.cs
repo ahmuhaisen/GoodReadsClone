@@ -19,4 +19,17 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet]
+    [Route("getReaderFollowings")]
+    [AllowAnonymous]
+    public async Task<ActionResult<ApiResponse>> GetReaderFollowings(string readerId)
+    {
+        var result = await _sender.Send(new GetReaderFollowingsQuery(readerId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
+    }
 }
