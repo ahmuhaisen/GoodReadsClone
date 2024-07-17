@@ -4,6 +4,7 @@ using GoodReadersClone.Infrastructure.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoodReadersClone.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717081901_AuthorFollowings")]
+    partial class AuthorFollowings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("BookGenre", (string)null);
+                    b.ToTable("BookGenre");
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
@@ -144,7 +147,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("AuthorFollowing", (string)null);
+                    b.ToTable("AuthorFollowing");
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.Book", b =>
@@ -199,7 +202,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.Quote", b =>
