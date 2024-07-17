@@ -6,5 +6,6 @@ public interface IUnitOfWork : IDisposable
     IGenreRepository GenreRepository { get; }
     IQuoteRepository QuoteRepository { get; }
     IAuthorFollowingRepository AuthorFollowingRepository { get; }
+    IReviewRepository ReviewRepository { get; }
     int Save();
 }
