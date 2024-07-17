@@ -23,3 +23,4 @@ public class GetAuthorFollowersQueryHandler(IUnitOfWork _unitOfWork)
         };
     }
 }
+
