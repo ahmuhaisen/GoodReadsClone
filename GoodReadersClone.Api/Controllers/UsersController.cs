@@ -16,7 +16,7 @@ public class UsersController(ISender _sender) : ControllerBase
 
     [HttpGet]
     [Route("{userId}")]
-    public async Task<ActionResult<UserInfoModel>> GetById(string userId)
+    public async Task<ActionResult> GetById(string userId)
     {
         var result = await _sender.Send(new GetUserByIdQuery(userId));
 
@@ -28,10 +28,14 @@ public class UsersController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("registerAsReader")]
-    public async Task<ActionResult<UserModel>> RegisterAsReader([FromForm] UserRegisterRequest request)
+    public async Task<ActionResult> RegisterAsReader([FromForm] UserRegisterRequest request)
     {
         var result = await _sender.Send(new CreateReaderCommand(request));
-        return result;
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
     }
 
     [HttpPost]
