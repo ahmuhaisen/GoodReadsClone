@@ -10,7 +10,10 @@ public class MappingProfile : Profile
     {
         CreateMap<UserRegisterRequest, ApplicationUser>().ReverseMap();
         CreateMap<UserInfoModel, ApplicationUser>().ReverseMap();
+
         CreateMap<Book, BookModel>().ReverseMap();
+        CreateMap<Book, CreateBookRequest>().ForMember(x => x.Genres, f => f.Ignore());
+        CreateMap<CreateBookRequest, Book>().ForMember(x => x.Genres, f => f.Ignore());
 
         CreateMap<ApplicationUser, UserFullInfoResponse>()
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))

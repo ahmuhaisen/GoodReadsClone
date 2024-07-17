@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Domain.Models;
+﻿    using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using GoodReadersClone.Infrastructure.Helpers;
@@ -29,10 +29,16 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     {
         return await _context.Set<T>().FindAsync(id);
     }
-
-    public async Task<T?> GetAsync(Expression<Func<T, bool>> filter)
+    
+    public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null)
     {
-        return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(filter);
+        IQueryable<T> query = _context.Set<T>();
+
+        if (includes is not null)
+            foreach (var include in includes)
+                query = query.Include(include);
+
+        return await query.FirstOrDefaultAsync(filter);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()

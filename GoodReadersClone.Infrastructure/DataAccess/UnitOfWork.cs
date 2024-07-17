@@ -9,6 +9,7 @@ public class UnitOfWork : IUnitOfWork
 
     public IAuthorRepository AuthorRepository { get; }
     public IBookRepository BookRepository { get; }
+    public IGenreRepository GenreRepository { get; }
     public IQuoteRepository QuoteRepository { get; }
     public IAuthorFollowingRepository AuthorFollowingRepository { get; }
 
@@ -19,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
         BookRepository = new BookRepository(_context);
         QuoteRepository = new QuoteRepository(_context);
         AuthorFollowingRepository = new AuthorFollowingRepository(_context);
+        GenreRepository = new GenreRepository(_context);
     }
 
     public int Save()

@@ -14,7 +14,7 @@ public interface IRepository<T> where T : class
     Task<bool> IsExist(Expression<Func<T, bool>> filter);
 
     Task<T> GetByIdAsync(int id);
-    Task<T?> GetAsync(Expression<Func<T, bool>> filter);
+    Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null);
 
     Task<IEnumerable<T>> GetAllAsync();
     Task<IEnumerable<T>> GetAllAsync(string[] includes);

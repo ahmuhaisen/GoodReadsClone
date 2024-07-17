@@ -1,5 +1,6 @@
 ﻿using GoodReadersClone.Application.DTOs;
 using GoodReadersClone.Application.DTOs.Books;
+using GoodReadersClone.Application.Features.Books.Commands;
 using GoodReadersClone.Application.Features.Books.Queries;
 
 namespace GoodReadersClone.Api.Controllers;
@@ -41,5 +42,29 @@ public class BooksController(ISender _sender) : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Create([FromForm] CreateBookRequest request)
+    {
+        var result = await _sender.Send(new CreateBookCommand(request));
 
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
+    }
+
+    [HttpPut]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Edit()
+    {
+        return Forbid();
+    }
+
+    [HttpDelete]
+    [Route("")]
+    public async Task<ActionResult<ApiResponse>> Delete()
+    {
+        return Forbid();
+    }
 }

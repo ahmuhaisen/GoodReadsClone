@@ -5,3 +5,7 @@ public interface IBookRepository : IRepository<Book>
 {
     Task<int> Count();
 }
+
+public interface IGenreRepository : IRepository<Genre>
+{
+}
