@@ -11,6 +11,7 @@ public class DatabaseSeeder
     public IReadOnlyCollection<Book> Books { get; } = new List<Book>();
     public IReadOnlyCollection<Genre> Genres { get; } = new List<Genre>();
     public IReadOnlyCollection<Quote> Quotes { get; } = new List<Quote>();
+    public IReadOnlyCollection<AuthorFollowing> AuthorFollowings { get; } = new List<AuthorFollowing>();
 
 
     public DatabaseSeeder()
@@ -20,6 +21,7 @@ public class DatabaseSeeder
         Genres = GenerateGenres();
         Users = GenerateUsers(amount: 500);
         Quotes = GenerateQuotes(amount:500);
+        AuthorFollowings = GenerateAuthorFollowings();
     }
 
 
@@ -135,7 +137,6 @@ public class DatabaseSeeder
         return users;
     }
 
-
     public static IReadOnlyCollection<Quote> GenerateQuotes(int amount)
     {
         var UsersList = new List<string>()
@@ -185,6 +186,82 @@ public class DatabaseSeeder
         return quotes;
     }
 
+    public static IReadOnlyCollection<AuthorFollowing> GenerateAuthorFollowings()
+    {
+        var authors = new List<string>()
+        {
+            "0e67f4f5-e108-cd67-516d-e5a99e89e2eb",
+            "1a273f2d-012a-ff97-9a81-02a524ad2f5e",
+            "206d876b-3c61-40a1-9ddf-a24c6c73bd89",
+            "467cf5f3-2cdf-062f-d926-edf7c086c59d",
+            "5535fcef-40d5-200b-cc0a-21f2ad3a5df7",
+            "6c6f0740-a9ec-0133-d897-0620a5f82b0a",
+            "93f8c166-948a-a823-81bd-a1586288057f",
+            "9a893d7e-4473-ac4f-9624-b34d74bd7f9f",
+            "9cc6fee1-529b-135f-273b-10b9dde6c048",
+            "a1cdafab-03b8-1943-7657-b2c15e9e7f9f",
+            "abae4676-08c3-c72c-7f33-2971abf504b4",
+            "b5656302-940a-be51-2e0f-8620e9df6b9b",
+            "b7825fda-8ad6-34e3-9fcc-73eab34e88c6",
+            "c343a760-bd64-b02e-7ffd-bf22c54a54f9",
+            "eb07c8de-4431-b0cd-9072-9a4236eeaba3"
+        };
+        var users = new List<string>()
+        {
+            "b6b0221c-7880-9334-80c5-fac5c2ce4c9a",
+            "b6d5b752-7130-e38b-b06e-ac64b5cfac0e",
+            "b707d28d-be32-48d0-c744-95bae8e9bdc8",
+            "b773cfc3-8323-5b1a-a6cd-92f47fc43b36",
+            "bbab1923-5464-5138-ea29-a22082eb78d0",
+            "bbcf3153-f602-e81c-2d4e-0780be26f484",
+            "bcfff5c4-bd8e-4b41-4ac7-8c6e7afe4af1",
+            "bd392ea9-e34e-d83e-40a8-2bb7e1833fb8",
+            "bdf53b6b-6dbf-e62f-bfd8-2e27b5100806",
+            "be11ff51-9a20-b469-5c32-535d17ac72ff",
+            "be1bd1ed-bc2b-980f-98d2-7b55ccef023e",
+            "befa7b91-0c03-85dc-3d49-d9813f400dc8",
+            "bf1d649b-acd7-32cb-9c4f-5876709899b7",
+            "bf332c9c-d21a-02e0-4812-e8a3645fce9b",
+            "bf3d445e-f849-4efa-c155-a3ef3e7addd6",
+            "c0ae716c-1c92-2e05-7f68-f50287523972",
+            "c0caccfc-ab08-1adf-ff5d-821ea0d1552c",
+            "c0d9b880-ef34-8b09-1809-74af14661cbd",
+            "c543d2b4-e4e5-1e00-6eb5-5e74c844290a",
+            "c5cd1af9-8e81-bef1-db04-bc0c76a0eb02",
+            "c63b542d-8c95-b82a-f875-96f4fc04d377",
+            "c6900607-1a26-399f-8097-633dc863d7fa",
+            "c7403b8c-1818-7a21-477c-c2aea7756fc2",
+            "c7a40e32-821f-be1c-d7c9-948080a19a18",
+            "c7ded5be-0e43-a455-7ea4-d1d5bef66cfd",
+            "c839c1f9-fba7-097d-2550-72ef63b9faef",
+            "c8732a20-da58-f261-ca79-09c5d20ecac8",
+            "c8767f7e-e392-c78f-6066-969ff97442e9",
+            "c8fd3e81-a253-1c12-e4d9-4bbbc4a47a7f",
+            "c91ffa8d-eeda-b900-7bb7-b9c448095521",
+            "c9b8564f-7911-a03a-dbbc-ee1301cfb81e",
+            "ca51a09c-d44a-5021-6c39-f6280ef0344b",
+            "cacaf64f-429d-d9a3-61d1-edaf60f05979",
+            "caf15277-3471-c4be-f88e-38ad618c39ff",
+            "cb2ab34a-22be-bb2d-de87-87bcbfaaa3ce",
+            "cb9924a6-a101-aa64-6c1d-e59d2777b2cd",
+            "ccd52449-3533-5e87-9499-4621241db852",
+            "cd08aace-c226-754b-4ef4-46bc5f6172aa",
+            "cd481f98-24e1-408a-aee9-a8b8afe34e64",
+            "cd621766-02f0-3bcd-ab1b-c08a3de6085f",
+            "ce142bb1-5bb2-9097-6472-634b0bd01f9b",
+            "ce1a098d-0926-5c26-fa64-06403c4e2e4e"
+        };
+
+        var authorFollowings = (from authorId in authors
+                                from userId in users
+                                select new AuthorFollowing
+                                {
+                                    AuthorId = authorId,
+                                    ApplicationUserId = userId
+                                }).ToList();
+
+        return authorFollowings;
+    }
 
     private static T SeedRow<T>(Faker<T> faker, int rowId) where T : class
     {
