@@ -23,7 +23,12 @@ public class ReviewsController(ISender _sender) : ControllerBase
     [Route("getReaderReviews/{readerId}")]
     public async Task<IActionResult> GetReaderReviews(string readerId)
     {
-        return Forbid();
+        var result = await _sender.Send(new GetReaderReviewsQuery(readerId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpGet]

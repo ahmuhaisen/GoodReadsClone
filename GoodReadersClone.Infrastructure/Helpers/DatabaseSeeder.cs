@@ -23,7 +23,7 @@ public class DatabaseSeeder
         Users = GenerateUsers(amount: 500);
         Quotes = GenerateQuotes(amount: 500);
         AuthorFollowings = GenerateAuthorFollowings();
-        Reviews = GenerateReviews(amount: 5);
+        Reviews = GenerateReviews(amount: 100);
     }
 
 
@@ -267,9 +267,15 @@ public class DatabaseSeeder
 
     public static IReadOnlyCollection<Review> GenerateReviews(int amount)
     {
+        //1: b6b0221c-7880-9334-80c5-fac5c2ce4c9a
+        //2: 03661a93-c6f0-7d22-a9a7-8b8077577848
+        //3: 037a1034-db31-05cc-4ead-64d8927ed1a5
+        //4: 05d76301-c110-3360-f04d-9a94c95dbc21
+        //5: 0ed01751-5cc9-0954-3c5e-aee6c8515096
+        //6: 20551761-8d21-2f46-92a1-eb2cd751d472
         int counter = 1;
         var reviewFaker = new Faker<Review>()
-            .RuleFor(r => r.ReaderId, _ => "b6b0221c-7880-9334-80c5-fac5c2ce4c9a")
+            .RuleFor(r => r.ReaderId, _ => "20551761-8d21-2f46-92a1-eb2cd751d472")
             .RuleFor(r => r.BookId, _ => counter++)
             .RuleFor(r => r.Rating, f => f.Random.Number(0, 5))
             .RuleFor(r => r.Text, f => f.Lorem.Text())
