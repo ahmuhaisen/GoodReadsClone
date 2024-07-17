@@ -16,7 +16,7 @@ public class ApplicationUser : IdentityUser
 
     public ICollection<Quote> Quotes { get; set; } = [];
 
-
     public ICollection<AuthorFollowing> AuthorFollowings { get; set; } = [];
 
+    public ICollection<Review> Reviews { get; set; } = [];
 }

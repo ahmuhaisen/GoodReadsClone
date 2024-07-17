@@ -17,4 +17,6 @@ public class Book : BaseEntity
     public ICollection<Genre> Genres { get; set; } = [];
 
     public ICollection<Quote> Quotes { get; set; } = [];
+
+    public ICollection<Review> Reviews { get; set; } = [];
 }
