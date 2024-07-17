@@ -9,6 +9,7 @@ namespace GoodReadersClone.Infrastructure.DataAccess.Data;
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<Author> Authors { get; set; }
+    public DbSet<AuthorFollowing> AuthorFollowings { get; set; }
     public DbSet<Genre> Genres { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<Quote> Quotes { get; set; }
