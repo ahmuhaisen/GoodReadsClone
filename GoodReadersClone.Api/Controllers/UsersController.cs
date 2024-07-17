@@ -40,9 +40,13 @@ public class UsersController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("registerAsAuthor")]
-    public async Task<ActionResult<UserModel>> RegisterAsAuthor([FromForm] UserRegisterRequest request)
+    public async Task<ActionResult> RegisterAsAuthor([FromForm] UserRegisterRequest request)
     {
         var result = await _sender.Send(new CreateAuthorCommand(request));
-        return result;
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        return Ok(result);
     }
 }

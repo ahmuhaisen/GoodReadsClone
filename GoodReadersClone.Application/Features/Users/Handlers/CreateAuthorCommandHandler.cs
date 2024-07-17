@@ -1,28 +1,24 @@
-﻿using GoodReadersClone.Application.DTOs.User;
-using GoodReadersClone.Infrastructure.Helpers;
+﻿using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 
 public class CreateAuthorCommandHandler(
     UserManager<ApplicationUser> _userManager,
     ILogger<CreateAuthorCommandHandler> _logger,
-    IMapper _mapper) : IRequestHandler<CreateAuthorCommand, UserModel>
+    IMapper _mapper) : IRequestHandler<CreateAuthorCommand, ApiResponse>
 {
-    public async Task<UserModel> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
+    public async Task<ApiResponse> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)
     {
-        if (request is null || request.Request is null)
-            return new UserModel { Message = "Request can't be null" };
-
         var user = _mapper.Map<ApplicationUser>(request.Request);
 
 
         if (request.Request.ProfilePicture is not null)
         {
             if (!FileManager.IsValidFormat(request.Request.ProfilePicture))
-                return new UserModel { Message = $"Invalid File Format, Valid Formats:({FileManager.ValidImageFormats})" };
+                return new ApiResponse { Message = $"Invalid File Format, Valid Formats:({FileManager.ValidImageFormats})" };
 
             if (!FileManager.IsValidImageSize(request.Request.ProfilePicture))
-                return new UserModel { Message = $"Invalid File Size, Maximum file size: ({FileManager.MaxImageSizeInMB}MB)" };
+                return new ApiResponse { Message = $"Invalid File Size, Maximum file size: ({FileManager.MaxImageSizeInMB}MB)" };
 
             // user.ProfilePectureURL = FileManager.UpsertImage(request.Request.ProfilePicture, FileManager.ProfilePicturesPath);
         }
@@ -32,15 +28,15 @@ public class CreateAuthorCommandHandler(
         var result = await _userManager.CreateAsync(user, request.Request.Password);
 
         if (!result.Succeeded)
-            return new UserModel { Message = result.Errors.FirstOrDefault()?.Description };
+            return new ApiResponse { Message = "Error Occured" };
 
         await _userManager.AddToRoleAsync(user, Roles.AUTHOR);
 
-        return new UserModel
+        return new ApiResponse
         {
+            Success = true,
             Message = "Author created successfully",
-            Id = user.Id,
-            Roles = (await _userManager.GetRolesAsync(user)).ToArray()
+            Data = new { user.Id }
         };
     }
 }
