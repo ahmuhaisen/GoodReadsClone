@@ -11,4 +11,6 @@ public class ShelfItem : BaseEntity
     public ApplicationUser Reader { get; set; }
 
     public Shelf Shelf { get; set; }
+
+    public DateTime? DateRead { get; set; }
 }
