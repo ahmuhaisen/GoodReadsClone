@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Books.Commands;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
 

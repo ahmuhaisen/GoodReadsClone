@@ -5,4 +5,5 @@ global using Microsoft.Extensions.Logging;
 global using GoodReadersClone.Application.DTOs;
 global using GoodReadersClone.Application.Features.Users.Commands;
 global using GoodReadersClone.Application.Helpers;
+global using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 global using GoodReadersClone.Domain.Entities;

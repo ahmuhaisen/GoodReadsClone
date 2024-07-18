@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Commands;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;

@@ -1,7 +1,6 @@
 ﻿using GoodReadersClone.Application.DTOs.Books;
 using GoodReadersClone.Application.Features.Books.Queries;
 using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
 public class GetAllBooksQueryHandler(

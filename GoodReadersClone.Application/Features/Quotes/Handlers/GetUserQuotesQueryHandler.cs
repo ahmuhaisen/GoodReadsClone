@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Queries;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 

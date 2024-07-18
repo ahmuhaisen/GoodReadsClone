@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.DTOs.User;
 using GoodReadersClone.Application.Features.Authors.Queries;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadersClone.Application.Features.Authors.Handlers;
 public class GetAllAuthorsQueryHandler(

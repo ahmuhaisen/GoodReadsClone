@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.DTOs.Author;
 using GoodReadersClone.Application.Features.Authors.Queries;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadersClone.Application.Features.Authors.Handlers;
 public class GetAuthorInfoByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<GetAuthorInfoByIdQuery, ApiResponse>

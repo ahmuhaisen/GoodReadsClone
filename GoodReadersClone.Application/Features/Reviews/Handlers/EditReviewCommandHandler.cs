@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Reviews.Commands;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GoodReadersClone.Application.Features.Reviews.Handlers;
