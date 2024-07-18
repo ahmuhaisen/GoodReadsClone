@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GoodReadersClone.Application.DTOs.Books;
+using GoodReadersClone.Application.DTOs.Review;
 using GoodReadersClone.Domain.Entities;
 
 namespace GoodReadersClone.Api.Mapper;
@@ -26,5 +27,8 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
             .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.ProfilePectureURL))
             .ReverseMap();
+
+        CreateMap<Review, ReviewRequest>().ReverseMap();
+
     }
 }

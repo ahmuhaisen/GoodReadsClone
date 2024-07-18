@@ -1,4 +1,6 @@
-﻿using GoodReadersClone.Application.Features.Reviews.Queries;
+﻿using GoodReadersClone.Application.DTOs.Review;
+using GoodReadersClone.Application.Features.Reviews.Commands;
+using GoodReadersClone.Application.Features.Reviews.Queries;
 
 namespace GoodReadersClone.Api.Controllers;
 
@@ -57,9 +59,17 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> Create(ReviewRequest request)
     {
-        return Forbid();
+        //if(!ModelState.IsValid)
+        //    return BadRequest(ModelState);
+
+        var result = await _sender.Send(new CreateReviewCommand(request));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpPut]
