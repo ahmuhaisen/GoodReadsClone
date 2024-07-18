@@ -26,6 +26,7 @@ public static class ServicesExtensions
         services.AddDbContext<ApplicationDbContext>(options =>
         {
             options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
     }
 

@@ -35,7 +35,6 @@ public class BookRepository : Repository<Book>, IBookRepository
             pageSize = 20;
 
         IQueryable<Book> items = _context.Set<Book>()
-            .AsNoTracking()
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .Include(b => b.Author)

@@ -17,7 +17,6 @@ public class AuthorRepository : Repository<Author>, IAuthorRepository
     public async Task<Author?> GetAsync(string id)
     {
         return await _context.Authors
-            .AsNoTracking()
             .Include(a => a.Books)
             .SingleOrDefaultAsync(a => a.Id == id);
     }
@@ -25,7 +24,6 @@ public class AuthorRepository : Repository<Author>, IAuthorRepository
     public async Task<IEnumerable<AuthorFollowing>> GetAllFollowersAsync(string authorId)
     {
         var author = await _context.Authors
-            .AsNoTracking()
             .Include(a => a.Followers)
             .SingleOrDefaultAsync(a => a.Id == authorId);
 

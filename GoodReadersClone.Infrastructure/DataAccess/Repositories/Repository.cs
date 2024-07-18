@@ -1,8 +1,10 @@
-﻿    using GoodReadersClone.Domain.Models;
+﻿using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess.Data;
 using GoodReadersClone.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
@@ -43,12 +45,12 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _context.Set<T>().AsNoTracking().ToListAsync();
+        return await _context.Set<T>().ToListAsync();
     }
 
     public async Task<IEnumerable<T>> GetAllAsync(string[] includes)
     {
-        IQueryable<T> query = _context.Set<T>().AsNoTracking();
+        IQueryable<T> query = _context.Set<T>();
 
         if (includes is not null)
             foreach (var include in includes)
@@ -69,7 +71,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
             pageIndex = 1;
 
         var items = await _context.Set<T>()
-            .AsNoTracking()
+            
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
@@ -79,14 +81,14 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
 
     public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter)
     {
-        IQueryable<T> query = _context.Set<T>().AsNoTracking();
+        IQueryable<T> query = _context.Set<T>();
 
         return await query.Where(filter).ToListAsync();
     }
 
     public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, string[] includes)
     {
-        IQueryable<T> query = _context.Set<T>().AsNoTracking();
+        IQueryable<T> query = _context.Set<T>();
 
         if (includes is not null)
             foreach (var include in includes)
@@ -98,7 +100,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take)
     {
         return await _context.Set<T>()
-            .AsNoTracking()
+            
             .Where(filter)
             .Skip(skip)
             .Take(take)
@@ -108,7 +110,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, int? skip, int? take,
     Expression<Func<T, object>> orderBy = null!, string orderDirection = OrderByDirections.ASC)
     {
-        IQueryable<T> query = _context.Set<T>().AsNoTracking().Where(filter);
+        IQueryable<T> query = _context.Set<T>().Where(filter);
 
         if(skip.HasValue) query = query.Skip(skip.Value);
         if(take.HasValue) query = query.Take(take.Value);
