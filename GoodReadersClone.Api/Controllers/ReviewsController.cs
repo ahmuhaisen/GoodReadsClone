@@ -1,4 +1,5 @@
-﻿using GoodReadersClone.Application.DTOs.Review;
+﻿using Azure.Core;
+using GoodReadersClone.Application.DTOs.Review;
 using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
 
@@ -83,8 +84,13 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("")]
-    public async Task<IActionResult> Delete()
+    public async Task<IActionResult> Delete(string readerId, int bookId)
     {
-        return Forbid();
+        var result = await _sender.Send(new DeleteReviewCommand(readerId, bookId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 }
