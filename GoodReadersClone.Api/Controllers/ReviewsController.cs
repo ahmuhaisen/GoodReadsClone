@@ -61,9 +61,6 @@ public class ReviewsController(ISender _sender) : ControllerBase
     [Route("")]
     public async Task<IActionResult> Create(ReviewRequest request)
     {
-        //if(!ModelState.IsValid)
-        //    return BadRequest(ModelState);
-
         var result = await _sender.Send(new CreateReviewCommand(request));
 
         if (!result.Success)
@@ -74,9 +71,14 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("")]
-    public async Task<IActionResult> Edit()
+    public async Task<IActionResult> Edit(string readerId, int bookId, EditReviewRequest request)
     {
-        return Forbid();
+        var result = await _sender.Send(new EditReviewCommand(readerId, bookId, request));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpDelete]
