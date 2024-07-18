@@ -3,4 +3,5 @@
 namespace GoodReadersClone.Application.Features.ShelfItems.Commands;
 
 
-public record AddToShelfCommand(AddToShelfRequest Request) : IRequest<ApiResponse>;
+public record AddToShelfCommand(ShelfRequest Request) : IRequest<ApiResponse>;
+public record ChangeShelfCommand(ShelfRequest Request) : IRequest<ApiResponse>;

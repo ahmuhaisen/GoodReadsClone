@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadersClone.Application.DTOs.ShelfItem;
-public class AddToShelfRequest
+public class ShelfRequest
 {
     public int BookId { get; set; }
 

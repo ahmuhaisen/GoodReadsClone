@@ -1,4 +1,5 @@
-﻿using GoodReadersClone.Application.DTOs.ShelfItem;
+﻿using Azure.Core;
+using GoodReadersClone.Application.DTOs.ShelfItem;
 using GoodReadersClone.Application.Features.ShelfItems.Commands;
 using GoodReadersClone.Application.Features.ShelfItems.Queries;
 using GoodReadersClone.Domain.Enums;
@@ -23,7 +24,7 @@ public class ShelfItemsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> AddToShelf(AddToShelfRequest request)
+    public async Task<IActionResult> AddToShelf(ShelfRequest request)
     {
         var result = await _sender.Send(new AddToShelfCommand(request));
 
@@ -35,9 +36,14 @@ public class ShelfItemsController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("")]
-    public async Task<IActionResult> ChangeShelf()
+    public async Task<IActionResult> ChangeShelf(ShelfRequest request)
     {
-        return Forbid();
+        var result = await _sender.Send(new ChangeShelfCommand(request));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpDelete]
