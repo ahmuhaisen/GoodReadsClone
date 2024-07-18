@@ -1,8 +1,6 @@
-﻿using Azure.Core;
-using GoodReadersClone.Application.DTOs.ShelfItem;
+﻿using GoodReadersClone.Application.DTOs.ShelfItem;
 using GoodReadersClone.Application.Features.ShelfItems.Commands;
 using GoodReadersClone.Application.Features.ShelfItems.Queries;
-using GoodReadersClone.Domain.Enums;
 
 namespace GoodReadersClone.Api.Controllers;
 
@@ -11,7 +9,7 @@ namespace GoodReadersClone.Api.Controllers;
 public class ShelfItemsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("")]
+    [Route("{readerId}")]
     public async Task<IActionResult> GetAll(string readerId)
     {
         var result = await _sender.Send(new GetAllShelfItemsQuery(readerId));
@@ -48,9 +46,14 @@ public class ShelfItemsController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("")]
-    public async Task<IActionResult> Delete()
+    public async Task<IActionResult> Delete(string readerId, int bookId)
     {
-        return Forbid();
+        var result = await _sender.Send(new DeleteShelfItemCommand(readerId, bookId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
 }
