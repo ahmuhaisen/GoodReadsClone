@@ -13,6 +13,8 @@ public class UnitOfWork : IUnitOfWork
     public IQuoteRepository QuoteRepository { get; }
     public IAuthorFollowingRepository AuthorFollowingRepository { get; }
     public IReviewRepository ReviewRepository { get; }
+    public IShelfItemRepository ShelfItemRepository { get; }
+
 
     public UnitOfWork(ApplicationDbContext context)
     {
@@ -23,6 +25,7 @@ public class UnitOfWork : IUnitOfWork
         AuthorFollowingRepository = new AuthorFollowingRepository(_context);
         GenreRepository = new GenreRepository(_context);
         ReviewRepository = new ReviewRepository(_context);
+        ShelfItemRepository = new ShelfItemRepository(_context);
     }
 
     public int Save()
