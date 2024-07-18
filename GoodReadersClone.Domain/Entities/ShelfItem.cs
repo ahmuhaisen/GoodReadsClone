@@ -10,5 +10,5 @@ public class ShelfItem : BaseEntity
     public string ReaderId { get; set; }
     public ApplicationUser Reader { get; set; }
 
-    public BookStatus Status { get; set; }
+    public Shelf Shelf { get; set; }
 }
