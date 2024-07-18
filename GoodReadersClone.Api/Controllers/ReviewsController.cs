@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using GoodReadersClone.Application.DTOs.Review;
+﻿using GoodReadersClone.Application.DTOs.Review;
 using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
 
