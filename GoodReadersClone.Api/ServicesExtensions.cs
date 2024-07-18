@@ -5,6 +5,7 @@ using GoodReadersClone.Infrastructure.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GoodReadersClone.Application.Features;
+using GoodReadersClone.Api.Helpers;
 
 namespace GoodReadersClone.Api;
 
@@ -36,5 +37,11 @@ public static class ServicesExtensions
         {
             cfg.RegisterServicesFromAssembly(typeof(MediatREntryPoint).Assembly);
         });
+    }
+
+    public static void RegisterOptions(this IServiceCollection services, ConfigurationManager configuration)
+    {
+        services.Configure<MaintenanceOptions>(configuration.GetSection("MaintenanceMode"));
+
     }
 }
