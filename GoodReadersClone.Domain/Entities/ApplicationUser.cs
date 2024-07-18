@@ -19,4 +19,6 @@ public class ApplicationUser : IdentityUser
     public ICollection<AuthorFollowing> AuthorFollowings { get; set; } = [];
 
     public ICollection<Review> Reviews { get; set; } = [];
+
+    public ICollection<ShelfItem> ShelfItems { get; set; } = [];
 }

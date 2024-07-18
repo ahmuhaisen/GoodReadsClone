@@ -19,4 +19,6 @@ public class Book : BaseEntity
     public ICollection<Quote> Quotes { get; set; } = [];
 
     public ICollection<Review> Reviews { get; set; } = [];
+
+    public ICollection<ShelfItem> ShelfItems { get; set; } = [];
 }
