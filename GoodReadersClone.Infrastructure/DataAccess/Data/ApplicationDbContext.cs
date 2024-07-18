@@ -1,10 +1,10 @@
 ﻿using GoodReadersClone.Domain.Entities;
+using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Data.Congifurations;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-
-namespace GoodReadersClone.Infrastructure.DataAccess.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
@@ -14,10 +14,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Book> Books { get; set; }
     public DbSet<Quote> Quotes { get; set; }
     public DbSet<Review> Reviews { get; set; }
-
+    public DbSet<ShelfItemModel> ShelfItemModels { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    {}
+    { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,5 +31,18 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins", "security");
         modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "security");
         modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
+
+        modelBuilder.Entity<ShelfItemModel>()
+            .HasNoKey()
+            .ToView(null);
+
+        modelBuilder.HasDbFunction(typeof(ApplicationDbContext).GetMethod(nameof(GetShelfItems), new[] { typeof(string) }));
+    }
+
+    [DbFunction("GetShelfItems", "dbo")]
+    public IQueryable<ShelfItemModel> GetShelfItems(string readerId)
+    {
+        var readerIdParam = new SqlParameter("@ReaderId", readerId);
+        return ShelfItemModels.FromSqlRaw("SELECT * FROM dbo.GetShelfItems(@ReaderId)", readerIdParam);
     }
 }

@@ -1,14 +1,22 @@
-﻿namespace GoodReadersClone.Api.Controllers;
+﻿using GoodReadersClone.Application.Features.ShelfItems.Queries;
+using GoodReadersClone.Domain.Enums;
+
+namespace GoodReadersClone.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ShelfItemsController : ControllerBase
+public class ShelfItemsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
     [Route("")]
-    public async Task<IActionResult> Get(string readerId, int shelfId = 0) // if 0 all books with any status will be returned
+    public async Task<IActionResult> GetAll(string readerId)
     {
-        return Forbid();
+        var result = await _sender.Send(new GetAllShelfItemsQuery(readerId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpPost]
