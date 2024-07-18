@@ -48,13 +48,23 @@ public class GenresController(ISender _sender) : ControllerBase
     [Route("{id}")]
     public async Task<IActionResult> EditAsync(int id, GenreDto dto)
     {
-        return Forbid();
+        var result = await _sender.Send(new EditGenreCommand(id, dto));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpDelete]
     [Route("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
-        return Forbid();
+        var result = await _sender.Send(new DeleteGenreCommand(id));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 }
