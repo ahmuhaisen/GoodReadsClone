@@ -1,4 +1,6 @@
-﻿using GoodReadersClone.Application.Features.ShelfItems.Queries;
+﻿using GoodReadersClone.Application.DTOs.ShelfItem;
+using GoodReadersClone.Application.Features.ShelfItems.Commands;
+using GoodReadersClone.Application.Features.ShelfItems.Queries;
 using GoodReadersClone.Domain.Enums;
 
 namespace GoodReadersClone.Api.Controllers;
@@ -21,9 +23,14 @@ public class ShelfItemsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> AddToShelf()
+    public async Task<IActionResult> AddToShelf(AddToShelfRequest request)
     {
-        return Forbid();
+        var result = await _sender.Send(new AddToShelfCommand(request));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
     }
 
     [HttpPut]
