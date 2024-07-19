@@ -49,6 +49,7 @@ public class AuthController(IAuthService _authService) : ControllerBase
     }
 
     [HttpGet("addrole")]
+    [Authorize(Roles = Roles.ADMIN)]
     public async Task<IActionResult> AddRole(AddRoleRequest model)
     {
         if (!ModelState.IsValid)

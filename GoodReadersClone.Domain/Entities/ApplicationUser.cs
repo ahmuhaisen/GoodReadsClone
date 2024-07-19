@@ -21,4 +21,7 @@ public class ApplicationUser : IdentityUser
     public ICollection<Review> Reviews { get; set; } = [];
 
     public ICollection<ShelfItem> ShelfItems { get; set; } = [];
+
+
+    public ICollection<RefreshToken>? RefreshTokens { get; set; } = [];
 }

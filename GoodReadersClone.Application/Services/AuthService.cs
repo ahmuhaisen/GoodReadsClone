@@ -43,7 +43,7 @@ public class AuthService(
         {
             Username = user.UserName,
             Email = user.Email,
-            ExpiresOn = jwtSecurityToken.ValidTo,
+            //ExpiresOn = jwtSecurityToken.ValidTo,
             IsAuthenticated = true,
             Roles = new List<string> { role },
             Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken)
@@ -108,7 +108,7 @@ public class AuthService(
         authModel.Username = user.UserName!;
         authModel.Roles = roles.ToList();
         authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        authModel.ExpiresOn = jwtSecurityToken.ValidTo;
+        //authModel.ExpiresOn = jwtSecurityToken.ValidTo;
 
 
         return authModel;

@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Application.DTOs.User;
+﻿using System.Text.Json.Serialization;
+
+namespace GoodReadersClone.Application.DTOs.User;
 public class AuthModel
 {
     public string Message { get; set; }
@@ -9,5 +11,11 @@ public class AuthModel
 
 
     public string Token { get; set; }
-    public DateTime ExpiresOn { get; set; }
+    //public DateTime ExpiresOn { get; set; }
+
+
+    [JsonIgnore]
+    public string? RefreshToken { get; set; }
+
+    public DateTime RefreshTokenExpiration { get; set; }
 }
