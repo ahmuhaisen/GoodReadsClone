@@ -1,6 +1,7 @@
 using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
+using GoodReadersClone.Api.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,10 @@ builder.Services.RegisterMediatR();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.RegisterOptions(builder.Configuration);
+
+//Jwt
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
+
 
 var app = builder.Build();
 
