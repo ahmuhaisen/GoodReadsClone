@@ -1,15 +1,15 @@
 using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
-using Asp.Versioning;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+builder.Services.RegisterSwaggerWithOptions();
 
 builder.Services.RegisterIdentity();
 

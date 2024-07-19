@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Asp.Versioning;
+using Microsoft.OpenApi.Models;
 
 namespace GoodReadersClone.Api;
 
@@ -89,6 +90,20 @@ public static class ServicesExtensions
         {
             options.GroupNameFormat = "'v'V";
             options.SubstituteApiVersionInUrl = true;
+        });
+    }
+
+    public static void RegisterSwaggerWithOptions(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(setup =>
+        {
+            setup.SwaggerGeneratorOptions.SwaggerDocs.Add("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Good Readers Clone",
+                Description = "A Web API project using ASP.NET 8.0 demonistrates the basic features of GoodReaders website.",
+                Contact = new OpenApiContact { Name = "Ahmad Muhaisen", Email = "ahmuhaisen03@gmail.com" }
+            });
         });
     }
 }
