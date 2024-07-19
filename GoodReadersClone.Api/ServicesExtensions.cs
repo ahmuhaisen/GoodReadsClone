@@ -4,7 +4,6 @@ using GoodReadersClone.Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GoodReadersClone.Application.Features;
-using GoodReadersClone.Api.Helpers;
 using GoodReadersClone.Application.Services;
 using GoodReadersClone.Application.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Api.Helpers;
+﻿using GoodReadersClone.Application.Options;
 using Microsoft.Extensions.Options;
 
 namespace GoodReadersClone.Api.Middlewares;
