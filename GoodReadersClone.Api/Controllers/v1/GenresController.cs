@@ -1,7 +1,6 @@
-﻿using GoodReadersClone.Application.DTOs.Genre;
-using GoodReadersClone.Application.Features.Genres.Commands;
+﻿using GoodReadersClone.Application.Features.Genres.Commands;
 using GoodReadersClone.Application.Features.Genres.Queries;
-using GoodReadersClone.Infrastructure.Helpers;
+using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 

@@ -1,7 +1,6 @@
 using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
-using Microsoft.OpenApi.Models;
 using GoodReadersClone.Infrastructure.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);

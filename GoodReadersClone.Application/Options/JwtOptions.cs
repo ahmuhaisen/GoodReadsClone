@@ -1,5 +1,4 @@
-﻿namespace GoodReadersClone.Application.Options;
-
+﻿
 public class JwtOptions
 {
     public string Issuer { get; set; }

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace GoodReadersClone.Application.Helpers;
+﻿namespace GoodReadersClone.Application.Helpers;
 
 public class FileManager
 {

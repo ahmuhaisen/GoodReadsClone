@@ -1,6 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.Auth;
-using GoodReadersClone.Application.Services;
-using GoodReadersClone.Infrastructure.Helpers;
+﻿using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
@@ -71,7 +69,7 @@ public class AuthController(IAuthService _authService) : ControllerBase
 
 
     [HttpPost("revoketoken")]
-    public async Task<IActionResult> RevokeToken([FromBody] RevokeToken model)
+    public async Task<IActionResult> RevokeToken([FromBody] RevokeTokenRequest model)
     {
         var token = model.Token ?? Request.Cookies["refreshToken"];
 

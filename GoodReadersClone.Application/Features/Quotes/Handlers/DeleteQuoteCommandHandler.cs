@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Commands;
-using Microsoft.AspNetCore.Http;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;
 

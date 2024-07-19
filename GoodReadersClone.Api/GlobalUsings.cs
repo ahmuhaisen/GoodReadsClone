@@ -1,8 +1,16 @@
-﻿global using MediatR;
-global using Microsoft.AspNetCore.Authorization;
-global using Microsoft.AspNetCore.Mvc;
+﻿global using AutoMapper;
+global using GoodReadersClone.Application.DTOs.Auth;
+global using GoodReadersClone.Application.DTOs.Books;
+global using GoodReadersClone.Application.DTOs.Genre;
+global using GoodReadersClone.Application.DTOs.Review;
 global using GoodReadersClone.Application.DTOs.User;
 global using GoodReadersClone.Application.Features.Authors.Queries;
 global using GoodReadersClone.Application.Features.Users.Queries;
-
-
+global using GoodReadersClone.Application.Options;
+global using GoodReadersClone.Application.Services;
+global using GoodReadersClone.Domain.Entities;
+global using GoodReadersClone.Infrastructure.Utils;
+global using MediatR;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.Options;

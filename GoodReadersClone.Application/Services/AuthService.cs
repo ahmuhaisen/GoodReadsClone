@@ -1,7 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.Auth;
-using GoodReadersClone.Application.Options;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
+﻿using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Application.Services;
 

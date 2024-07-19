@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace GoodReadersClone.Application.DTOs.User;
+﻿namespace GoodReadersClone.Application.DTOs.User;
 public class UserInfoModel : UserModel
 {
     public string FirstName { get; set; }

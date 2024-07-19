@@ -2,7 +2,7 @@
 using GoodReadersClone.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace GoodReadersClone.Infrastructure.Helpers;
+namespace GoodReadersClone.Infrastructure.Utils;
 public class DatabaseSeeder
 {
 

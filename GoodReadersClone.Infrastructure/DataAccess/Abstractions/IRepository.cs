@@ -1,5 +1,5 @@
 ﻿using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.Helpers;
+using GoodReadersClone.Infrastructure.Utils;
 using System.Linq.Expressions;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;

@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using GoodReadersClone.Application.DTOs.Books;
-using GoodReadersClone.Application.DTOs.Genre;
-using GoodReadersClone.Application.DTOs.Review;
-using GoodReadersClone.Domain.Entities;
-
-namespace GoodReadersClone.Api.Mapper;
+﻿namespace GoodReadersClone.Api.Mapper;
 
 public class MappingProfile : Profile
 {

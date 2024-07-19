@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Books.Commands;
-using Microsoft.AspNetCore.Http;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
 

@@ -1,6 +1,6 @@
 ﻿using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
-using GoodReadersClone.Infrastructure.Helpers;
+using GoodReadersClone.Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

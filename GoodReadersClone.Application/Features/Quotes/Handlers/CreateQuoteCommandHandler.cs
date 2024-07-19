@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Commands;
-using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;
 public class CreateQuoteCommandHandler(

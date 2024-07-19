@@ -2,7 +2,7 @@
 using GoodReadersClone.Application.DTOs.Quote;
 using GoodReadersClone.Application.Features.Quotes.Commands;
 using GoodReadersClone.Application.Features.Quotes.Queries;
-using GoodReadersClone.Infrastructure.Helpers;
+using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 

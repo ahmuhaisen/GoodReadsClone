@@ -2,7 +2,7 @@
 using GoodReadersClone.Application.DTOs.AuthorFollowing;
 using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
-using GoodReadersClone.Infrastructure.Helpers;
+using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
