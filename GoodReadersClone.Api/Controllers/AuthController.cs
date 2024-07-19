@@ -48,4 +48,17 @@ public class AuthController(IAuthService _authService) : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("addrole")]
+    public async Task<IActionResult> AddRole(AddRoleRequest model)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var result = await _authService.AddRoleAsync(model);
+
+        if (!string.IsNullOrEmpty(result))
+            return BadRequest(result);
+
+        return Ok(model);
+    }
 }

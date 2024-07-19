@@ -1,8 +1,11 @@
-﻿namespace GoodReadersClone.Application.Services;
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace GoodReadersClone.Application.Services;
 
 public class AuthService(
     IOptions<JwtOptions> _jwtOptions,
-    UserManager<ApplicationUser> _userManager)
+    UserManager<ApplicationUser> _userManager,
+    RoleManager<IdentityRole> _roleManager)
     : IAuthService
 {
     public async Task<AuthModel> RegisterAsync(UserRegisterRequest model, string role)
@@ -111,5 +114,19 @@ public class AuthService(
         return authModel;
     }
 
+    public async Task<string> AddRoleAsync(AddRoleRequest model)
+    {
+        var user = await _userManager.FindByIdAsync(model.UserId);
+
+        if (user is null || !await _roleManager.RoleExistsAsync(model.Role))
+            return "Invalid user Id or Role";
+
+        if (await _userManager.IsInRoleAsync(user, model.Role))
+            return "User is already assigned to this role";
+
+        var result = await _userManager.AddToRoleAsync(user, model.Role);
+
+        return result.Succeeded ? string.Empty : "Something went wrong";
+    }
 }
 
