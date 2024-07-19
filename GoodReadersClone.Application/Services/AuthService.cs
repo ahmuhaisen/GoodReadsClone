@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Security.Cryptography;
 
 namespace GoodReadersClone.Application.Services;
 
@@ -110,6 +111,21 @@ public class AuthService(
         authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
         //authModel.ExpiresOn = jwtSecurityToken.ValidTo;
 
+        if (user.RefreshTokens.Any(t => t.IsActive))
+        {
+            var activerRefreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive);
+            authModel.RefreshToken = activerRefreshToken.Token;
+            authModel.RefreshTokenExpiration = activerRefreshToken.ExpiresOn;
+        }
+        else
+        {
+            var refreshToken = GenerateRegreshToken();
+            authModel.RefreshToken = refreshToken.Token;
+            authModel.RefreshTokenExpiration = refreshToken.ExpiresOn;
+
+            user.RefreshTokens.Add(refreshToken);
+            await _userManager.UpdateAsync(user);
+        }
 
         return authModel;
     }
@@ -127,6 +143,22 @@ public class AuthService(
         var result = await _userManager.AddToRoleAsync(user, model.Role);
 
         return result.Succeeded ? string.Empty : "Something went wrong";
+    }
+
+    private RefreshToken GenerateRegreshToken()
+    {
+        var reandomNumber = new byte[32];
+
+        using var generator = new RNGCryptoServiceProvider();
+
+        generator.GetBytes(reandomNumber);
+
+        return new RefreshToken
+        {
+            Token = Convert.ToBase64String(reandomNumber),
+            ExpiresOn = DateTime.UtcNow.AddDays(10),
+            CreatedOn = DateTime.UtcNow
+        };
     }
 }
 
