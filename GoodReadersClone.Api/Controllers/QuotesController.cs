@@ -9,6 +9,7 @@ namespace GoodReadersClone.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class QuotesController(ISender _sender) : ControllerBase
 {
     [HttpGet]
@@ -38,11 +39,14 @@ public class QuotesController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
+    [Authorize(Roles = Roles.READER)]
     public async Task<ActionResult<ApiResponse>> Create(QuoteModel model)
     {
+        model.UserId = User.FindFirst("uid")!.Value;
+
         var result = await _sender.Send(new CreateQuoteCommand(model));
 
-        if(!result.Success)
+        if (!result.Success)
             return BadRequest(result.Message);
 
         return Ok(result);
@@ -50,6 +54,7 @@ public class QuotesController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("")]
+    [Authorize(Roles = Roles.READER)]
     public async Task<ActionResult<ApiResponse>> Delete(int id)
     {
         var result = await _sender.Send(new DeleteQuoteCommand(id));

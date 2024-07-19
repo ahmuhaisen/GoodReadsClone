@@ -1,9 +1,11 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Commands;
+using Microsoft.AspNetCore.Http;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;
 
 public class DeleteQuoteCommandHandler(
-    IUnitOfWork _unitOfWork)
+    IUnitOfWork _unitOfWork,
+    IHttpContextAccessor _httpContextAccessor)
     : IRequestHandler<DeleteQuoteCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(DeleteQuoteCommand request, CancellationToken cancellationToken)
@@ -13,6 +15,12 @@ public class DeleteQuoteCommandHandler(
               
 
         var quoteToDelete = await _unitOfWork.QuoteRepository.GetByIdAsync(request.Id);
+
+        var currentUserId = _httpContextAccessor.HttpContext.User.FindFirstValue("uid");
+
+        if(currentUserId != quoteToDelete.UserId)
+            return new ApiResponse { Message = "You cann't delete this quote" };
+
 
         _unitOfWork.QuoteRepository.Delete(quoteToDelete);
        
