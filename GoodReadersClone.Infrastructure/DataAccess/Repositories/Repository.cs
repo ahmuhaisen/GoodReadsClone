@@ -1,10 +1,7 @@
 ﻿using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
-using GoodReadersClone.Infrastructure.DataAccess.Data;
 using GoodReadersClone.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;

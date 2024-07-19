@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.Features.Quotes.Queries;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;
 

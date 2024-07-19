@@ -1,5 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.User;
-using GoodReadersClone.Application.Features.Authors.Queries;
+﻿using GoodReadersClone.Application.Features.Authors.Queries;
 
 namespace GoodReadersClone.Application.Features.Authors.Handlers;
 public class GetAllAuthorsQueryHandler(

@@ -1,6 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.User;
-using GoodReadersClone.Application.Features.Users.Queries;
-using GoodReadersClone.Infrastructure.Helpers;
+﻿using GoodReadersClone.Application.Features.Users.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;

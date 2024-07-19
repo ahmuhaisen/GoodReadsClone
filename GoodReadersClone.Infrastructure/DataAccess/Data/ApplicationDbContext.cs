@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
 using GoodReadersClone.Infrastructure.DataAccess.Data.Congifurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;

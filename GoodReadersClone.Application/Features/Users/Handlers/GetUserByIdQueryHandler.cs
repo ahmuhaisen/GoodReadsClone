@@ -1,5 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.User;
-using GoodReadersClone.Application.Features.Users.Queries;
+﻿using GoodReadersClone.Application.Features.Users.Queries;
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 public class GetUserByIdQueryHandler (

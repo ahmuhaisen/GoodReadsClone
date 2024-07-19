@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Api.Helpers;
+﻿namespace GoodReadersClone.Application.Options;
 
 public class JwtOptions
 {

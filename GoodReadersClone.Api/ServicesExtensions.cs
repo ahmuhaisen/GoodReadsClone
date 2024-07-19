@@ -1,11 +1,15 @@
 ﻿using GoodReadersClone.Domain.Entities;
 using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 using GoodReadersClone.Infrastructure.DataAccess;
-using GoodReadersClone.Infrastructure.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GoodReadersClone.Application.Features;
 using GoodReadersClone.Api.Helpers;
+using GoodReadersClone.Application.Services;
+using GoodReadersClone.Application.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GoodReadersClone.Api;
 
@@ -14,6 +18,7 @@ public static class ServicesExtensions
     public static void RegisterDomainServices(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAuthService, AuthService>();
     }
 
     public static void RegisterIdentity(this IServiceCollection services)
@@ -42,6 +47,33 @@ public static class ServicesExtensions
     public static void RegisterOptions(this IServiceCollection services, ConfigurationManager configuration)
     {
         services.Configure<MaintenanceOptions>(configuration.GetSection("MaintenanceMode"));
+        services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
+    }
 
+    public static void RegisterJwt(this IServiceCollection services, ConfigurationManager configuration)
+    {
+        var jwtOptions = configuration.GetSection("Jwt").Get<JwtOptions>();
+
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(o =>
+        {
+            o.RequireHttpsMetadata = false;
+            o.SaveToken = true;
+            o.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+
+                ValidIssuer = jwtOptions?.Issuer,
+                ValidAudience = jwtOptions?.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions?.SigningKey!)),
+                ClockSkew = TimeSpan.Zero
+            };
+        });
     }
 }

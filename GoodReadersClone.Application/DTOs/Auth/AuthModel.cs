@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GoodReadersClone.Application.DTOs.User;
+namespace GoodReadersClone.Application.DTOs.Auth;
 public class AuthModel
 {
     public string Message { get; set; }

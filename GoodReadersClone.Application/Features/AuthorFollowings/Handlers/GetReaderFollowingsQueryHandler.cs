@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.DTOs.Author;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
-using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
 

@@ -1,11 +1,6 @@
 using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
-using GoodReadersClone.Api.Helpers;
-using GoodReadersClone.Application.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,35 +22,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
 builder.Services.RegisterOptions(builder.Configuration);
 
-//Jwt
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
-
-builder.Services.AddScoped<IAuthService, AuthService>();
-
-var jwtOptions = builder.Configuration.GetSection("Jwt").Get<JwtOptions>();
-
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(o =>
-{
-    o.RequireHttpsMetadata = false;
-    o.SaveToken = true;
-    o.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-
-        ValidIssuer = jwtOptions?.Issuer,
-        ValidAudience = jwtOptions?.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions?.SigningKey!)),
-        ClockSkew = TimeSpan.Zero
-    };
-});
-
+builder.Services.RegisterJwt(builder.Configuration);
 
 var app = builder.Build();
 

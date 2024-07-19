@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
 
 namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 

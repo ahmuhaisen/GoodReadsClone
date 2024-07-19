@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.User;
+namespace GoodReadersClone.Application.DTOs.Auth;
 
 public class TokenRequest
 {

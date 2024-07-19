@@ -1,5 +1,5 @@
-﻿using GoodReadersClone.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
+﻿using GoodReadersClone.Application.DTOs.Auth;
+using GoodReadersClone.Application.Options;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
