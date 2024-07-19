@@ -9,7 +9,7 @@ public class ReviewRequest
     [MaxLength(200)]
     public string? Text { get; set; }
 
-    public required string ReaderId { get; set; }
+    public string? ReaderId { get; set; }
 
     public required int BookId { get; set; }
 }

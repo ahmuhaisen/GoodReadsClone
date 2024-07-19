@@ -1,6 +1,7 @@
 ﻿using GoodReadersClone.Application.DTOs.Review;
 using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
+using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Api.Controllers;
 
@@ -23,6 +24,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpGet]
     [Route("getReaderReviews/{readerId}")]
+    [Authorize]
     public async Task<IActionResult> GetReaderReviews(string readerId)
     {
         var result = await _sender.Send(new GetReaderReviewsQuery(readerId));
@@ -35,6 +37,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpGet]
     [Route("getReaderBookReview")]
+    [Authorize]
     public async Task<IActionResult> GetReaderBookReview(string readerId, int bookId)
     {
         var result = await _sender.Send(new GetReaderBookReviewQuery(readerId, bookId));
@@ -59,8 +62,11 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
+    [Authorize(Roles = Roles.READER)]
     public async Task<IActionResult> Create(ReviewRequest request)
     {
+        request.ReaderId = User.FindFirst("uid")!.Value;
+        
         var result = await _sender.Send(new CreateReviewCommand(request));
 
         if (!result.Success)
@@ -71,8 +77,11 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("")]
-    public async Task<IActionResult> Edit(string readerId, int bookId, EditReviewRequest request)
+    [Authorize(Roles = Roles.READER)]
+    public async Task<IActionResult> Edit(int bookId, EditReviewRequest request)
     {
+        var readerId = User.FindFirst("uid")!.Value;
+        
         var result = await _sender.Send(new EditReviewCommand(readerId, bookId, request));
 
         if (!result.Success)
@@ -83,8 +92,11 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("")]
-    public async Task<IActionResult> Delete(string readerId, int bookId)
+    [Authorize(Roles = Roles.READER)]
+    public async Task<IActionResult> Delete(int bookId)
     {
+        var readerId = User.FindFirst("uid")!.Value;
+        
         var result = await _sender.Send(new DeleteReviewCommand(readerId, bookId));
 
         if (!result.Success)
