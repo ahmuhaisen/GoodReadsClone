@@ -6,7 +6,7 @@
 
 This project replicates several functionalities of the original site using ASP.NET 8.0 Web API. 
 
---
+---
 
 ## Some of the technologies, tools, and best practices used:
 
