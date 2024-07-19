@@ -45,10 +45,30 @@ public class AuthController(IAuthService _authService) : ControllerBase
         if (!result.IsAuthenticated)
             return BadRequest(result.Message);
 
+        if (!string.IsNullOrEmpty(result.RefreshToken))
+            SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
+
         return Ok(result);
     }
 
-    [HttpGet("addrole")]
+
+    [HttpGet("refreshtoken")]
+    public async Task<IActionResult> RefreshToken()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+
+        var result = await _authService.RefreshTokenAsync(refreshToken);
+
+        if (!result.IsAuthenticated)
+            return BadRequest(result);
+
+        SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
+
+        return Ok(result);
+    }
+
+
+    [HttpPost("addrole")]
     [Authorize(Roles = Roles.ADMIN)]
     public async Task<IActionResult> AddRole(AddRoleRequest model)
     {
@@ -61,5 +81,16 @@ public class AuthController(IAuthService _authService) : ControllerBase
             return BadRequest(result);
 
         return Ok(model);
+    }
+
+
+    private void SetRefreshTokenInCookie(string refreshToken, DateTime expires)
+    {
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Expires = expires.ToLocalTime()
+        };
+        Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
     }
 }

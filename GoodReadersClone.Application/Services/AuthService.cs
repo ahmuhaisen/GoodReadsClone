@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
 namespace GoodReadersClone.Application.Services;
@@ -119,7 +120,7 @@ public class AuthService(
         }
         else
         {
-            var refreshToken = GenerateRegreshToken();
+            var refreshToken = GenerateRefreshToken();
             authModel.RefreshToken = refreshToken.Token;
             authModel.RefreshTokenExpiration = refreshToken.ExpiresOn;
 
@@ -145,7 +146,49 @@ public class AuthService(
         return result.Succeeded ? string.Empty : "Something went wrong";
     }
 
-    private RefreshToken GenerateRegreshToken()
+    public async Task<AuthModel> RefreshTokenAsync(string token)
+    {
+        var authModel = new AuthModel();
+
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
+
+        if (user is null)
+        {
+            //authModel.IsAuthenticated by default equals false;
+            authModel.Message = "Invalid token";
+            return authModel;
+        }
+
+        var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
+
+        if (!refreshToken.IsActive)
+        {
+            authModel.Message = "Inactive token";
+            return authModel;
+        }
+
+        refreshToken.RevokedOn = DateTime.UtcNow;
+
+        var newRefreshToken = GenerateRefreshToken();
+
+        user.RefreshTokens.Add(newRefreshToken);
+        await _userManager.UpdateAsync(user);
+
+        var jwtToken = await CreateJwtToken(user);
+
+        authModel.IsAuthenticated = true;
+        authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        authModel.Email = user.Email;
+        authModel.Username = user.UserName;
+        authModel.Roles = _userManager.GetRolesAsync(user).Result.ToList();
+
+        authModel.RefreshToken = newRefreshToken.Token;
+        authModel.RefreshTokenExpiration = newRefreshToken.ExpiresOn;
+
+        return authModel;
+    }
+
+    private RefreshToken GenerateRefreshToken()
     {
         var reandomNumber = new byte[32];
 
