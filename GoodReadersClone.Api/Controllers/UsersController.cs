@@ -3,6 +3,7 @@
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class UsersController(ISender _sender) : ControllerBase
 {
     [HttpGet]
@@ -22,30 +23,6 @@ public class UsersController(ISender _sender) : ControllerBase
 
         if (!result.Success) 
             return NotFound(result.Message);
-
-        return Ok(result);
-    }
-
-    [HttpPost]
-    [Route("registerAsReader")]
-    public async Task<ActionResult> RegisterAsReader([FromForm] UserRegisterRequest request)
-    {
-        var result = await _sender.Send(new CreateReaderCommand(request));
-
-        if (!result.Success)
-            return BadRequest(result.Message);
-
-        return Ok(result);
-    }
-
-    [HttpPost]
-    [Route("registerAsAuthor")]
-    public async Task<ActionResult> RegisterAsAuthor([FromForm] UserRegisterRequest request)
-    {
-        var result = await _sender.Send(new CreateAuthorCommand(request));
-
-        if (!result.Success)
-            return BadRequest(result.Message);
 
         return Ok(result);
     }

@@ -2,6 +2,7 @@
 using GoodReadersClone.Application.DTOs.AuthorFollowing;
 using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Api.Controllers;
 
@@ -37,9 +38,11 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("follow")]
-    [AllowAnonymous]
+    [Authorize(Roles = Roles.READER)]
     public async Task<ActionResult<ApiResponse>> CreateFollowing(FollowingRequest request)
     {
+        request.ReaderId = User.FindFirst("uid")!.Value;
+        
         var result = await _sender.Send(new CreateFollowingCommand(request));
 
         if (!result.Success)
@@ -50,11 +53,10 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("unfollow")]
-    [AllowAnonymous]
+    [Authorize(Roles = Roles.READER)]
     public async Task<ActionResult<ApiResponse>> DeleteFollowing(FollowingRequest request)
     {
-        if(!ModelState.IsValid)
-            return BadRequest(ModelState.ErrorCount);
+        request.ReaderId = User.FindFirst("uid")!.Value;
 
         var result = await _sender.Send(new DeleteFollowingCommand(request));
 

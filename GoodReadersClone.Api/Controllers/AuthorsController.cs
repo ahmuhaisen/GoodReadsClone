@@ -3,6 +3,7 @@
 
 [ApiController]
 [Route("[controller]")]
+[AllowAnonymous]
 public class AuthorsController(ISender _sender) : ControllerBase
 {
     [HttpGet]

@@ -6,5 +6,5 @@ public class FollowingRequest
     [MinLength(7)]
     public required string AuthorId { get; set; }
     [MinLength(7)]
-    public required string ReaderId { get; set; }
+    public string? ReaderId { get; set; }
 }
