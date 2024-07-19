@@ -2,9 +2,11 @@
 
 ![Clone](https://github.com/user-attachments/assets/fcb19f96-7c91-4b1e-adc2-a746fec5f23b)
 
---
+---
 
 This project replicates several functionalities of the original site using ASP.NET 8.0 Web API. 
+
+--
 
 ## Some of the technologies, tools, and best practices used:
 
@@ -18,7 +20,7 @@ This project replicates several functionalities of the original site using ASP.N
 🔹️Clean Architecture
 🔹️SOLID Principles
 
---
+---
 
 ## Key features:
 
