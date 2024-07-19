@@ -24,6 +24,7 @@ public class QuotesController(ISender _sender) : ControllerBase
 
     [HttpGet]
     [Route("getByBookId")]
+    [Authorize]
     public async Task<ActionResult<ApiResponse>> GetByBook(int id)
     {
         var result = await _sender.Send(new GetBookQuotesQuery(id));
