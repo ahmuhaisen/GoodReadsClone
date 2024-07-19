@@ -24,11 +24,10 @@ This project replicates several functionalities of the original site using ASP.N
 
 ## Key features:
 
-🔸️User Management, Authentication and Authorization: Secure user management and access control.
-🔸️Books Management: Comprehensive endpoints for adding, updating, and managing books.
-🔸️Author Followings: Readers can follow their favorite authors and get updates.
-🔸️Genres and Quotes: Explore various genres and discover memorable quotes.
-🔸️Reviews and Ratings: Users can review and rate books, sharing their insights with the community.
+🔸️User Management, Authentication and Authorization: Secure user management and access control. 
+🔸️Books Management: Comprehensive endpoints for adding, updating, and managing books. 
+🔸️Author Followings: Readers can follow their favorite authors and get updates. 
+🔸️Genres and Quotes: Explore various genres and discover memorable quotes. 
+🔸️Reviews and Ratings: Users can review and rate books, sharing their insights with the community. 
 🔸️Shelf Items Management: Organize books into different shelves for better categorization.
-
 
