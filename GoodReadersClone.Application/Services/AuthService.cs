@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using GoodReadersClone.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
@@ -37,6 +38,8 @@ public class AuthService(
             return new AuthModel { Message = errors };
         }
 
+        var refreshToken = GenerateRefreshToken();
+        user.RefreshTokens?.Add(refreshToken);
         await _userManager.AddToRoleAsync(user, role);
 
         var jwtSecurityToken = await CreateJwtToken(user);
@@ -48,46 +51,11 @@ public class AuthService(
             //ExpiresOn = jwtSecurityToken.ValidTo,
             IsAuthenticated = true,
             Roles = new List<string> { role },
-            Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken)
+            Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+            RefreshToken = refreshToken.Token,
+            RefreshTokenExpiration = refreshToken.ExpiresOn
         };
     }
-
-
-    private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
-    {
-        var userClaims = await _userManager.GetClaimsAsync(user);
-        var userRoles = await _userManager.GetRolesAsync(user);
-        var roleClaims = new List<Claim>();
-
-        foreach (var role in userRoles)
-            roleClaims.Add(new Claim(ClaimTypes.Role, role));
-
-        var claims = new[]
-        {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email!),
-                new Claim("uid", user.Id)
-        }
-        .Union(userClaims)
-        .Union(roleClaims);
-
-
-        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Value.SigningKey!));
-
-        var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-
-        var jwtSecurityToken = new JwtSecurityToken(
-            issuer: _jwtOptions.Value.Issuer,
-            audience: _jwtOptions.Value.Audience,
-            claims: claims,
-            expires: DateTime.Now.AddMinutes(_jwtOptions.Value.DurationInMinuets),
-            signingCredentials: signingCredentials
-            );
-
-        return jwtSecurityToken;
-    }
-
 
     public async Task<AuthModel> GetTokenAsync(TokenRequest request)
     {
@@ -186,6 +154,62 @@ public class AuthService(
         authModel.RefreshTokenExpiration = newRefreshToken.ExpiresOn;
 
         return authModel;
+    }
+
+    public async Task<bool> RevokeTokenAsync(string token)
+    {
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
+
+        if (user is null)
+            return false;
+
+        var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
+
+        if (!refreshToken.IsActive)
+            return false;
+
+        refreshToken.RevokedOn = DateTime.UtcNow;
+
+        await _userManager.UpdateAsync(user);
+
+        return true;
+    }
+
+
+
+    private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
+    {
+        var userClaims = await _userManager.GetClaimsAsync(user);
+        var userRoles = await _userManager.GetRolesAsync(user);
+        var roleClaims = new List<Claim>();
+
+        foreach (var role in userRoles)
+            roleClaims.Add(new Claim(ClaimTypes.Role, role));
+
+        var claims = new[]
+        {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email!),
+                new Claim("uid", user.Id)
+        }
+        .Union(userClaims)
+        .Union(roleClaims);
+
+
+        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Value.SigningKey!));
+
+        var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+        var jwtSecurityToken = new JwtSecurityToken(
+            issuer: _jwtOptions.Value.Issuer,
+            audience: _jwtOptions.Value.Audience,
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(_jwtOptions.Value.DurationInMinuets),
+            signingCredentials: signingCredentials
+            );
+
+        return jwtSecurityToken;
     }
 
     private RefreshToken GenerateRefreshToken()

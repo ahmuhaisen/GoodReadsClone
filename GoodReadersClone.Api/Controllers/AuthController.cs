@@ -17,6 +17,8 @@ public class AuthController(IAuthService _authService) : ControllerBase
         if (!result.IsAuthenticated)
             return BadRequest(result.Message);
 
+        SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
+
         return Ok(result);
     }
 
@@ -30,6 +32,8 @@ public class AuthController(IAuthService _authService) : ControllerBase
 
         if (!result.IsAuthenticated)
             return BadRequest(result.Message);
+
+        SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
 
         return Ok(result);
     }
@@ -67,6 +71,18 @@ public class AuthController(IAuthService _authService) : ControllerBase
         return Ok(result);
     }
 
+    [HttpPost("revoketoken")]
+    public async Task<IActionResult> RevokeToken([FromBody] RevokeToken model)
+    {
+        var token = model.Token ?? Request.Cookies["refreshToken"];
+
+        if (string.IsNullOrEmpty(token))
+            return BadRequest("Token is required");
+
+        var result = await _authService.RevokeTokenAsync(token);
+
+        return result ? Ok() : BadRequest("Token is invalid");
+    }
 
     [HttpPost("addrole")]
     [Authorize(Roles = Roles.ADMIN)]
