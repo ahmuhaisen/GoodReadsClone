@@ -1,10 +1,12 @@
 ﻿using GoodReadersClone.Application.Features.Books.Commands;
+using Microsoft.AspNetCore.Http;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
 
 public class EditBookCommandHandler(
     IUnitOfWork _unitOfWork,
-    IMapper _mapper
+    IMapper _mapper,
+    IHttpContextAccessor _httpContextAccessor
     )
     : IRequestHandler<EditBookCommand, ApiResponse>
 {
@@ -14,6 +16,12 @@ public class EditBookCommandHandler(
 
         if (bookToUpdate is null)
             return new ApiResponse { Message = $"Book with Id `{request.BookId}` Not Found" };
+
+        var currentAuthorId = _httpContextAccessor.HttpContext.User.FindFirstValue("uid");
+
+        if(bookToUpdate.AuthorId != currentAuthorId)
+            return new ApiResponse { Message = $"You cann't edit this book" };
+
 
         if (bookToUpdate.Title != request.Request.Title
             && await _unitOfWork.BookRepository.IsExist(x => x.Title == request.Request.Title))

@@ -34,7 +34,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     
     public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null)
     {
-        IQueryable<T> query = _context.Set<T>();
+        IQueryable<T> query = _context.Set<T>().AsTracking();
 
         if (includes is not null)
             foreach (var include in includes)

@@ -2,6 +2,7 @@
 using GoodReadersClone.Application.DTOs.Books;
 using GoodReadersClone.Application.Features.Books.Commands;
 using GoodReadersClone.Application.Features.Books.Queries;
+using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Api.Controllers;
 
@@ -44,8 +45,11 @@ public class BooksController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Route("")]
+    [Authorize(Roles = Roles.AUTHOR)]
     public async Task<ActionResult<ApiResponse>> Create([FromForm] CreateBookRequest request)
     {
+        request.AuthorId = User.FindFirst("uid")!.Value;
+
         var result = await _sender.Send(new CreateBookCommand(request));
 
         if (!result.Success)
@@ -56,18 +60,20 @@ public class BooksController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("{bookId}")]
+    [Authorize(Roles = Roles.AUTHOR)]
     public async Task<ActionResult<ApiResponse>> Edit(int bookId, [FromForm] EditBookRequest request)
     {
         var result = await _sender.Send(new EditBookCommand(bookId, request));
 
         if (!result.Success)
             return BadRequest(result.Message);
-
+        
         return Ok(result);
     }
 
     [HttpDelete]
     [Route("{bookId}")]
+    [Authorize(Roles = Roles.ADMIN)]
     public async Task<ActionResult<ApiResponse>> Delete(int bookId)
     {
         var result = await _sender.Send(new DeleteBookCommand(bookId));

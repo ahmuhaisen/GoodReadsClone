@@ -1,11 +1,13 @@
 ﻿using GoodReadersClone.Application.DTOs.Genre;
 using GoodReadersClone.Application.Features.Genres.Commands;
 using GoodReadersClone.Application.Features.Genres.Queries;
+using GoodReadersClone.Infrastructure.Helpers;
 
 namespace GoodReadersClone.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize(Roles = Roles.ADMIN)]
 public class GenresController(ISender _sender) : ControllerBase
 {
     [HttpGet]

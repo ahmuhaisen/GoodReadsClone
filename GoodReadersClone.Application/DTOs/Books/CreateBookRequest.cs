@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GoodReadersClone.Application.DTOs.Books;
 public class CreateBookRequest
@@ -7,7 +8,8 @@ public class CreateBookRequest
     [MinLength(10)]
     public required string Title { get; set; }
 
-    public required string AuthorId { get; set; }
+    [JsonIgnore]
+    public string? AuthorId { get; set; }
 
     [MinLength(10)]
     public required string Description { get; set; }
