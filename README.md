@@ -10,24 +10,23 @@ This project replicates several functionalities of the original site using ASP.N
 
 ## Some of the technologies, tools, and best practices used:
 
-🔹️ASP.NET 8.0 Web APIs
-🔹️MS SQL Server
-🔹️EF Core
-🔹️MediatR with CQRS
-🔹️Repository Pattern with Unit of Work
-🔹️JWT for Authentication & Authorization
-🔹️User Management with Identity
-🔹️Clean Architecture
-🔹️SOLID Principles
+- ASP.NET 8.0 Web APIs
+- MS SQL Server
+- EF Core
+- MediatR with CQRS
+- Repository Pattern with Unit of Work
+- JWT for Authentication & Authorization
+- User Management with Identity
+- Clean Architecture
+- SOLID Principles
 
 ---
 
 ## Key features:
 
-🔸️User Management, Authentication and Authorization: Secure user management and access control. 
-🔸️Books Management: Comprehensive endpoints for adding, updating, and managing books. 
-🔸️Author Followings: Readers can follow their favorite authors and get updates. 
-🔸️Genres and Quotes: Explore various genres and discover memorable quotes. 
-🔸️Reviews and Ratings: Users can review and rate books, sharing their insights with the community. 
-🔸️Shelf Items Management: Organize books into different shelves for better categorization.
-
+- User Management, Authentication and Authorization: Secure user management and access control. 
+- Books Management: Comprehensive endpoints for adding, updating, and managing books. 
+- Author Followings: Readers can follow their favorite authors and get updates. 
+- Genres and Quotes: Explore various genres and discover memorable quotes. 
+- Reviews and Ratings: Users can review and rate books, sharing their insights with the community. 
+- Shelf Items Management: Organize books into different shelves for better categorization.
