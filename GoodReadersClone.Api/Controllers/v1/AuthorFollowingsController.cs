@@ -4,10 +4,10 @@ using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
 using GoodReadersClone.Infrastructure.Helpers;
 
-namespace GoodReadersClone.Api.Controllers;
+namespace GoodReadersClone.Api.Controllers.v1;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class AuthorFollowingsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
@@ -42,7 +42,7 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
     public async Task<ActionResult<ApiResponse>> CreateFollowing(FollowingRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
-        
+
         var result = await _sender.Send(new CreateFollowingCommand(request));
 
         if (!result.Success)

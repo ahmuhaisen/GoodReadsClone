@@ -1,6 +1,7 @@
 using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
+using Asp.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.RegisterOptions(builder.Configuration);
 
 builder.Services.RegisterJwt(builder.Configuration);
+
+builder.Services.ConfigureVersioning();
 
 var app = builder.Build();
 

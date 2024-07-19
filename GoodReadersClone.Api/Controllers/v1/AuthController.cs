@@ -2,10 +2,10 @@
 using GoodReadersClone.Application.Services;
 using GoodReadersClone.Infrastructure.Helpers;
 
-namespace GoodReadersClone.Api.Controllers;
+namespace GoodReadersClone.Api.Controllers.v1;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class AuthController(IAuthService _authService) : ControllerBase
 {
     [HttpPost]

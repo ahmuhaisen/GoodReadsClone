@@ -3,11 +3,11 @@ using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
 using GoodReadersClone.Infrastructure.Helpers;
 
-namespace GoodReadersClone.Api.Controllers;
+namespace GoodReadersClone.Api.Controllers.v1;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class ReviewsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
@@ -66,7 +66,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     public async Task<IActionResult> Create(ReviewRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
-        
+
         var result = await _sender.Send(new CreateReviewCommand(request));
 
         if (!result.Success)
@@ -81,7 +81,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     public async Task<IActionResult> Edit(int bookId, EditReviewRequest request)
     {
         var readerId = User.FindFirst("uid")!.Value;
-        
+
         var result = await _sender.Send(new EditReviewCommand(readerId, bookId, request));
 
         if (!result.Success)
@@ -96,7 +96,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     public async Task<IActionResult> Delete(int bookId)
     {
         var readerId = User.FindFirst("uid")!.Value;
-        
+
         var result = await _sender.Send(new DeleteReviewCommand(readerId, bookId));
 
         if (!result.Success)

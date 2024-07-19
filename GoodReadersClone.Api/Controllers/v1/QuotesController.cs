@@ -4,11 +4,11 @@ using GoodReadersClone.Application.Features.Quotes.Commands;
 using GoodReadersClone.Application.Features.Quotes.Queries;
 using GoodReadersClone.Infrastructure.Helpers;
 
-namespace GoodReadersClone.Api.Controllers;
+namespace GoodReadersClone.Api.Controllers.v1;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [Authorize]
 public class QuotesController(ISender _sender) : ControllerBase
 {

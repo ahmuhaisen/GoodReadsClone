@@ -1,8 +1,8 @@
-﻿namespace GoodReadersClone.Api.Controllers;
+﻿namespace GoodReadersClone.Api.Controllers.v1;
 
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [Authorize]
 public class UsersController(ISender _sender) : ControllerBase
 {
@@ -21,7 +21,7 @@ public class UsersController(ISender _sender) : ControllerBase
     {
         var result = await _sender.Send(new GetUserByIdQuery(userId));
 
-        if (!result.Success) 
+        if (!result.Success)
             return NotFound(result.Message);
 
         return Ok(result);
