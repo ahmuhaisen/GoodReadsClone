@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadersClone.Application.DTOs.AuthorFollowing;
-public class FollowingRequest
+public class FollowRequest
 {
     [MinLength(7)]
     public required string AuthorId { get; set; }

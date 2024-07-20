@@ -34,7 +34,7 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult> Post([FromBody] FollowingRequest request)
+    public async Task<ActionResult> Post([FromBody] FollowRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 
@@ -48,7 +48,7 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult> Delete([FromBody] FollowingRequest request)
+    public async Task<ActionResult> Delete([FromBody] FollowRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 

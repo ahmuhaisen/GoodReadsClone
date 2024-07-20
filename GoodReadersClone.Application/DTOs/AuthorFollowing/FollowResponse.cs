@@ -1,5 +1,5 @@
 ﻿namespace GoodReadersClone.Application.DTOs.AuthorFollowing;
-public class AuthorFollowingResponse
+public class FollowResponse
 {
     public required string UserID { get; set; }
     public required string AuthorId { get; set; }
