@@ -1,8 +1,12 @@
-﻿namespace GoodReadersClone.Domain.Entities;
+﻿using GoodReadersClone.Domain.Abstractions;
+
+namespace GoodReadersClone.Domain.Entities;
 
 
-public class Book : BaseEntity
+public class Book : IEntity
 {
+    public int Id { get; set; }
+
     public string Title { get; set; }
     public string Description { get; set; }
     public string CoverURL { get; set; }

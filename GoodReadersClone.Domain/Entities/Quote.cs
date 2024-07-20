@@ -1,8 +1,11 @@
-﻿namespace GoodReadersClone.Domain.Entities;
+﻿using GoodReadersClone.Domain.Abstractions;
 
-public class Quote : BaseEntity
+namespace GoodReadersClone.Domain.Entities;
+
+public class Quote : IEntity
 {
-    public string Body { get; set; }
+    public int Id { get; set; }
+    public string Body { get; set; } 
 
     public string UserId{ get; set; }
     public ApplicationUser User{ get; set; }

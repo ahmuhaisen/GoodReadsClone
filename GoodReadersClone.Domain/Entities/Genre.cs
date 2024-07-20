@@ -1,7 +1,10 @@
-﻿namespace GoodReadersClone.Domain.Entities;
+﻿using GoodReadersClone.Domain.Abstractions;
 
-public class Genre : BaseEntity
+namespace GoodReadersClone.Domain.Entities;
+
+public class Genre : IEntity
 {
+    public int Id { get; set; }
     public string Name { get; set; }
 
     public ICollection<Book> Books { get; set; } = [];
