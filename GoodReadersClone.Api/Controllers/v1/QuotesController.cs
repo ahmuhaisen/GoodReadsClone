@@ -36,7 +36,7 @@ public class QuotesController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult> Create([FromBody] QuoteModel model)
+    public async Task<ActionResult> Create([FromBody] QuoteDto model)
     {
         model.UserId = User.FindFirst("uid")!.Value;
 

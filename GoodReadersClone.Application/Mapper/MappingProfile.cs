@@ -1,5 +1,6 @@
 ﻿using GoodReadersClone.Application.DTOs.Books;
 using GoodReadersClone.Application.DTOs.Genre;
+using GoodReadersClone.Application.DTOs.Quote;
 using GoodReadersClone.Application.DTOs.Review;
 
 namespace GoodReadersClone.Application.Mapper;
@@ -31,5 +32,6 @@ public class MappingProfile : Profile
 
         CreateMap<Genre, GenreDto>().ReverseMap();
 
+        CreateMap<Quote, QuoteDto>().ReverseMap();
     }
 }

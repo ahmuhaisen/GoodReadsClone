@@ -1,10 +1,12 @@
-﻿using GoodReadersClone.Application.Features.Quotes.Queries;
+﻿using GoodReadersClone.Application.DTOs.Quote;
+using GoodReadersClone.Application.Features.Quotes.Queries;
 
 namespace GoodReadersClone.Application.Features.Quotes.Handlers;
 
 public class GetUserQuotesQueryHandler(
     IUnitOfWork _unitOfWork, 
-    UserManager<ApplicationUser> _userManager)
+    UserManager<ApplicationUser> _userManager,
+    IMapper _mapper)
     : IRequestHandler<GetUserQuotesQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetUserQuotesQuery request, CancellationToken cancellationToken)
@@ -14,9 +16,11 @@ public class GetUserQuotesQueryHandler(
 
         var quotes = await _unitOfWork.QuoteRepository.GetAllAsync(q => q.UserId == request.Id);
 
+        var result = _mapper.Map<IEnumerable<QuoteDto>>(quotes);
+
         return new ApiResponse {
             Success = true,
-            Data = quotes
+            Data = result
         };
     }
 }
