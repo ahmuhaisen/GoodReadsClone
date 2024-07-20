@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
 

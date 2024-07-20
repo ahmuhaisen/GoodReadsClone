@@ -1,5 +1,4 @@
-﻿using GoodReadersClone.Infrastructure.Utils;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadersClone.Application.DTOs.Auth;
 public class AddRoleRequest

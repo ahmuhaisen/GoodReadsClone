@@ -27,13 +27,9 @@ public class UnitOfWork : IUnitOfWork
         ShelfItemRepository = new ShelfItemRepository(_context);
     }
 
-    public int Save()
-    {
-        return _context.SaveChanges();
-    }
+    public int Save() => _context.SaveChanges();
+    
 
-    public void Dispose()
-    {
-        _context.Dispose();
-    }
+    public void Dispose() =>  _context.Dispose();
+    
 }

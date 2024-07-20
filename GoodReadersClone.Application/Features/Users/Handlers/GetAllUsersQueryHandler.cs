@@ -1,5 +1,4 @@
 ﻿using GoodReadersClone.Application.Features.Users.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Application.Features.Users.Handlers;
 public class GetAllReadersQueryHandler(UserManager<ApplicationUser> _userManager, IMapper _mapper)

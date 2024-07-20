@@ -29,15 +29,18 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
         return await _context.Set<T>().FindAsync(id);
     }
     
+    // Consider using IIncludable
     public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null)
     {
-        IQueryable<T> query = _context.Set<T>().AsTracking();
+        IQueryable<T> query = _context.Set<T>()
+            .AsTracking();
 
         if (includes is not null)
             foreach (var include in includes)
                 query = query.Include(include);
 
-        return await query.FirstOrDefaultAsync(filter);
+        return await query
+            .FirstOrDefaultAsync(filter);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()

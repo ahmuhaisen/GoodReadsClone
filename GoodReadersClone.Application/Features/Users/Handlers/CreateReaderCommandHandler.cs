@@ -1,6 +1,4 @@
-﻿using GoodReadersClone.Infrastructure.Utils;
-
-namespace GoodReadersClone.Application.Features.Users.Handlers;
+﻿namespace GoodReadersClone.Application.Features.Users.Handlers;
 
 public class CreateReaderCommandHandler(
     UserManager<ApplicationUser> _userManager,
