@@ -8,7 +8,7 @@ public class QuoteModel
     public required string Body { get; set; }
 
     [JsonIgnore]
-    public string? UserId { get; set; }
+    public string? UserId { get; set; } = string.Empty;
 
     public required int BookId { get; set; }
 }

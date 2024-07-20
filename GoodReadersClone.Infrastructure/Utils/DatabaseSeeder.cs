@@ -65,7 +65,6 @@ public class DatabaseSeeder
             "eb07c8de-4431-b0cd-9072-9a4236eeaba3"
         };
 
-        var bookId = 1111;
         var bookFacker = new Faker<Book>()
             .RuleFor(b => b.AuthorId, f => authors[Random.Shared.Next(0, authors.Count() - 1)])
             .RuleFor(b => b.Title, f => f.Lorem.Sentence(3))

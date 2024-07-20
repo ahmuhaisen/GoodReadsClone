@@ -4,8 +4,7 @@ using GoodReadersClone.Domain.Models;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
 public class GetAllBooksQueryHandler(
-    IUnitOfWork _unitOfWork,
-    IMapper _mapper
+    IUnitOfWork _unitOfWork
     )
     : IRequestHandler<GetAllBooksQuery, ApiResponse>
 {
@@ -18,7 +17,7 @@ public class GetAllBooksQueryHandler(
             {
                 Id = x.Id,
                 Title = x.Title,
-                Description = x.Description,
+                Description = x.Description ?? string.Empty,
                 Author = $"{x.Author.FirstName} {x.Author.LastName}",
                 CoverURL = x.CoverURL,
                 FirstPublished = x.FirstPublished,

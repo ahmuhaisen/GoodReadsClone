@@ -20,7 +20,7 @@ public class CreateQuoteCommandHandler(
         var quoteToAdd = new Quote
         {
             Body = request.Model.Body,
-            UserId = request.Model.UserId,
+            UserId = request.Model.UserId!,
             BookId = request.Model.BookId,
         };
 

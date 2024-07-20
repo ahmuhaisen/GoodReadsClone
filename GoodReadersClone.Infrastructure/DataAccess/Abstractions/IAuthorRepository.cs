@@ -6,5 +6,5 @@ public interface IAuthorRepository : IRepository<Author>
 {
     Task<Author?> GetAsync(string id);
     Task<IEnumerable<AuthorFollowing>> GetAllFollowersAsync(string authorId);
-    bool IsExist(Expression<Func<Author, bool>> condition);
+    new bool IsExist(Expression<Func<Author, bool>> condition);
 }

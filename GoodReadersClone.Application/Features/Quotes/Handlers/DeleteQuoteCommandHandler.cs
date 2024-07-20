@@ -9,6 +9,7 @@ public class DeleteQuoteCommandHandler(
 {
     public async Task<ApiResponse> Handle(DeleteQuoteCommand request, CancellationToken cancellationToken)
     {
+        //Extra unnecessary roundtrip
         if (request == null || request.Id <= 0 || !await _unitOfWork.QuoteRepository.IsExist(x => x.Id == request.Id))
             return new ApiResponse { Message = "Invalid Quote Id" };
               
@@ -17,7 +18,7 @@ public class DeleteQuoteCommandHandler(
 
         var currentUserId = _httpContextAccessor.HttpContext.User.FindFirstValue("uid");
 
-        if(currentUserId != quoteToDelete.UserId)
+        if(currentUserId != quoteToDelete!.UserId)
             return new ApiResponse { Message = "You cann't delete this quote" };
 
 

@@ -2,11 +2,11 @@
 public class BookModel
 {
     public int Id { get; set; }
-    public string Title { get; set; }
-    public string Author { get; set; }
-    public string Description { get; set; }
-    public string CoverURL { get; set; }
-    public string ISBN { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Author { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string CoverURL { get; set; } = string.Empty;
+    public string ISBN { get; set; } = string.Empty;
     public DateTime FirstPublished { get; set; }
 
     public string? Genres { get; set; }
@@ -21,7 +21,7 @@ public class BookModel
             Id = book.Id,
             Title = book.Title,
             Author = author,
-            Description = book.Description,
+            Description = book.Description!,
             Genres = genres,
             FirstPublished = book.FirstPublished,
             ISBN = book.ISBN,

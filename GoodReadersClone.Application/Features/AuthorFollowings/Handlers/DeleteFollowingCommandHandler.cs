@@ -3,8 +3,7 @@
 namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
 
 public class DeleteFollowingCommandHandler(
-    IUnitOfWork _unitOfWork,
-    UserManager<ApplicationUser> _userManager)
+    IUnitOfWork _unitOfWork)
     : IRequestHandler<DeleteFollowingCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(DeleteFollowingCommand request, CancellationToken cancellationToken)

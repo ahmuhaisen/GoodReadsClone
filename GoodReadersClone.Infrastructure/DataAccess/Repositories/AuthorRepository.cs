@@ -29,7 +29,7 @@ public class AuthorRepository : Repository<Author>, IAuthorRepository
         return author!.Followers.ToList();
     }
 
-    public bool IsExist(Expression<Func<Author, bool>> condition)
+    public new bool IsExist(Expression<Func<Author, bool>> condition)
     {
         return _context.Authors.Any(condition);
     }

@@ -15,7 +15,7 @@ public class AuthenticationController(IAuthService _authService) : ControllerBas
         if (!result.IsAuthenticated)
             return BadRequest(result.Message);
 
-        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration, Response);
+        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken!, result.RefreshTokenExpiration, Response);
 
         return Ok(result);
     }
@@ -30,7 +30,7 @@ public class AuthenticationController(IAuthService _authService) : ControllerBas
         if (!result.IsAuthenticated)
             return BadRequest(result.Message);
 
-        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration, Response);
+        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken!, result.RefreshTokenExpiration, Response);
 
         return Ok(result);
     }
@@ -61,7 +61,7 @@ public class AuthenticationController(IAuthService _authService) : ControllerBas
         if (!result.IsAuthenticated)
             return BadRequest(result);
 
-        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration, Response);
+        AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken!, result.RefreshTokenExpiration, Response);
 
         return Ok(result);
     }

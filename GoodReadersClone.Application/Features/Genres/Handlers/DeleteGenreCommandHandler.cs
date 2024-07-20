@@ -2,7 +2,7 @@
 
 namespace GoodReadersClone.Application.Features.Genres.Handlers;
 
-public class DeleteGenreCommandHandler(IUnitOfWork _unitOfWork, IMapper _mapper) : IRequestHandler<DeleteGenreCommand, ApiResponse>
+public class DeleteGenreCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<DeleteGenreCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(DeleteGenreCommand request, CancellationToken cancellationToken)
     {

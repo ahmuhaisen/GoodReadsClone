@@ -7,7 +7,7 @@ public interface IAuthService
 
     Task<string> AddRoleAsync(AddRoleRequest model);
 
-    Task<AuthModel> RefreshTokenAsync(string token);
+    Task<AuthModel> RefreshTokenAsync(string? token);
 
     Task<bool> RevokeTokenAsync(string token);
 }

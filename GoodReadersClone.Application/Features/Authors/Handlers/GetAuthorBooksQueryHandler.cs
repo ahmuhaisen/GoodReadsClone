@@ -2,13 +2,7 @@
 
 namespace GoodReadersClone.Application.Features.Authors.Handlers;
 
-public class GetAuthorBooksQueryHandler(
-
-    IUnitOfWork _unitOfWork,
-    UserManager<ApplicationUser> _userManager,
-    IMapper _mapper)
-
-    : IRequestHandler<GetAuthorBooksQuery, ApiResponse>
+public class GetAuthorBooksQueryHandler(IUnitOfWork _unitOfWork): IRequestHandler<GetAuthorBooksQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetAuthorBooksQuery request, CancellationToken cancellationToken)
     {

@@ -14,12 +14,7 @@ public class BookRepository : Repository<Book>, IBookRepository
         _context = context;
     }
 
-    public async Task<int> Count()
-    {
-        return await _context.Books.CountAsync();
-    }
-
-    public async Task<PaginatedList<Book>> GetAllAsync(int pageIndex, int pageSize)
+    public new async Task<PaginatedList<Book>> GetAllAsync(int pageIndex, int pageSize)
     {
         var count = await _context.Set<Book>().CountAsync();
         var totalPages = (int)Math.Ceiling(count / (double)pageSize);

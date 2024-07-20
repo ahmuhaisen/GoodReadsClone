@@ -2,7 +2,6 @@
 
 public class CreateAuthorCommandHandler(
     UserManager<ApplicationUser> _userManager,
-    ILogger<CreateAuthorCommandHandler> _logger,
     IMapper _mapper) : IRequestHandler<CreateAuthorCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(CreateAuthorCommand request, CancellationToken cancellationToken)

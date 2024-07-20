@@ -6,10 +6,10 @@ public class Review
     public int Rating { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public string ReaderId { get; set; }
-    public ApplicationUser Reader { get; set; }
+    public string ReaderId { get; set; } = string.Empty;
+    public ApplicationUser Reader { get; set; } = new();
 
     public int BookId { get; set; }
-    public Book Book { get; set; }
+    public Book Book { get; set; } = new();
 }
 

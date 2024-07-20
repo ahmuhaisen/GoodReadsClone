@@ -12,7 +12,7 @@ public class CreateFollowingCommandHandler(
         if (!_unitOfWork.AuthorRepository.IsExist(x => x.Id == request.Request.AuthorId))
             return new ApiResponse { Message = "Author not found" };
 
-        var user = await _userManager.FindByIdAsync(request.Request.ReaderId);
+        var user = await _userManager.FindByIdAsync(request.Request.ReaderId!);
 
         if (user is null)
             return new ApiResponse { Message = "Reader not found" };
@@ -23,7 +23,7 @@ public class CreateFollowingCommandHandler(
 
         var authorFollowing = new AuthorFollowing 
         {
-            ApplicationUserId = request.Request.ReaderId,
+            ApplicationUserId = request.Request.ReaderId!,
             AuthorId = request.Request.AuthorId
         };
 

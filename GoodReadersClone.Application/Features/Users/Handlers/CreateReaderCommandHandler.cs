@@ -2,7 +2,6 @@
 
 public class CreateReaderCommandHandler(
     UserManager<ApplicationUser> _userManager,
-    ILogger<CreateReaderCommandHandler> _logger,
     IMapper _mapper) : IRequestHandler<CreateReaderCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(CreateReaderCommand request, CancellationToken cancellationToken)

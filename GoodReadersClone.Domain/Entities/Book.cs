@@ -15,7 +15,7 @@ public class Book : IEntity
 
 
     public string AuthorId { get; set; } = string.Empty;
-    public Author Author { get; set; }
+    public Author Author { get; set; } = new();
 
 
     public ICollection<Genre> Genres { get; set; } = [];

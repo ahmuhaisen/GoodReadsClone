@@ -78,7 +78,7 @@ public class AuthService(
         if (user.RefreshTokens.Any(t => t.IsActive))
         {
             var activerRefreshToken = user.RefreshTokens.FirstOrDefault(t => t.IsActive);
-            authModel.RefreshToken = activerRefreshToken.Token;
+            authModel.RefreshToken = activerRefreshToken!.Token;
             authModel.RefreshTokenExpiration = activerRefreshToken.ExpiresOn;
         }
         else
@@ -109,11 +109,11 @@ public class AuthService(
         return result.Succeeded ? string.Empty : "Something went wrong";
     }
 
-    public async Task<AuthModel> RefreshTokenAsync(string token)
+    public async Task<AuthModel> RefreshTokenAsync(string? token)
     {
         var authModel = new AuthModel();
 
-        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens!.Any(t => t.Token == token));
 
         if (user is null)
         {
@@ -122,7 +122,7 @@ public class AuthService(
             return authModel;
         }
 
-        var refreshToken = user.RefreshTokens.Single(t => t.Token == token);
+        var refreshToken = user.RefreshTokens!.Single(t => t.Token == token);
 
         if (!refreshToken.IsActive)
         {
@@ -134,15 +134,15 @@ public class AuthService(
 
         var newRefreshToken = GenerateRefreshToken();
 
-        user.RefreshTokens.Add(newRefreshToken);
+        user.RefreshTokens!.Add(newRefreshToken);
         await _userManager.UpdateAsync(user);
 
         var jwtToken = await CreateJwtToken(user);
 
         authModel.IsAuthenticated = true;
         authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-        authModel.Email = user.Email;
-        authModel.Username = user.UserName;
+        authModel.Email = user.Email!;
+        authModel.Username = user.UserName!;
         authModel.Roles = _userManager.GetRolesAsync(user).Result.ToList();
 
         authModel.RefreshToken = newRefreshToken.Token;

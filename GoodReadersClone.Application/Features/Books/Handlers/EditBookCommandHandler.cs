@@ -4,7 +4,6 @@ namespace GoodReadersClone.Application.Features.Books.Handlers;
 
 public class EditBookCommandHandler(
     IUnitOfWork _unitOfWork,
-    IMapper _mapper,
     IHttpContextAccessor _httpContextAccessor
     )
     : IRequestHandler<EditBookCommand, ApiResponse>

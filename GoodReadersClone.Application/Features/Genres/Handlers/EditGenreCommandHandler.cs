@@ -2,7 +2,7 @@
 
 namespace GoodReadersClone.Application.Features.Genres.Handlers;
 
-public class EditGenreCommandHandler(IUnitOfWork _unitOfWork, IMapper _mapper) : IRequestHandler<EditGenreCommand, ApiResponse>
+public class EditGenreCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<EditGenreCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(EditGenreCommand request, CancellationToken cancellationToken)
     {

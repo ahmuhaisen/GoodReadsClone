@@ -13,7 +13,7 @@ public interface IRepository<T> where T : class
     //Read
     Task<bool> IsExist(Expression<Func<T, bool>> filter);
 
-    Task<T> GetByIdAsync(int id);
+    Task<T?> GetByIdAsync(int id);
     Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null);
 
     Task<IEnumerable<T>> GetAllAsync();
@@ -21,7 +21,7 @@ public interface IRepository<T> where T : class
     Task<PaginatedList<T>> GetAllAsync(int pageIndex, int pageSize);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, string[] includes);
-    Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter, int skip, int take);
+    Task<IEnumerable<T>?> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take);
     Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter, int? skip, int? take,
         Expression<Func<T, object>> orderBy = null!, string orderDirection = OrderByDirections.ASC);
 
