@@ -1,4 +1,8 @@
-﻿namespace GoodReadersClone.Api.Mapper;
+﻿using GoodReadersClone.Application.DTOs.Books;
+using GoodReadersClone.Application.DTOs.Genre;
+using GoodReadersClone.Application.DTOs.Review;
+
+namespace GoodReadersClone.Application.Mapper;
 
 public class MappingProfile : Profile
 {

@@ -8,8 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Asp.Versioning;
 using Microsoft.OpenApi.Models;
-using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api.ExceptionHandlers;
+using GoodReadersClone.Application.Mapper;
 
 namespace GoodReadersClone.Api;
 
