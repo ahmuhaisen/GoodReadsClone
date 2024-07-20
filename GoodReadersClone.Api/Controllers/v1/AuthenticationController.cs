@@ -35,6 +35,21 @@ public class AuthenticationController(IAuthService _authService) : ControllerBas
         return Ok(result);
     }
 
+    [HttpGet]
+    [Route("token")]
+    public async Task<ActionResult> GetToken(TokenRequest request)
+    {
+        var result = await _authService.GetTokenAsync(request);
+
+        if (!result.IsAuthenticated)
+            return BadRequest(result.Message);
+
+        if (!string.IsNullOrEmpty(result.RefreshToken))
+            AuthenticationHelper.SetRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration, Response);
+
+        return Ok(result);
+    }
+
 
     [HttpGet("refreshtoken")]
     public async Task<IActionResult> RefreshToken()
