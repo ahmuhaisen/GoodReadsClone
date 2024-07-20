@@ -1,7 +1,7 @@
 ﻿namespace GoodReadersClone.Api.Controllers.v1;
 
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
 public class UsersController(ISender _sender) : ControllerBase

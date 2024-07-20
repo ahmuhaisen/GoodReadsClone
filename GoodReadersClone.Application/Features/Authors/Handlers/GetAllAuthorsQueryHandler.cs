@@ -1,4 +1,5 @@
-﻿using GoodReadersClone.Application.Features.Authors.Queries;
+﻿using GoodReadersClone.Application.DTOs.Author;
+using GoodReadersClone.Application.Features.Authors.Queries;
 
 namespace GoodReadersClone.Application.Features.Authors.Handlers;
 public class GetAllAuthorsQueryHandler(
@@ -10,7 +11,7 @@ public class GetAllAuthorsQueryHandler(
     {
         var allAuthors = await _unitOfWork.AuthorRepository.GetAllAsync();
 
-        var result = _mapper.Map<IEnumerable<UserInfoModel>>(allAuthors);
+        var result = _mapper.Map<IEnumerable<AuthorResponse>>(allAuthors);
 
         return new ApiResponse
         {

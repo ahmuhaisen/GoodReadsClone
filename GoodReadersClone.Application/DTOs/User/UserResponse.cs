@@ -6,6 +6,7 @@ public class UserResponse
     public required string DateOfBirth { get; set; }
     public required string Email { get; set; }
     public string? ProfilePicture { get; set; }
+    public string[] Roles { get; set; } = [];
 
     public static UserResponse ConvertApplicationUserToUserResponse(ApplicationUser user)
     {

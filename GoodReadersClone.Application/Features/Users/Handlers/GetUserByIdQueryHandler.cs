@@ -16,7 +16,7 @@ public class GetUserByIdQueryHandler (
         if (user is null)
             return new ApiResponse { Message = "User not found" };
 
-        var result = _mapper.Map<UserFullInfoResponse>(user);
+        var result = _mapper.Map<UserResponse>(user);
 
         result.Roles = (await _userManager.GetRolesAsync(user)).ToArray();
         
