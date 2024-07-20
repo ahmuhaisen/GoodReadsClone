@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadersClone.Application.DTOs.Review;
-public class ReviewRequest
+public class CreateReviewRequest
 {
     [Range(0, 5)]
     public int Rating { get; set; }

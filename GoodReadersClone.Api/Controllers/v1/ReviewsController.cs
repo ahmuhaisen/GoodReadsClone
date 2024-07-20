@@ -61,7 +61,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = Roles.READER)]
-    public async Task<IActionResult> Create([FromBody] ReviewRequest request)
+    public async Task<IActionResult> Create([FromBody] CreateReviewRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 

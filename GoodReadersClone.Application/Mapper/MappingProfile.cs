@@ -28,7 +28,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom(src => src.ProfilePectureURL))
             .ReverseMap();
 
-        CreateMap<Review, ReviewRequest>().ReverseMap();
+        CreateMap<Review, CreateReviewRequest>().ReverseMap();
 
         CreateMap<Genre, GenreDto>().ReverseMap();
 
