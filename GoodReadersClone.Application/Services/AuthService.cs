@@ -6,13 +6,13 @@ public class AuthService(
     RoleManager<IdentityRole> _roleManager)
     : IAuthService
 {
-    public async Task<AuthModel> RegisterAsync(UserRegisterRequest model, string role)
+    public async Task<AuthenticationResponse> RegisterAsync(UserRegisterRequest model, string role)
     {
         if (await _userManager.FindByEmailAsync(model.Email) is not null)
-            return new AuthModel { Message = "Email is already registered" };
+            return new AuthenticationResponse { Message = "Email is already registered" };
 
         if (await _userManager.FindByNameAsync(model.UserName) is not null)
-            return new AuthModel { Message = "Username is already registered" };
+            return new AuthenticationResponse { Message = "Username is already registered" };
 
         var user = new ApplicationUser
         {
@@ -30,7 +30,7 @@ public class AuthService(
         {
             var errors = string.Empty;
             errors = string.Join(',', result.Errors.Select(e => e.Description));
-            return new AuthModel { Message = errors };
+            return new AuthenticationResponse { Message = errors };
         }
 
         var refreshToken = GenerateRefreshToken();
@@ -39,7 +39,7 @@ public class AuthService(
 
         var jwtSecurityToken = await CreateJwtToken(user);
 
-        return new AuthModel
+        return new AuthenticationResponse
         {
             Username = user.UserName,
             Email = user.Email,
@@ -52,9 +52,9 @@ public class AuthService(
         };
     }
 
-    public async Task<AuthModel> GetTokenAsync(TokenRequest request)
+    public async Task<AuthenticationResponse> GetTokenAsync(TokenRequest request)
     {
-        var authModel = new AuthModel();
+        var authModel = new AuthenticationResponse();
 
         var user = await _userManager.FindByEmailAsync(request.Email);
 
@@ -109,9 +109,9 @@ public class AuthService(
         return result.Succeeded ? string.Empty : "Something went wrong";
     }
 
-    public async Task<AuthModel> RefreshTokenAsync(string? token)
+    public async Task<AuthenticationResponse> RefreshTokenAsync(string? token)
     {
-        var authModel = new AuthModel();
+        var authModel = new AuthenticationResponse();
 
         var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens!.Any(t => t.Token == token));
 

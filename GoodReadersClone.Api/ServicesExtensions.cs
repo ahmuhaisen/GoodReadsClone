@@ -103,7 +103,6 @@ public static class SertvicesExtensions
         return services;
     }
 
-
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();

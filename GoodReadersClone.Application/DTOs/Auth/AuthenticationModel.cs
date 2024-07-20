@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace GoodReadersClone.Application.DTOs.Auth;
-public class AuthModel
+public class AuthenticationResponse
 {
     public string Message { get; set; } = string.Empty;
     public bool IsAuthenticated { get; set; }
