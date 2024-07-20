@@ -1,5 +1,5 @@
 ﻿namespace GoodReadersClone.Application.DTOs.Books;
-public class BookModel
+public class BookResponse
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -11,12 +11,12 @@ public class BookModel
 
     public string? Genres { get; set; }
 
-    public static BookModel ConvertBookToBookModel(Book book)
+    public static BookResponse ConvertBookToBookModel(Book book)
     {
         var genres = book.Genres is null ? null : string.Join(", ", book.Genres.Select(x => x.Name));
         var author = book.Author is null ? book.AuthorId.ToString() : $"{book.Author.FirstName} {book.Author.LastName}";
         
-        return new BookModel
+        return new BookResponse
         {
             Id = book.Id,
             Title = book.Title,

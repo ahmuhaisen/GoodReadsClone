@@ -15,7 +15,7 @@ public class GetBookByIdQueryHanler(
         if (book == null)
             return new ApiResponse { Message = "Book not found" };
 
-        var result = BookModel.ConvertBookToBookModel(book);
+        var result = BookResponse.ConvertBookToBookModel(book);
 
 
         return new ApiResponse

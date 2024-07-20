@@ -3,17 +3,15 @@ using GoodReadersClone.Application.Features.Books.Queries;
 using GoodReadersClone.Domain.Models;
 
 namespace GoodReadersClone.Application.Features.Books.Handlers;
-public class GetAllBooksQueryHandler(
-    IUnitOfWork _unitOfWork
-    )
+public class GetAllBooksQueryHandler(IUnitOfWork _unitOfWork)
     : IRequestHandler<GetAllBooksQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
     {
         var books = await _unitOfWork.BookRepository.GetAllAsync(request.PageIndex, request.PageSize);
 
-        var result = new PaginatedList<BookModel>(
-            items: books.Items.Select(x => new BookModel
+        var result = new PaginatedList<BookResponse>(
+            items: books.Items.Select(x => new BookResponse
             {
                 Id = x.Id,
                 Title = x.Title,
