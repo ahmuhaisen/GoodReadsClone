@@ -13,13 +13,14 @@ This project replicates several functionalities of the original site using ASP.N
 - ASP.NET 8.0 Web APIs
 - MS SQL Server
 - EF Core
-- MediatR with CQRS
-- Repository Pattern with Unit of Work
-- JWT for Authentication & Authorization
-- User Management with Identity
 - Clean Architecture
-- SOLID Principles
-
+- CQRS with MediatR Library
+- Repository Pattern with Unit of Work
+- JWT Authentication
+- Role based Authorization
+- User Management with Identity
+- API Versioning
+- AutoMapper
 ---
 
 ## Key features:
