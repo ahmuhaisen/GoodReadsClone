@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
@@ -10,19 +9,7 @@ namespace GoodReadersClone.Api.Controllers.v1;
 public class ReviewsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("getBookReviews/{bookId}")]
-    public async Task<IActionResult> GetBookReviews(int bookId)
-    {
-        var result = await _sender.Send(new GetBookReviewsQuery(bookId));
-
-        if (!result.Success)
-            return NotFound(result.Message);
-
-        return Ok(result);
-    }
-
-    [HttpGet]
-    [Route("getReaderReviews/{readerId}")]
+    [Route("reader/{readerId}")]
     [Authorize]
     public async Task<IActionResult> GetReaderReviews(string readerId)
     {
@@ -34,10 +21,23 @@ public class ReviewsController(ISender _sender) : ControllerBase
         return Ok(result);
     }
 
+
     [HttpGet]
-    [Route("getReaderBookReview")]
+    [Route("book/{bookId}")]
+    public async Task<IActionResult> GetBookReviews(int bookId)
+    {
+        var result = await _sender.Send(new GetBookReviewsQuery(bookId));
+
+        if (!result.Success)
+            return NotFound(result.Message);
+
+        return Ok(result);
+    }
+
+
+    [HttpGet]
     [Authorize]
-    public async Task<IActionResult> GetReaderBookReview(string readerId, int bookId)
+    public async Task<IActionResult> GetValue([FromQuery] string readerId, [FromQuery] int bookId)
     {
         var result = await _sender.Send(new GetReaderBookReviewQuery(readerId, bookId));
 
@@ -48,7 +48,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getBookRatingSummary")]
+    [Route("ratingSummary/{bookId}")]
     public async Task<IActionResult> GetBookRatingSummary(int bookId)
     {
         var result = await _sender.Send(new GetBookRatingSummaryQuery(bookId));
@@ -60,9 +60,8 @@ public class ReviewsController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
     [Authorize(Roles = Roles.READER)]
-    public async Task<IActionResult> Create(ReviewRequest request)
+    public async Task<IActionResult> Create([FromBody] ReviewRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 
@@ -75,7 +74,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     }
 
     [HttpPut]
-    [Route("")]
+    [Route("{bookId}")]
     [Authorize(Roles = Roles.READER)]
     public async Task<IActionResult> Edit(int bookId, EditReviewRequest request)
     {
@@ -90,7 +89,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     }
 
     [HttpDelete]
-    [Route("")]
+    [Route("{bookId}")]
     [Authorize(Roles = Roles.READER)]
     public async Task<IActionResult> Delete(int bookId)
     {

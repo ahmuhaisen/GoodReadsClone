@@ -1,6 +1,5 @@
 ﻿using GoodReadersClone.Application.Features.Genres.Commands;
 using GoodReadersClone.Application.Features.Genres.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
@@ -10,8 +9,7 @@ namespace GoodReadersClone.Api.Controllers.v1;
 public class GenresController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("")]
-    public async Task<IActionResult> GetAsync()
+    public async Task<IActionResult> Get()
     {
         var result = await _sender.Send(new GetAllGenresQuery());
 
@@ -23,7 +21,7 @@ public class GenresController(ISender _sender) : ControllerBase
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<IActionResult> GetAsync(int id)
+    public async Task<IActionResult> GetValue(int id)
     {
         var result = await _sender.Send(new GetGenreQuery(id));
 
@@ -34,8 +32,7 @@ public class GenresController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
-    public async Task<IActionResult> CreateAsync(GenreDto dto)
+    public async Task<IActionResult> Post([FromBody] GenreDto dto)
     {
         var result = await _sender.Send(new CreateGenreCommand(dto));
 
@@ -47,7 +44,7 @@ public class GenresController(ISender _sender) : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> EditAsync(int id, GenreDto dto)
+    public async Task<IActionResult> Put(int id, [FromBody] GenreDto dto)
     {
         var result = await _sender.Send(new EditGenreCommand(id, dto));
 
@@ -59,7 +56,7 @@ public class GenresController(ISender _sender) : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
-    public async Task<IActionResult> DeleteAsync(int id)
+    public async Task<IActionResult> Delete(int id)
     {
         var result = await _sender.Send(new DeleteGenreCommand(id));
 

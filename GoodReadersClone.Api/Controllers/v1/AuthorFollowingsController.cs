@@ -1,8 +1,6 @@
-﻿using GoodReadersClone.Application.DTOs;
-using GoodReadersClone.Application.DTOs.AuthorFollowing;
+﻿using GoodReadersClone.Application.DTOs.AuthorFollowing;
 using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
@@ -11,9 +9,8 @@ namespace GoodReadersClone.Api.Controllers.v1;
 public class AuthorFollowingsController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("getAuthorFollowers")]
-    [AllowAnonymous]
-    public async Task<ActionResult<ApiResponse>> GetAuthorFollowers(string authorId)
+    [Route("authorFollowers/{authorId}")]
+    public async Task<ActionResult> GetAuthorFollowers(string authorId)
     {
         var result = await _sender.Send(new GetAuthorFollowersQuery(authorId));
 
@@ -24,9 +21,8 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getReaderFollowings")]
-    [AllowAnonymous]
-    public async Task<ActionResult<ApiResponse>> GetReaderFollowings(string readerId)
+    [Route("readerFollowings/{readerId}")]
+    public async Task<ActionResult> GetReaderFollowings(string readerId)
     {
         var result = await _sender.Send(new GetReaderFollowingsQuery(readerId));
 
@@ -37,9 +33,8 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Route("follow")]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult<ApiResponse>> CreateFollowing(FollowingRequest request)
+    public async Task<ActionResult> Post([FromBody] FollowingRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 
@@ -52,9 +47,8 @@ public class AuthorFollowingsController(ISender _sender) : ControllerBase
     }
 
     [HttpDelete]
-    [Route("unfollow")]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult<ApiResponse>> DeleteFollowing(FollowingRequest request)
+    public async Task<ActionResult> Delete([FromBody] FollowingRequest request)
     {
         request.ReaderId = User.FindFirst("uid")!.Value;
 

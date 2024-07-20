@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using System.Text.Json;
-namespace GoodReadersClone.Infrastructure.Exceptions;
+namespace GoodReadersClone.Api.ExceptionHandlers;
 
 public class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> _logger) : IExceptionHandler
 {

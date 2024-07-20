@@ -1,8 +1,6 @@
 ﻿using Asp.Versioning;
-using GoodReadersClone.Application.DTOs;
 using GoodReadersClone.Application.Features.Books.Commands;
 using GoodReadersClone.Application.Features.Books.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
@@ -13,8 +11,7 @@ namespace GoodReadersClone.Api.Controllers.v1;
 public class BooksController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("getAll")]
-    public async Task<ActionResult<ApiResponse>> GetAll(int pageIndex = 1, int pageSize = 10)
+    public async Task<ActionResult> Get([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
     {
         var result = await _sender.Send(new GetAllBooksQuery(pageIndex, pageSize));
 
@@ -22,8 +19,8 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getById")]
-    public async Task<ActionResult<ApiResponse>> GetById(int bookId)
+    [Route("{bookId}")]
+    public async Task<ActionResult> GetValue(int bookId)
     {
         var result = await _sender.Send(new GetBookByIdQuery(bookId));
 
@@ -34,8 +31,8 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getByISBN")]
-    public async Task<ActionResult<ApiResponse>> GetByISBN(string isbn)
+    [Route("isbn/{isbn}")]
+    public async Task<ActionResult> GetByISBN(string isbn)
     {
         var result = await _sender.Send(new GetBookByISBNQuery(isbn));
 
@@ -46,9 +43,8 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
     [Authorize(Roles = Roles.AUTHOR)]
-    public async Task<ActionResult<ApiResponse>> Create([FromForm] CreateBookRequest request)
+    public async Task<ActionResult> Post([FromForm] CreateBookRequest request)
     {
         request.AuthorId = User.FindFirst("uid")!.Value;
 
@@ -63,7 +59,7 @@ public class BooksController(ISender _sender) : ControllerBase
     [HttpPut]
     [Route("{bookId}")]
     [Authorize(Roles = Roles.AUTHOR)]
-    public async Task<ActionResult<ApiResponse>> Edit(int bookId, [FromForm] EditBookRequest request)
+    public async Task<ActionResult> Put(int bookId, [FromForm] EditBookRequest request)
     {
         var result = await _sender.Send(new EditBookCommand(bookId, request));
 
@@ -76,7 +72,7 @@ public class BooksController(ISender _sender) : ControllerBase
     [HttpDelete]
     [Route("{bookId}")]
     [Authorize(Roles = Roles.ADMIN)]
-    public async Task<ActionResult<ApiResponse>> Delete(int bookId)
+    public async Task<ActionResult> Delete(int bookId)
     {
         var result = await _sender.Send(new DeleteBookCommand(bookId));
 

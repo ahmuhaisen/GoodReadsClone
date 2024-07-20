@@ -1,22 +1,20 @@
-﻿using GoodReadersClone.Application.DTOs;
-using GoodReadersClone.Application.DTOs.Quote;
+﻿using GoodReadersClone.Application.DTOs.Quote;
 using GoodReadersClone.Application.Features.Quotes.Commands;
 using GoodReadersClone.Application.Features.Quotes.Queries;
-using GoodReadersClone.Infrastructure.Utils;
 
 namespace GoodReadersClone.Api.Controllers.v1;
 
 
+[Authorize]
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
-[Authorize]
 public class QuotesController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    [Route("getByUserId")]
-    public async Task<ActionResult<ApiResponse>> GetByUser(string id)
+    [Route("reader/{readerId}")]
+    public async Task<ActionResult> GetByUser(string readerId)
     {
-        var result = await _sender.Send(new GetUserQuotesQuery(id));
+        var result = await _sender.Send(new GetUserQuotesQuery(readerId));
 
         if (!result.Success)
             return BadRequest(result.Message);
@@ -25,11 +23,10 @@ public class QuotesController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("getByBookId")]
-    [Authorize]
-    public async Task<ActionResult<ApiResponse>> GetByBook(int id)
+    [Route("book/{bookId}")]
+    public async Task<ActionResult> GetByBook(int bookId)
     {
-        var result = await _sender.Send(new GetBookQuotesQuery(id));
+        var result = await _sender.Send(new GetBookQuotesQuery(bookId));
 
         if (!result.Success)
             return BadRequest(result.Message);
@@ -38,9 +35,8 @@ public class QuotesController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult<ApiResponse>> Create(QuoteModel model)
+    public async Task<ActionResult> Create([FromBody] QuoteModel model)
     {
         model.UserId = User.FindFirst("uid")!.Value;
 
@@ -53,9 +49,9 @@ public class QuotesController(ISender _sender) : ControllerBase
     }
 
     [HttpDelete]
-    [Route("")]
+    [Route("{id}")]
     [Authorize(Roles = Roles.READER)]
-    public async Task<ActionResult<ApiResponse>> Delete(int id)
+    public async Task<ActionResult> Delete(int id)
     {
         var result = await _sender.Send(new DeleteQuoteCommand(id));
 
