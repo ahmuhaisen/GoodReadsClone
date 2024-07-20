@@ -8,48 +8,30 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Asp.Versioning;
 using Microsoft.OpenApi.Models;
+using GoodReadersClone.Api.Mapper;
+using GoodReadersClone.Api.Exceptions;
 
 namespace GoodReadersClone.Api;
 
-public static class ServicesExtensions
-{
-    public static void RegisterDomainServices(this IServiceCollection services)
-    {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IAuthService, AuthService>();
-    }
 
-    public static void RegisterIdentity(this IServiceCollection services)
+public static class SertvicesExtensions
+{
+    public static IServiceCollection AddPresentationServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
-    }
+                   .AddEntityFrameworkStores<ApplicationDbContext>();
 
-    public static void RegisterApplicationDbContext(this IServiceCollection services, ConfigurationManager configuration)
-    {
-        services.AddDbContext<ApplicationDbContext>(options =>
-        {
-            options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-        });
-    }
-
-    public static void RegisterMediatR(this IServiceCollection services)
-    {
         services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(typeof(MediatREntryPoint).Assembly);
         });
-    }
 
-    public static void RegisterOptions(this IServiceCollection services, ConfigurationManager configuration)
-    {
+        services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
         services.Configure<MaintenanceOptions>(configuration.GetSection("MaintenanceMode"));
         services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
-    }
 
-    public static void RegisterJwt(this IServiceCollection services, ConfigurationManager configuration)
-    {
+
         var jwtOptions = configuration.GetSection("Jwt").Get<JwtOptions>();
 
         services.AddAuthentication(options =>
@@ -73,10 +55,19 @@ public static class ServicesExtensions
                 ClockSkew = TimeSpan.Zero
             };
         });
-    }
 
-    public static void ConfigureVersioning(this IServiceCollection services)
-    {
+        services.AddSwaggerGen(setup =>
+        {
+            setup.SwaggerGeneratorOptions.SwaggerDocs.Add("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Good Readers Clone",
+                Description = "A Web API project using ASP.NET 8.0 demonistrates the basic features of GoodReaders website.",
+                Contact = new OpenApiContact { Name = "Ahmad Muhaisen", Email = "ahmuhaisen03@gmail.com" }
+            });
+        });
+
+
         services.AddApiVersioning(options =>
         {
             options.AssumeDefaultVersionWhenUnspecified = true;
@@ -88,19 +79,36 @@ public static class ServicesExtensions
             options.GroupNameFormat = "'v'V";
             options.SubstituteApiVersionInUrl = true;
         });
+
+
+
+
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+
+        return services;
     }
 
-    public static void RegisterSwaggerWithOptions(this IServiceCollection services)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddSwaggerGen(setup =>
+        return services;
+    }
+
+    public static IServiceCollection AddInfrastructuerServices
+    (this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
         {
-            setup.SwaggerGeneratorOptions.SwaggerDocs.Add("v1", new OpenApiInfo
-            {
-                Version = "v1",
-                Title = "Good Readers Clone",
-                Description = "A Web API project using ASP.NET 8.0 demonistrates the basic features of GoodReaders website.",
-                Contact = new OpenApiContact { Name = "Ahmad Muhaisen", Email = "ahmuhaisen03@gmail.com" }
-            });
+            options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
+            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
+        return services;
+    }
+
+
+    public static IServiceCollection AddDomainServices(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAuthService, AuthService>();
+        return services;
     }
 }

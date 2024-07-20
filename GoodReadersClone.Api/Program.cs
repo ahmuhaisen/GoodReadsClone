@@ -1,7 +1,5 @@
-using GoodReadersClone.Api.Mapper;
 using GoodReadersClone.Api;
 using GoodReadersClone.Api.Middlewares;
-using GoodReadersClone.Infrastructure.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,25 +7,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.RegisterSwaggerWithOptions();
-
-builder.Services.RegisterIdentity();
-
-builder.Services.RegisterApplicationDbContext(builder.Configuration);
-
-builder.Services.RegisterDomainServices();
-
-builder.Services.RegisterMediatR();
-
-builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
-
-builder.Services.RegisterOptions(builder.Configuration);
-
-builder.Services.RegisterJwt(builder.Configuration);
-
-builder.Services.ConfigureVersioning();
-
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddDomainServices()
+    .AddInfrastructuerServices(builder.Configuration)    
+    .AddApplicationServices()
+    .AddPresentationServices(builder.Configuration);
 
 builder.Services.AddProblemDetails();
 
