@@ -13,10 +13,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Book> Books { get; set; }
     public DbSet<Quote> Quotes { get; set; }
     public DbSet<Review> Reviews { get; set; }
+    public DbSet<ShelfItem> ShelfItems { get; set; }
     public DbSet<ShelfItemModel> ShelfItemModels { get; set; }
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,7 +35,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasNoKey()
             .ToView(null);
 
-        modelBuilder.HasDbFunction(typeof(ApplicationDbContext).GetMethod(nameof(GetShelfItems), new[] { typeof(string) }));
+        modelBuilder.HasDbFunction(typeof(ApplicationDbContext).GetMethod(nameof(GetShelfItems), new[] { typeof(string) })!);
     }
 
     [DbFunction("GetShelfItems", "dbo")]

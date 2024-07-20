@@ -33,7 +33,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenre", (string)null);
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
@@ -143,7 +143,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("AuthorFollowings");
+                    b.ToTable("AuthorFollowings", (string)null);
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.Book", b =>
@@ -198,7 +198,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.Quote", b =>
@@ -476,7 +476,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
             modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
                 {
-                    b.OwnsMany("GoodReadersClone.Domain.Entities.RefreshToken", "RefreshTokens", b1 =>
+                    b.OwnsMany("GoodReadersClone.Domain.Entities.ApplicationUser.RefreshTokens#GoodReadersClone.Domain.Entities.RefreshToken", "RefreshTokens", b1 =>
                         {
                             b1.Property<string>("ApplicationUserId")
                                 .HasColumnType("nvarchar(450)");

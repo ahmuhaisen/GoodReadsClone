@@ -7,14 +7,14 @@ public class Book : IEntity
 {
     public int Id { get; set; }
 
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public string CoverURL { get; set; }
-    public string ISBN { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string CoverURL { get; set; } = string.Empty;
+    public string ISBN { get; set; } = string.Empty;
     public DateTime FirstPublished { get; set; }
 
 
-    public string AuthorId { get; set; }
+    public string AuthorId { get; set; } = string.Empty;
     public Author Author { get; set; }
 
 
