@@ -14,13 +14,12 @@ public class GetAuthorInfoByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHa
         return new ApiResponse
         {
             Success = true,
-            Data = new AuthorInfoModel
+            Data = new AuthorResponse
             {
                 Id = author.Id,
                 FullName = $"{author.FirstName} {author.LastName}",
                 UserName = author.UserName,
                 NumberOfBooks = author.Books.Count(),
-                NoOfFollowers = "Comming Soon"
             }
         };
     }
