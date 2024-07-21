@@ -13,6 +13,7 @@ public class UnitOfWork : IUnitOfWork
     public IAuthorFollowingRepository AuthorFollowingRepository { get; }
     public IReviewRepository ReviewRepository { get; }
     public IShelfItemRepository ShelfItemRepository { get; }
+    public IUsersRepository UsersRepository { get; }
 
 
     public UnitOfWork(ApplicationDbContext context)
@@ -25,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
         GenreRepository = new GenreRepository(_context);
         ReviewRepository = new ReviewRepository(_context);
         ShelfItemRepository = new ShelfItemRepository(_context);
+        UsersRepository = new UsersRepository(_context);
     }
 
     public int Save() => _context.SaveChanges();

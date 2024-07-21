@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadersClone.Infrastructure.DataAccess.Repositories;
+
+namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
 public interface IUnitOfWork : IDisposable
 {
     IAuthorRepository AuthorRepository { get; }
@@ -8,5 +10,6 @@ public interface IUnitOfWork : IDisposable
     IAuthorFollowingRepository AuthorFollowingRepository { get; }
     IReviewRepository ReviewRepository { get; }
     IShelfItemRepository ShelfItemRepository { get; }
+    IUsersRepository UsersRepository { get; }
     int Save();
 }
