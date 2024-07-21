@@ -14,7 +14,7 @@ public class UsersRepository : Repository<ApplicationUser>, IUsersRepository
         _context = context;
     }
 
-    public new async Task<PaginatedList<ApplicationUser>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
+    public async Task<PaginatedList<ApplicationUser>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
     {
         IQueryable<ApplicationUser> usersQuery = _context.Users;
 

@@ -11,9 +11,9 @@ namespace GoodReadersClone.Api.Controllers.v1;
 public class BooksController(ISender _sender) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult> Get([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
+    public async Task<IActionResult> Get([FromQuery] string? searchTerm, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
     {
-        var result = await _sender.Send(new GetAllBooksQuery(pageIndex, pageSize));
+        var result = await _sender.Send(new GetAllBooksQuery(searchTerm, pageIndex, pageSize));
 
         return Ok(result);
     }

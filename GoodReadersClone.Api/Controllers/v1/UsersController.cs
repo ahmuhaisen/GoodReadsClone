@@ -9,7 +9,8 @@ public class UsersController(ISender _sender) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] string? searchTerm, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
     {
-        var result = await _sender.Send(new GetAllUsersQuery(searchTerm, pageIndex, pageSize));
+        var result = await _sender
+            .Send(new GetAllUsersQuery(searchTerm, pageIndex, pageSize));
 
         return Ok(result);
     }

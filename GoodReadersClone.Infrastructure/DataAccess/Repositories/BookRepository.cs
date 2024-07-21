@@ -9,31 +9,19 @@ public class BookRepository : Repository<Book>, IBookRepository
 {
     private readonly ApplicationDbContext _context;
 
-    public BookRepository(ApplicationDbContext context) : base(context)
+    public BookRepository(ApplicationDbContext context) : base(context) => _context = context;
+    
+
+    public new async Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
     {
-        _context = context;
-    }
+        IQueryable<Book> booksQuery = _context.Books
+            .Include(b => b.Author);
 
-    public new async Task<PaginatedList<Book>> GetAllAsync(int pageIndex, int pageSize)
-    {
-        var count = await _context.Set<Book>().CountAsync();
-        var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            booksQuery = booksQuery.Where(b => b.Title!.Contains(searchTerm));
+        }
 
-        if (pageIndex <= 0)
-            pageIndex = 1;
-
-        if (pageIndex > totalPages)
-            pageIndex = 1;
-
-        if (pageSize <= 0 || pageSize > 20)
-            pageSize = 20;
-
-        IQueryable<Book> items = _context.Set<Book>()
-            .Skip((pageIndex - 1) * pageSize)
-            .Take(pageSize)
-            .Include(b => b.Author)
-            .Include(b => b.Genres);
-
-        return new PaginatedList<Book>(await items.ToListAsync(), pageIndex, totalPages);
+        return await PaginatedList<Book>.CreateAsync(booksQuery, pageIndex, pageSize);
     }
 }
