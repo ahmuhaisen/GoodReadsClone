@@ -3,8 +3,6 @@ using GoodReadsClone.Application.DTOs.Books;
 using GoodReadsClone.Application.DTOs.Genre;
 using GoodReadsClone.Application.DTOs.Quote;
 using GoodReadsClone.Application.DTOs.Review;
-using GoodReadsClone.Application.DTOs.User;
-using GoodReadsClone.Domain.Entities;
 using GoodReadsClone.Domain.Models;
 
 namespace GoodReadsClone.Application.Mapper;

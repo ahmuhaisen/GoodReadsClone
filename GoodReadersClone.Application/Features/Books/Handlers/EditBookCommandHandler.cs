@@ -1,7 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.Books.Commands;
-using GoodReadsClone.Application.Helpers;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.Books.Commands;
 
 namespace GoodReadsClone.Application.Features.Books.Handlers;
 

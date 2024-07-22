@@ -1,6 +1,5 @@
 ﻿using GoodReadsClone.Domain.Entities;
 using GoodReadsClone.Domain.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IBookRepository : IRepository<Book>

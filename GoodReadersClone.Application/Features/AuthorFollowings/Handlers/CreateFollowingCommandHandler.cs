@@ -1,8 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.AuthorFollowings.Commands;
-using GoodReadsClone.Domain.Entities;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
-using GoodReadsClone.Infrastructure.Utils;
+﻿using GoodReadsClone.Application.Features.AuthorFollowings.Commands;
 
 namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 

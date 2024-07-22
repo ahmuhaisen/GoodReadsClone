@@ -1,8 +1,6 @@
 ﻿using Asp.Versioning;
 using GoodReadsClone.Application.Features.Books.Commands;
 using GoodReadsClone.Application.Features.Books.Queries;
-using GoodReadsClone.Application.DTOs.Books;
-using GoodReadsClone.Infrastructure.Utils;
 
 namespace GoodReadsClone.Api.Controllers.v1;
 

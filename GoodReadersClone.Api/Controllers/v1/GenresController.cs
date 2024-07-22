@@ -1,6 +1,5 @@
 ﻿using GoodReadsClone.Application.Features.Genres.Commands;
 using GoodReadsClone.Application.Features.Genres.Queries;
-using GoodReadsClone.Application.DTOs.Genre;
 
 namespace GoodReadsClone.Api.Controllers.v1;
 

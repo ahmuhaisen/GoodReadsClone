@@ -1,7 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.Quotes.Commands;
-using GoodReadsClone.Domain.Entities;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.Quotes.Commands;
 
 namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 public class CreateQuoteCommandHandler(

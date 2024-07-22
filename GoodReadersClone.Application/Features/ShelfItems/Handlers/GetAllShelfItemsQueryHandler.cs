@@ -1,6 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.ShelfItems.Queries;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.ShelfItems.Queries;
 
 namespace GoodReadsClone.Application.Features.ShelfItems.Handlers;
 public class GetAllShelfItemsQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<GetAllShelfItemsQuery, ApiResponse>

@@ -1,8 +1,5 @@
 ﻿using GoodReadsClone.Api.Helpers;
 using GoodReadsClone.Application.Abstractions;
-using GoodReadsClone.Application.DTOs.Auth;
-using GoodReadsClone.Application.DTOs.User;
-using GoodReadsClone.Infrastructure.Utils;
 
 namespace GoodReadsClone.Api.Controllers.v1;
 

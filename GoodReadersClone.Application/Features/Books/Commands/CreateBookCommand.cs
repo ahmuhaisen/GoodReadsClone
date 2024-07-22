@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.Books;
+﻿using GoodReadsClone.Application.DTOs.Books;
 
 namespace GoodReadsClone.Application.Features.Books.Commands;
 public record CreateBookCommand(CreateBookRequest Request) : IRequest<ApiResponse>;

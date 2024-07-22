@@ -1,5 +1,4 @@
-﻿global using AutoMapper;
-global using GoodReadsClone.Application.DTOs.Auth;
+﻿global using GoodReadsClone.Application.DTOs.Auth;
 global using GoodReadsClone.Application.DTOs.Books;
 global using GoodReadsClone.Application.DTOs.Genre;
 global using GoodReadsClone.Application.DTOs.Review;

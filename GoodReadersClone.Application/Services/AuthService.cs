@@ -1,8 +1,4 @@
 ﻿using GoodReadsClone.Application.Abstractions;
-using GoodReadsClone.Application.DTOs.Auth;
-using GoodReadsClone.Application.DTOs.User;
-using GoodReadsClone.Domain.Entities;
-using GoodReadsClone.Infrastructure.Utils;
 
 namespace GoodReadsClone.Application.Services;
 

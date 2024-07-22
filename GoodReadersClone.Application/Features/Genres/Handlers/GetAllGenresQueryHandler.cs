@@ -1,7 +1,5 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.Genre;
+﻿using GoodReadsClone.Application.DTOs.Genre;
 using GoodReadsClone.Application.Features.Genres.Queries;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadsClone.Application.Features.Genres.Handlers;
 public class GetAllGenresQueryHandler(IUnitOfWork _unitOfWork, IMapper _mapper) : IRequestHandler<GetAllGenresQuery, ApiResponse>

@@ -1,7 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.User;
-using GoodReadsClone.Application.Features.AuthorFollowings.Queries;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.AuthorFollowings.Queries;
 
 namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 public class GetAuthorFollowersQueryHandler(IUnitOfWork _unitOfWork)

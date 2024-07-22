@@ -1,7 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.Genres.Commands;
-using GoodReadsClone.Domain.Entities;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.Genres.Commands;
 
 namespace GoodReadsClone.Application.Features.Genres.Handlers;
 

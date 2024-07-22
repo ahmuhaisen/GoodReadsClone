@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.Review;
+﻿using GoodReadsClone.Application.DTOs.Review;
 
 namespace GoodReadsClone.Application.Features.Reviews.Commands;
 public record CreateReviewCommand(CreateReviewRequest Review) : IRequest<ApiResponse>;

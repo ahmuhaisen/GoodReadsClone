@@ -1,6 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-
-namespace GoodReadsClone.Application.Features.Quotes.Queries;
+﻿namespace GoodReadsClone.Application.Features.Quotes.Queries;
 public record GetUserQuotesQuery(string Id) : IRequest<ApiResponse>;
 public record GetBookQuotesQuery(int Id) : IRequest<ApiResponse>;
 

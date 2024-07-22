@@ -1,7 +1,5 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.ShelfItems.Commands;
+﻿using GoodReadsClone.Application.Features.ShelfItems.Commands;
 using GoodReadsClone.Domain.Enums;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadsClone.Application.Features.ShelfItems.Handlers;
 

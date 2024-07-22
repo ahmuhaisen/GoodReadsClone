@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.ShelfItem;
+﻿using GoodReadsClone.Application.DTOs.ShelfItem;
 
 namespace GoodReadsClone.Application.Features.ShelfItems.Commands;
 

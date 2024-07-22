@@ -1,7 +1,5 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.Quote;
+﻿using GoodReadsClone.Application.DTOs.Quote;
 using GoodReadsClone.Application.Features.Quotes.Queries;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 

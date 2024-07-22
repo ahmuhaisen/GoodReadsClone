@@ -1,6 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.Reviews.Queries;
-using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Application.Features.Reviews.Queries;
 
 namespace GoodReadsClone.Application.Features.Reviews.Handlers;
 

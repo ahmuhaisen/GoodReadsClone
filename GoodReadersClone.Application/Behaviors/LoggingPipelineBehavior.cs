@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace GoodReadsClone.Application.Behaviors;
 

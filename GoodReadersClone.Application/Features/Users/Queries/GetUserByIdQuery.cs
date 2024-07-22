@@ -1,4 +1,2 @@
-﻿using GoodReadsClone.Application.DTOs;
-
-namespace GoodReadsClone.Application.Features.Users.Queries;
+﻿namespace GoodReadsClone.Application.Features.Users.Queries;
 public record GetUserByIdQuery(string UserId) : IRequest<ApiResponse>;

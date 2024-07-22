@@ -1,7 +1,6 @@
 ﻿using GoodReadsClone.Application.Features.ShelfItems.Commands;
 using GoodReadsClone.Application.Features.ShelfItems.Queries;
 using GoodReadsClone.Application.DTOs.ShelfItem;
-using GoodReadsClone.Infrastructure.Utils;
 
 namespace GoodReadsClone.Api.Controllers.v1;
 

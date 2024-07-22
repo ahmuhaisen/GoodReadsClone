@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.DTOs.Genre;
+﻿using GoodReadsClone.Application.DTOs.Genre;
 
 namespace GoodReadsClone.Application.Features.Genres.Commands;
 

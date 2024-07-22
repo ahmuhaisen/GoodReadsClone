@@ -1,5 +1,4 @@
-﻿using GoodReadsClone.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadsClone.Domain.Models;
 public class PaginatedList<T>

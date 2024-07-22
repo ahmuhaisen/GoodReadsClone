@@ -1,10 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs;
-using GoodReadsClone.Application.Features.Users.Commands;
-using GoodReadsClone.Application.Helpers;
-using GoodReadsClone.Domain.Entities;
-using GoodReadsClone.Infrastructure.Utils;
-
-namespace GoodReadsClone.Application.Features.Users.Handlers;
+﻿namespace GoodReadsClone.Application.Features.Users.Handlers;
 
 public class CreateReaderCommandHandler(
     UserManager<ApplicationUser> _userManager,

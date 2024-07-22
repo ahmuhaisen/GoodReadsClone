@@ -1,7 +1,4 @@
-﻿using GoodReadsClone.Application.DTOs.Auth;
-using GoodReadsClone.Application.DTOs.User;
-
-namespace GoodReadsClone.Application.Abstractions;
+﻿namespace GoodReadsClone.Application.Abstractions;
 public interface IAuthService
 {
     Task<AuthenticationResponse> RegisterAsync(UserRegisterRequest request, string role);
