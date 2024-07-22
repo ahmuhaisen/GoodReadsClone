@@ -5,7 +5,7 @@ namespace GoodReadersClone.Api.Controllers.v1;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]
-[Authorize(Roles = Roles.ADMIN)]
+//[Authorize(Roles = Roles.ADMIN)]
 public class GenresController(ISender _sender) : ControllerBase
 {
     [HttpGet]

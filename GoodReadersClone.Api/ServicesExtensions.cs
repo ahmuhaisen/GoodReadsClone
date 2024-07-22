@@ -1,16 +1,17 @@
-﻿using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using Asp.Versioning;
+using GoodReadersClone.Api.ExceptionHandlers;
+using GoodReadersClone.Application.Abstractions;
+using GoodReadersClone.Application.Behaviors;
+using GoodReadersClone.Application.Features;
+using GoodReadersClone.Application.Mapper;
 using GoodReadersClone.Infrastructure.DataAccess;
+using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using GoodReadersClone.Application.Features;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Asp.Versioning;
 using Microsoft.OpenApi.Models;
-using GoodReadersClone.Api.ExceptionHandlers;
-using GoodReadersClone.Application.Mapper;
-using GoodReadersClone.Application.Abstractions;
+using System.Text;
 
 namespace GoodReadersClone.Api;
 
@@ -91,6 +92,7 @@ public static class SertvicesExtensions
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 
         return services;
     }
