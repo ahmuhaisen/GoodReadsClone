@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Application.DTOs.Author;
+﻿using GoodReadsClone.Application.DTOs.Author;
 using GoodReadsClone.Application.DTOs;
 using GoodReadsClone.Application.Features.Authors.Queries;
 using GoodReadsClone.Infrastructure.DataAccess.Abstractions;

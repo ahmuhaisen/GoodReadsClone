@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GoodReadersClone.Infrastructure.Migrations
+namespace GoodReadsClone.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class AlterName : Migration

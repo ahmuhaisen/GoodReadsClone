@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Infrastructure.DataAccess.Repositories;
+﻿using GoodReadsClone.Infrastructure.DataAccess.Repositories;
 
 namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IUnitOfWork : IDisposable

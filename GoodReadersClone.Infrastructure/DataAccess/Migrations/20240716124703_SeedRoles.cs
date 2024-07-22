@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GoodReadersClone.Infrastructure.Migrations
+namespace GoodReadsClone.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class SeedRoles : Migration

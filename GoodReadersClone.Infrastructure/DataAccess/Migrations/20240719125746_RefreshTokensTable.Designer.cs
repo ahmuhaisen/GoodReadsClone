@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GoodReadersClone.Infrastructure.Migrations
+namespace GoodReadsClone.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240719125746_RefreshTokensTable")]
@@ -39,7 +39,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("BookGenre");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -134,7 +134,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.AuthorFollowing", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.AuthorFollowing", b =>
                 {
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
@@ -149,7 +149,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("AuthorFollowings");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Book", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -187,7 +187,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("Books", (string)null);
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Genre", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -204,7 +204,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Quote", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Quote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("Quotes", (string)null);
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Review", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Review", b =>
                 {
                     b.Property<string>("ReaderId")
                         .HasColumnType("nvarchar(450)");
@@ -258,7 +258,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToTable("Reviews", (string)null);
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.ShelfItem", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.ShelfItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -455,31 +455,31 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.ToView(null, (string)null);
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Author", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Author", b =>
                 {
-                    b.HasBaseType("GoodReadersClone.Domain.Entities.ApplicationUser");
+                    b.HasBaseType("GoodReadsClone.Domain.Entities.ApplicationUser");
 
                     b.HasDiscriminator().HasValue("Author");
                 });
 
             modelBuilder.Entity("BookGenre", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.Book", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.Book", null)
                         .WithMany()
                         .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.Genre", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.Genre", null)
                         .WithMany()
                         .HasForeignKey("GenresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.ApplicationUser", b =>
                 {
-                    b.OwnsMany("GoodReadersClone.Domain.Entities.RefreshToken", "RefreshTokens", b1 =>
+                    b.OwnsMany("GoodReadsClone.Domain.Entities.RefreshToken", "RefreshTokens", b1 =>
                         {
                             b1.Property<string>("ApplicationUserId")
                                 .HasColumnType("nvarchar(450)");
@@ -514,15 +514,15 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("RefreshTokens");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.AuthorFollowing", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.AuthorFollowing", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", "ApplicationUser")
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("AuthorFollowings")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.Author", "Author")
+                    b.HasOne("GoodReadsClone.Domain.Entities.Author", "Author")
                         .WithMany("Followers")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -533,9 +533,9 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Book", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Book", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.Author", "Author")
+                    b.HasOne("GoodReadsClone.Domain.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -544,15 +544,15 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Quote", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Quote", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.Book", "Book")
+                    b.HasOne("GoodReadsClone.Domain.Entities.Book", "Book")
                         .WithMany("Quotes")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", "User")
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", "User")
                         .WithMany("Quotes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -563,15 +563,15 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Review", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Review", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.Book", "Book")
+                    b.HasOne("GoodReadsClone.Domain.Entities.Book", "Book")
                         .WithMany("Reviews")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", "Reader")
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", "Reader")
                         .WithMany("Reviews")
                         .HasForeignKey("ReaderId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -582,15 +582,15 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("Reader");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.ShelfItem", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.ShelfItem", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.Book", "Book")
+                    b.HasOne("GoodReadsClone.Domain.Entities.Book", "Book")
                         .WithMany("ShelfItems")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", "Reader")
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", "Reader")
                         .WithMany("ShelfItems")
                         .HasForeignKey("ReaderId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -612,7 +612,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -621,7 +621,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -636,7 +636,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -645,14 +645,14 @@ namespace GoodReadersClone.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("GoodReadersClone.Domain.Entities.ApplicationUser", null)
+                    b.HasOne("GoodReadsClone.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("AuthorFollowings");
 
@@ -663,7 +663,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("ShelfItems");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Book", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Book", b =>
                 {
                     b.Navigation("Quotes");
 
@@ -672,7 +672,7 @@ namespace GoodReadersClone.Infrastructure.Migrations
                     b.Navigation("ShelfItems");
                 });
 
-            modelBuilder.Entity("GoodReadersClone.Domain.Entities.Author", b =>
+            modelBuilder.Entity("GoodReadsClone.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Books");
 

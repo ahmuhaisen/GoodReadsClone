@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Infrastructure.DataAccess.Repositories;
+﻿using GoodReadsClone.Infrastructure.DataAccess.Repositories;
 using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 namespace GoodReadsClone.Infrastructure.DataAccess;

@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
-using GoodReadersClone.Application.Features.Books.Commands;
-using GoodReadersClone.Application.Features.Books.Queries;
+using GoodReadsClone.Application.Features.Books.Commands;
+using GoodReadsClone.Application.Features.Books.Queries;
 using GoodReadsClone.Application.DTOs.Books;
 using GoodReadsClone.Infrastructure.Utils;
 

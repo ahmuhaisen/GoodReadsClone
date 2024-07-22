@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Domain.Entities;
+﻿using GoodReadsClone.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoodReadsClone.Domain.Models;

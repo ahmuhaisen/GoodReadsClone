@@ -1,5 +1,5 @@
-﻿using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
-using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+﻿using GoodReadsClone.Application.Features.AuthorFollowings.Commands;
+using GoodReadsClone.Application.Features.AuthorFollowings.Queries;
 using GoodReadsClone.Application.DTOs.AuthorFollowing;
 using GoodReadsClone.Infrastructure.Utils;
 

@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Application.Attributes;
+﻿using GoodReadsClone.Application.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadsClone.Application.DTOs.User;

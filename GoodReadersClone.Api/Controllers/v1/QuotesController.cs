@@ -1,5 +1,5 @@
-﻿using GoodReadersClone.Application.Features.Quotes.Commands;
-using GoodReadersClone.Application.Features.Quotes.Queries;
+﻿using GoodReadsClone.Application.Features.Quotes.Commands;
+using GoodReadsClone.Application.Features.Quotes.Queries;
 using GoodReadsClone.Application.DTOs.Quote;
 using GoodReadsClone.Infrastructure.Utils;
 
