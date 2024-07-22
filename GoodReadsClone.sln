@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodReadersClone.Api", "GoodReadersClone.Api\GoodReadersClone.Api.csproj", "{A34E46EA-454B-471A-8994-795C1734BA7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodReadsClone.Api", "GoodReadersClone.Api\GoodReadsClone.Api.csproj", "{A34E46EA-454B-471A-8994-795C1734BA7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodReadersClone.Domain", "GoodReadersClone.Domain\GoodReadersClone.Domain.csproj", "{43C9CF3B-2217-43EE-B3B4-AD176BD60AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodReadsClone.Domain", "GoodReadersClone.Domain\GoodReadsClone.Domain.csproj", "{43C9CF3B-2217-43EE-B3B4-AD176BD60AC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodReadersClone.Application", "GoodReadersClone.Application\GoodReadersClone.Application.csproj", "{4D3EBF6F-E8A2-4E9A-814C-532083CC9C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodReadsClone.Application", "GoodReadersClone.Application\GoodReadsClone.Application.csproj", "{4D3EBF6F-E8A2-4E9A-814C-532083CC9C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodReadersClone.Infrastructure", "GoodReadersClone.Infrastructure\GoodReadersClone.Infrastructure.csproj", "{6ABCCF96-A6C2-417A-9B20-F6B5CE1523E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodReadsClone.Infrastructure", "GoodReadersClone.Infrastructure\GoodReadsClone.Infrastructure.csproj", "{6ABCCF96-A6C2-417A-9B20-F6B5CE1523E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

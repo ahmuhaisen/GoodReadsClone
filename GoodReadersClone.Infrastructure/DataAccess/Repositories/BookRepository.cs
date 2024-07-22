@@ -1,16 +1,16 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
+namespace GoodReadsClone.Infrastructure.DataAccess.Repositories;
 
 public class BookRepository : Repository<Book>, IBookRepository
 {
     private readonly ApplicationDbContext _context;
 
     public BookRepository(ApplicationDbContext context) : base(context) => _context = context;
-    
+
 
     public new async Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
     {

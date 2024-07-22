@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.Abstractions;
+﻿namespace GoodReadsClone.Application.Abstractions;
 
 
 public interface IEmailService

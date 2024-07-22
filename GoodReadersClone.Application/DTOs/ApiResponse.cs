@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.DTOs;
+﻿namespace GoodReadsClone.Application.DTOs;
 public class ApiResponse
 {
     public bool Success { get; set; }

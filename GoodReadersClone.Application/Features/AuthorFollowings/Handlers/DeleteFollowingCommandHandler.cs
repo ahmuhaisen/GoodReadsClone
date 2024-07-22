@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.AuthorFollowings.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 
 public class DeleteFollowingCommandHandler(
     IUnitOfWork _unitOfWork)
@@ -10,7 +12,7 @@ public class DeleteFollowingCommandHandler(
     {
         var followingToDelete = await _unitOfWork.AuthorFollowingRepository
             .GetAsync(x => x.AuthorId == request.Request.AuthorId && x.ApplicationUserId == request.Request.ReaderId);
-        
+
         if (followingToDelete is null)
             return new ApiResponse { Message = "Following not found" };
 

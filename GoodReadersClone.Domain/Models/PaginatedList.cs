@@ -1,7 +1,7 @@
 ﻿using GoodReadersClone.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Domain.Models;
+namespace GoodReadsClone.Domain.Models;
 public class PaginatedList<T>
 {
     public List<T> Items { get; }

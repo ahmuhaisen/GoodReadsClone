@@ -1,6 +1,6 @@
-﻿using GoodReadersClone.Application.Abstractions;
+﻿using GoodReadsClone.Application.Abstractions;
 
-namespace GoodReadersClone.Application.Services;
+namespace GoodReadsClone.Application.Services;
 
 public class EmailService : IEmailService
 {

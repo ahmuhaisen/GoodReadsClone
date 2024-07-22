@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace GoodReadersClone.Application.DTOs.ShelfItem;
+namespace GoodReadsClone.Application.DTOs.ShelfItem;
 
 
 public class ShelfRequest

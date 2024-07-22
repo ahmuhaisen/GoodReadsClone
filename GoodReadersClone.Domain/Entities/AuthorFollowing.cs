@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Domain.Entities;
+﻿namespace GoodReadsClone.Domain.Entities;
 
 public class AuthorFollowing
 {

@@ -1,8 +1,8 @@
 ﻿using Bogus;
-using GoodReadersClone.Domain.Entities;
+using GoodReadsClone.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace GoodReadersClone.Infrastructure.Utils;
+namespace GoodReadsClone.Infrastructure.Utils;
 public class DatabaseSeeder
 {
 

@@ -1,6 +1,9 @@
-﻿using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.User;
+using GoodReadsClone.Application.Features.AuthorFollowings.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 public class GetAuthorFollowersQueryHandler(IUnitOfWork _unitOfWork)
     : IRequestHandler<GetAuthorFollowersQuery, ApiResponse>
 {
@@ -10,7 +13,7 @@ public class GetAuthorFollowersQueryHandler(IUnitOfWork _unitOfWork)
             return new ApiResponse { Message = "Author not found" };
 
         var followers = await _unitOfWork.AuthorFollowingRepository
-                    .GetAllAsync(x => x.AuthorId == request.AuthorId, new[] {"ApplicationUser"});
+                    .GetAllAsync(x => x.AuthorId == request.AuthorId, new[] { "ApplicationUser" });
 
         var result = followers.Select(x => UserResponse.ConvertApplicationUserToUserResponse(x.ApplicationUser));
 

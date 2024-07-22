@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace GoodReadersClone.Application.DTOs.Quote;
+namespace GoodReadsClone.Application.DTOs.Quote;
 public class QuoteDto
 {
     [MaxLength(200)]

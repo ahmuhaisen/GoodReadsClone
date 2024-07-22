@@ -1,7 +1,7 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IReviewRepository : IRepository<Review>
 {
     Task<RatingSummaryModel> GetBookRatingSummaryAsync(int bookId);

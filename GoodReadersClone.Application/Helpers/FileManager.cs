@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.Helpers;
+﻿namespace GoodReadsClone.Application.Helpers;
 
 public class FileManager
 {

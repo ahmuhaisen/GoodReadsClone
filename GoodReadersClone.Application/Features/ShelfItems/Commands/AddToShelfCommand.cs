@@ -1,6 +1,7 @@
-﻿using GoodReadersClone.Application.DTOs.ShelfItem;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.ShelfItem;
 
-namespace GoodReadersClone.Application.Features.ShelfItems.Commands;
+namespace GoodReadsClone.Application.Features.ShelfItems.Commands;
 
 
 public record AddToShelfCommand(ShelfRequest Request) : IRequest<ApiResponse>;

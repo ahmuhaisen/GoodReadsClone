@@ -1,11 +1,14 @@
 ﻿using Asp.Versioning;
-using GoodReadersClone.Api.ExceptionHandlers;
-using GoodReadersClone.Application.Abstractions;
-using GoodReadersClone.Application.Behaviors;
-using GoodReadersClone.Application.Features;
-using GoodReadersClone.Application.Mapper;
-using GoodReadersClone.Infrastructure.DataAccess;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+using GoodReadsClone.Api.ExceptionHandlers;
+using GoodReadsClone.Application.Abstractions;
+using GoodReadsClone.Application.Behaviors;
+using GoodReadsClone.Application.Features;
+using GoodReadsClone.Application.Mapper;
+using GoodReadsClone.Application.Options;
+using GoodReadsClone.Application.Services;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-namespace GoodReadersClone.Api;
+namespace GoodReadsClone.Api;
 
 
 public static class SertvicesExtensions

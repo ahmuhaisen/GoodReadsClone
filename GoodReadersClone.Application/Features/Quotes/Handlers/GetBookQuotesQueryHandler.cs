@@ -1,7 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.Quote;
-using GoodReadersClone.Application.Features.Quotes.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Quote;
+using GoodReadsClone.Application.Features.Quotes.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Quotes.Handlers;
+namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 
 public class GetBookQuotesQueryHandler(
     IUnitOfWork _unitOfWork,
@@ -17,7 +19,7 @@ public class GetBookQuotesQueryHandler(
 
         var result = _mapper.Map<IEnumerable<QuoteDto>>(quotes);
 
-        return new ApiResponse 
+        return new ApiResponse
         {
             Success = true,
             Data = result

@@ -1,7 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.Genre;
-using GoodReadersClone.Application.Features.Genres.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Genre;
+using GoodReadsClone.Application.Features.Genres.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Genres.Handlers;
+namespace GoodReadsClone.Application.Features.Genres.Handlers;
 public class GetAllGenresQueryHandler(IUnitOfWork _unitOfWork, IMapper _mapper) : IRequestHandler<GetAllGenresQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
@@ -9,7 +11,7 @@ public class GetAllGenresQueryHandler(IUnitOfWork _unitOfWork, IMapper _mapper) 
         return new ApiResponse
         {
             Success = true,
-            Data = _mapper.Map<IEnumerable<GenreDto>>((await _unitOfWork.GenreRepository.GetAllAsync())) 
+            Data = _mapper.Map<IEnumerable<GenreDto>>(await _unitOfWork.GenreRepository.GetAllAsync())
         };
     }
 }

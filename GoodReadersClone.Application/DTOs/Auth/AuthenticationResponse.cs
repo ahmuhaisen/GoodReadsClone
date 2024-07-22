@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GoodReadersClone.Application.DTOs.Auth;
+namespace GoodReadsClone.Application.DTOs.Auth;
 public class AuthenticationResponse
 {
     public string Message { get; set; } = string.Empty;

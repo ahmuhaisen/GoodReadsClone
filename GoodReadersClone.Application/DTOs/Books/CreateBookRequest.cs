@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace GoodReadersClone.Application.DTOs.Books;
+namespace GoodReadsClone.Application.DTOs.Books;
 public class CreateBookRequest
 {
     [MinLength(10)]

@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Genres.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Genres.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Genres.Handlers;
+namespace GoodReadsClone.Application.Features.Genres.Handlers;
 
 public class DeleteGenreCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<DeleteGenreCommand, ApiResponse>
 {

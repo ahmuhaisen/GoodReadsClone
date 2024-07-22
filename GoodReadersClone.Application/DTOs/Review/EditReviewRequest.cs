@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.Review;
+namespace GoodReadsClone.Application.DTOs.Review;
 
 public class EditReviewRequest
 {

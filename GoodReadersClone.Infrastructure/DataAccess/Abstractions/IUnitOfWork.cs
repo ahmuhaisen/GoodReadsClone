@@ -1,6 +1,6 @@
 ﻿using GoodReadersClone.Infrastructure.DataAccess.Repositories;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IUnitOfWork : IDisposable
 {
     IAuthorRepository AuthorRepository { get; }

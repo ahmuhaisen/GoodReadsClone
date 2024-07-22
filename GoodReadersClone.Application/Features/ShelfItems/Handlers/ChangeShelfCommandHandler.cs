@@ -1,7 +1,9 @@
-﻿using GoodReadersClone.Application.Features.ShelfItems.Commands;
-using GoodReadersClone.Domain.Enums;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.ShelfItems.Commands;
+using GoodReadsClone.Domain.Enums;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.ShelfItems.Handlers;
+namespace GoodReadsClone.Application.Features.ShelfItems.Handlers;
 
 public class ChangeShelfCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<ChangeShelfCommand, ApiResponse>
 {

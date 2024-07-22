@@ -1,9 +1,9 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
+namespace GoodReadsClone.Infrastructure.DataAccess.Repositories;
 public class ReviewRepository : Repository<Review>, IReviewRepository
 {
     private readonly ApplicationDbContext _context;

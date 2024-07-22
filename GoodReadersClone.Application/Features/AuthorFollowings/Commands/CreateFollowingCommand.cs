@@ -1,5 +1,6 @@
-﻿using GoodReadersClone.Application.DTOs.AuthorFollowing;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.AuthorFollowing;
 
-namespace GoodReadersClone.Application.Features.AuthorFollowings.Commands;
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Commands;
 public record CreateFollowingCommand(FollowRequest Request) : IRequest<ApiResponse>;
 public record DeleteFollowingCommand(FollowRequest Request) : IRequest<ApiResponse>;

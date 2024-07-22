@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Books.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Books.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Books.Handlers;
+namespace GoodReadsClone.Application.Features.Books.Handlers;
 
 public class DeleteBookCommandHandler(IUnitOfWork _unitOfWork)
     : IRequestHandler<DeleteBookCommand, ApiResponse>

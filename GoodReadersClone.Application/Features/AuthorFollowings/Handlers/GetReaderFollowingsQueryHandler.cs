@@ -1,7 +1,11 @@
-﻿using GoodReadersClone.Application.DTOs.Author;
-using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Author;
+using GoodReadsClone.Application.Features.AuthorFollowings.Queries;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 
 public class GetReaderFollowingsQueryHandler(
     IUnitOfWork _unitOfWork,
@@ -12,10 +16,10 @@ public class GetReaderFollowingsQueryHandler(
     {
         var user = await _userManager.FindByIdAsync(request.ReaderId);
 
-        if(user is null)
+        if (user is null)
             return new ApiResponse { Message = "Author not found" };
 
-        if(!await _userManager.IsInRoleAsync(user, Roles.READER))
+        if (!await _userManager.IsInRoleAsync(user, Roles.READER))
             return new ApiResponse { Message = "Error occurred" };
 
         var followings = await _unitOfWork.AuthorFollowingRepository

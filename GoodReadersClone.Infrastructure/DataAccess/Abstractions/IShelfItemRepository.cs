@@ -1,6 +1,6 @@
-﻿using GoodReadersClone.Domain.Entities;
+﻿using GoodReadsClone.Domain.Entities;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 public interface IShelfItemRepository : IRepository<ShelfItem>
 {

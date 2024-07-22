@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Infrastructure.Utils;
+﻿namespace GoodReadsClone.Infrastructure.Utils;
 public class Roles
 {
     public const string ADMIN = "Admin";

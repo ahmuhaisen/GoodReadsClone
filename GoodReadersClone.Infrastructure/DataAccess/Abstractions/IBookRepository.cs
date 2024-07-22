@@ -1,8 +1,8 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IBookRepository : IRepository<Book>
 {
     Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize);

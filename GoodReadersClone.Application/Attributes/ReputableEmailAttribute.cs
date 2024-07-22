@@ -1,7 +1,7 @@
-﻿using GoodReadersClone.Application.Abstractions;
+﻿using GoodReadsClone.Application.Abstractions;
 using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.Attributes;
+namespace GoodReadsClone.Application.Attributes;
 public class ReputableEmailAttribute : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)

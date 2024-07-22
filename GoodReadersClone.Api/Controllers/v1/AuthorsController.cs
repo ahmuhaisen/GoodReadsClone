@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Api.Controllers.v1;
+﻿namespace GoodReadsClone.Api.Controllers.v1;
 
 
 [ApiController]
@@ -31,7 +31,7 @@ public class AuthorsController(ISender _sender) : ControllerBase
         return Ok(result);
     }
 
-  
+
 
     [HttpGet]
     [Route("books/{authorId}")]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.Genre;
+namespace GoodReadsClone.Application.DTOs.Genre;
 public class GenreDto
 {
     [MinLength(3)]

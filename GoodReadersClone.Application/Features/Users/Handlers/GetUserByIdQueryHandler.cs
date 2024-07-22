@@ -1,7 +1,10 @@
-﻿using GoodReadersClone.Application.Features.Users.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.User;
+using GoodReadsClone.Application.Features.Users.Queries;
+using GoodReadsClone.Domain.Entities;
 
-namespace GoodReadersClone.Application.Features.Users.Handlers;
-public class GetUserByIdQueryHandler (
+namespace GoodReadsClone.Application.Features.Users.Handlers;
+public class GetUserByIdQueryHandler(
     UserManager<ApplicationUser> _userManager,
     IMapper _mapper)
     : IRequestHandler<GetUserByIdQuery, ApiResponse>
@@ -19,7 +22,7 @@ public class GetUserByIdQueryHandler (
         var result = _mapper.Map<UserResponse>(user);
 
         result.Roles = (await _userManager.GetRolesAsync(user)).ToArray();
-        
+
         return new ApiResponse
         {
             Success = true,

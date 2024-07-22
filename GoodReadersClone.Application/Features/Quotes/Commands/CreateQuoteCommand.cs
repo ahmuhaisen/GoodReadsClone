@@ -1,6 +1,7 @@
-﻿using GoodReadersClone.Application.DTOs.Quote;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Quote;
 
-namespace GoodReadersClone.Application.Features.Quotes.Commands;
+namespace GoodReadsClone.Application.Features.Quotes.Commands;
 public record CreateQuoteCommand(QuoteDto Model) : IRequest<ApiResponse>;
 public record DeleteQuoteCommand(int Id) : IRequest<ApiResponse>;
 

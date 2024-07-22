@@ -1,3 +1,3 @@
-﻿namespace GoodReadersClone.Application.Features;
+﻿namespace GoodReadsClone.Application.Features;
 public class MediatREntryPoint
-{}
+{ }

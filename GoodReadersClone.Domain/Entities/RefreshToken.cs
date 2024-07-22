@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Domain.Entities;
+namespace GoodReadsClone.Domain.Entities;
 
 
 [Owned]

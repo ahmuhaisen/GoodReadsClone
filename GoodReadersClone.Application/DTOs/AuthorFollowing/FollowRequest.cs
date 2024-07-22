@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.AuthorFollowing;
+namespace GoodReadsClone.Application.DTOs.AuthorFollowing;
 public class FollowRequest
 {
     [MinLength(7)]

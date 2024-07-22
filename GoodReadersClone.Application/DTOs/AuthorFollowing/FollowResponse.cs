@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.DTOs.AuthorFollowing;
+﻿namespace GoodReadsClone.Application.DTOs.AuthorFollowing;
 public class FollowResponse
 {
     public required string UserID { get; set; }

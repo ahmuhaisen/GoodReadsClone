@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Reviews.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Reviews.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Reviews.Handlers;
+namespace GoodReadsClone.Application.Features.Reviews.Handlers;
 
 public class DeleteReviewCommandHandler(IUnitOfWork _unitOfWork)
     : IRequestHandler<DeleteReviewCommand, ApiResponse>

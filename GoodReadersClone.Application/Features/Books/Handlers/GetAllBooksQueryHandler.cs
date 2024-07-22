@@ -1,8 +1,10 @@
-﻿using GoodReadersClone.Application.DTOs.Books;
-using GoodReadersClone.Application.Features.Books.Queries;
-using GoodReadersClone.Domain.Models;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Books;
+using GoodReadsClone.Application.Features.Books.Queries;
+using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Books.Handlers;
+namespace GoodReadsClone.Application.Features.Books.Handlers;
 public class GetAllBooksQueryHandler(IUnitOfWork _unitOfWork, IMapper _mapper)
     : IRequestHandler<GetAllBooksQuery, ApiResponse>
 {

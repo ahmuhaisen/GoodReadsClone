@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Domain.Models;
+﻿namespace GoodReadsClone.Domain.Models;
 public class ReputationResult
 {
     public ReputationDetails Details { get; set; }

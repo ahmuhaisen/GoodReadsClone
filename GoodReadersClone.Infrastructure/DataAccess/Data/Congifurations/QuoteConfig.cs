@@ -1,8 +1,8 @@
-﻿using GoodReadersClone.Domain.Entities;
+﻿using GoodReadsClone.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Data.Congifurations;
+namespace GoodReadsClone.Infrastructure.DataAccess.Data.Congifurations;
 public class QuoteConfig : IEntityTypeConfiguration<Quote>
 {
     public void Configure(EntityTypeBuilder<Quote> builder)

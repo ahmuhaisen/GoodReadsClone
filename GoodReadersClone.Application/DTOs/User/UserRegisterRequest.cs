@@ -1,7 +1,7 @@
 ﻿using GoodReadersClone.Application.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.User;
+namespace GoodReadsClone.Application.DTOs.User;
 
 public class UserRegisterRequest
 {

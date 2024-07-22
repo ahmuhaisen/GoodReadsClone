@@ -1,4 +1,4 @@
-﻿using GoodReadersClone.Infrastructure.Utils;
+﻿using GoodReadsClone.Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable

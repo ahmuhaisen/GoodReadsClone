@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Queries;
 public record GetAuthorFollowersQuery(string AuthorId) : IRequest<ApiResponse>;
 public record GetReaderFollowingsQuery(string ReaderId) : IRequest<ApiResponse>;
 

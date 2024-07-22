@@ -1,3 +1,5 @@
-﻿namespace GoodReadersClone.Application.Features.Genres.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+
+namespace GoodReadsClone.Application.Features.Genres.Queries;
 public record GetAllGenresQuery() : IRequest<ApiResponse>;
 public record GetGenreQuery(int Id) : IRequest<ApiResponse>;

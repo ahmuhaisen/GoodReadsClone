@@ -1,9 +1,9 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
+namespace GoodReadsClone.Infrastructure.DataAccess.Repositories;
 
 public class UsersRepository : Repository<ApplicationUser>, IUsersRepository
 {
@@ -18,7 +18,7 @@ public class UsersRepository : Repository<ApplicationUser>, IUsersRepository
     {
         IQueryable<ApplicationUser> usersQuery = _context.Users;
 
-        if(!string.IsNullOrWhiteSpace(searchTerm))
+        if (!string.IsNullOrWhiteSpace(searchTerm))
         {
             usersQuery = usersQuery.Where(u =>
             u.UserName!.Contains(searchTerm) ||

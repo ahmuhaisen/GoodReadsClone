@@ -1,7 +1,9 @@
 ﻿using GoodReadersClone.Application.DTOs.Author;
-using GoodReadersClone.Application.Features.Authors.Queries;
+using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Authors.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Authors.Handlers;
+namespace GoodReadsClone.Application.Features.Authors.Handlers;
 public class GetAuthorInfoByIdQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<GetAuthorInfoByIdQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetAuthorInfoByIdQuery request, CancellationToken cancellationToken)

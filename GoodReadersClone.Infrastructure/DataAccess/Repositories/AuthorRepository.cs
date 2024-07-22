@@ -1,9 +1,9 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+﻿using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
+namespace GoodReadsClone.Infrastructure.DataAccess.Repositories;
 public class AuthorRepository : Repository<Author>, IAuthorRepository
 {
     private readonly ApplicationDbContext _context;

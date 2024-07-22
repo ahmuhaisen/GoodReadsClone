@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Api.Middlewares;
+﻿using GoodReadsClone.Application.Options;
+
+namespace GoodReadsClone.Api.Middlewares;
 
 public class MaintenanceMiddleware(RequestDelegate _next, IOptionsMonitor<MaintenanceOptions> _options)
 {

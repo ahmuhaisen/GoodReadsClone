@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.Options;
+﻿namespace GoodReadsClone.Application.Options;
 
 public class MaintenanceOptions
 {

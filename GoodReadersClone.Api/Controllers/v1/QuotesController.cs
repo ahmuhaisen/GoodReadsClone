@@ -1,8 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.Quote;
-using GoodReadersClone.Application.Features.Quotes.Commands;
+﻿using GoodReadersClone.Application.Features.Quotes.Commands;
 using GoodReadersClone.Application.Features.Quotes.Queries;
+using GoodReadsClone.Application.DTOs.Quote;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 
 [Authorize]

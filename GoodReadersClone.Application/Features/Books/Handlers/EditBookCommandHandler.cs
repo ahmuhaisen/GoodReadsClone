@@ -1,6 +1,9 @@
-﻿using GoodReadersClone.Application.Features.Books.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Books.Commands;
+using GoodReadsClone.Application.Helpers;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Books.Handlers;
+namespace GoodReadsClone.Application.Features.Books.Handlers;
 
 public class EditBookCommandHandler(
     IUnitOfWork _unitOfWork,
@@ -17,7 +20,7 @@ public class EditBookCommandHandler(
 
         var currentAuthorId = _httpContextAccessor.HttpContext.User.FindFirstValue("uid");
 
-        if(bookToUpdate.AuthorId != currentAuthorId)
+        if (bookToUpdate.AuthorId != currentAuthorId)
             return new ApiResponse { Message = $"You cann't edit this book" };
 
 

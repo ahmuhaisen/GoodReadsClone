@@ -1,7 +1,7 @@
-﻿
+﻿using GoodReadsClone.Application.DTOs;
 using System.Text.Json;
 
-namespace GoodReadersClone.Application.Behaviors;
+namespace GoodReadsClone.Application.Behaviors;
 
 
 public class LoggingPipelineBehavior<TRequest, TResponse>
@@ -28,7 +28,7 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
 
         var result = await next();
 
-        if(!result.Success)
+        if (!result.Success)
             _logger.LogError("[Request Failuer] {@RequestName}, {@ErrorMessage}, {@DateTime}",
             typeof(TRequest).Name,
             result.Message,

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.Books;
+namespace GoodReadsClone.Application.DTOs.Books;
 
 public class EditBookRequest
 {

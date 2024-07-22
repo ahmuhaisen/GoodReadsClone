@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Genres.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Genres.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Genres.Handlers;
+namespace GoodReadsClone.Application.Features.Genres.Handlers;
 
 public class EditGenreCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<EditGenreCommand, ApiResponse>
 {
@@ -11,7 +13,7 @@ public class EditGenreCommandHandler(IUnitOfWork _unitOfWork) : IRequestHandler<
         if (genre is null)
             return new ApiResponse { Message = $"Genre with Id `{request.Id}` Not Found" };
 
-        if(await _unitOfWork.GenreRepository.IsExist(g => g.Name.ToLower() == request.Dto.Name.ToLower()))
+        if (await _unitOfWork.GenreRepository.IsExist(g => g.Name.ToLower() == request.Dto.Name.ToLower()))
             return new ApiResponse { Message = $"Genre with name `{request.Dto.Name}` already exist" };
 
         genre.Name = request.Dto.Name;

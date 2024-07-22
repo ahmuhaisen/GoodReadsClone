@@ -1,7 +1,9 @@
 ﻿using GoodReadersClone.Application.Features.Reviews.Commands;
 using GoodReadersClone.Application.Features.Reviews.Queries;
+using GoodReadsClone.Application.DTOs.Review;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 
 [ApiController]

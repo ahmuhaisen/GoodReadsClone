@@ -1,6 +1,10 @@
-﻿using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.AuthorFollowings.Commands;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Application.Features.AuthorFollowings.Handlers;
+namespace GoodReadsClone.Application.Features.AuthorFollowings.Handlers;
 
 public class CreateFollowingCommandHandler(
     IUnitOfWork _unitOfWork,
@@ -21,7 +25,7 @@ public class CreateFollowingCommandHandler(
             return new ApiResponse { Message = "Error occurred" };
 
 
-        var authorFollowing = new AuthorFollowing 
+        var authorFollowing = new AuthorFollowing
         {
             ApplicationUserId = request.Request.ReaderId!,
             AuthorId = request.Request.AuthorId

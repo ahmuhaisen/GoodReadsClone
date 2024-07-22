@@ -1,6 +1,7 @@
-﻿using GoodReadersClone.Application.DTOs.Genre;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Genre;
 
-namespace GoodReadersClone.Application.Features.Genres.Commands;
+namespace GoodReadsClone.Application.Features.Genres.Commands;
 
 public record CreateGenreCommand(GenreDto Dto) : IRequest<ApiResponse>;
 public record EditGenreCommand(int Id, GenreDto Dto) : IRequest<ApiResponse>;

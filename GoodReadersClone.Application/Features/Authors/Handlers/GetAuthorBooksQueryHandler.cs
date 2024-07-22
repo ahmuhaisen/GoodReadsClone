@@ -1,8 +1,10 @@
-﻿using GoodReadersClone.Application.Features.Authors.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Authors.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Authors.Handlers;
+namespace GoodReadsClone.Application.Features.Authors.Handlers;
 
-public class GetAuthorBooksQueryHandler(IUnitOfWork _unitOfWork): IRequestHandler<GetAuthorBooksQuery, ApiResponse>
+public class GetAuthorBooksQueryHandler(IUnitOfWork _unitOfWork) : IRequestHandler<GetAuthorBooksQuery, ApiResponse>
 {
     public async Task<ApiResponse> Handle(GetAuthorBooksQuery request, CancellationToken cancellationToken)
     {
@@ -12,7 +14,7 @@ public class GetAuthorBooksQueryHandler(IUnitOfWork _unitOfWork): IRequestHandle
             return new ApiResponse { Message = "Author Not Found" };
 
         var authorBooks = await _unitOfWork.BookRepository.GetAllAsync(x => x.AuthorId == request.AuthorId);
-  
+
         return new ApiResponse
         {
             Success = true,

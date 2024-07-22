@@ -1,10 +1,13 @@
-﻿using GoodReadersClone.Application.DTOs.Quote;
-using GoodReadersClone.Application.Features.Quotes.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Quote;
+using GoodReadsClone.Application.Features.Quotes.Queries;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Quotes.Handlers;
+namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 
 public class GetUserQuotesQueryHandler(
-    IUnitOfWork _unitOfWork, 
+    IUnitOfWork _unitOfWork,
     UserManager<ApplicationUser> _userManager,
     IMapper _mapper)
     : IRequestHandler<GetUserQuotesQuery, ApiResponse>
@@ -18,7 +21,8 @@ public class GetUserQuotesQueryHandler(
 
         var result = _mapper.Map<IEnumerable<QuoteDto>>(quotes);
 
-        return new ApiResponse {
+        return new ApiResponse
+        {
             Success = true,
             Data = result
         };

@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Api.Controllers.v1;
+﻿namespace GoodReadsClone.Api.Controllers.v1;
 
 
 //[Authorize]

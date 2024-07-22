@@ -1,10 +1,10 @@
-﻿using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.DataAccess.Abstractions;
-using GoodReadersClone.Infrastructure.Utils;
+﻿using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
+using GoodReadsClone.Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Repositories;
+namespace GoodReadsClone.Infrastructure.DataAccess.Repositories;
 
 
 public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where T : class
@@ -28,7 +28,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     {
         return await _context.Set<T>().FindAsync(id);
     }
-    
+
     // Consider using IIncludable
     public async Task<T?> GetAsync(Expression<Func<T, bool>> filter, string[]? includes = null)
     {
@@ -71,7 +71,7 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
             pageIndex = 1;
 
         var items = await _context.Set<T>()
-            
+
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
@@ -111,12 +111,14 @@ public class Repository<T>(ApplicationDbContext _context) : IRepository<T> where
     {
         IQueryable<T> query = _context.Set<T>().Where(filter);
 
-        if(skip.HasValue) query = query.Skip(skip.Value);
-        if(take.HasValue) query = query.Take(take.Value);
+        if (skip.HasValue)
+            query = query.Skip(skip.Value);
+        if (take.HasValue)
+            query = query.Take(take.Value);
 
-        if(orderBy is not null)
+        if (orderBy is not null)
         {
-            if(orderDirection == OrderByDirections.ASC)
+            if (orderDirection == OrderByDirections.ASC)
                 query = query.OrderBy(orderBy);
             else
                 query = query.OrderByDescending(orderBy);

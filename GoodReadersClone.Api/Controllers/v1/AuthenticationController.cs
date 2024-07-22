@@ -1,7 +1,10 @@
-﻿using GoodReadersClone.Api.Helpers;
-using GoodReadersClone.Application.Abstractions;
+﻿using GoodReadsClone.Api.Helpers;
+using GoodReadsClone.Application.Abstractions;
+using GoodReadsClone.Application.DTOs.Auth;
+using GoodReadsClone.Application.DTOs.User;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]

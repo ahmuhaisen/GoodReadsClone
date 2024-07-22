@@ -1,9 +1,9 @@
-﻿using GoodReadersClone.Domain.Entities;
-using GoodReadersClone.Infrastructure.DataAccess.Data.Congifurations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using GoodReadsClone.Infrastructure.DataAccess.Data.Congifurations;
+using GoodReadsClone.Domain.Entities;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {

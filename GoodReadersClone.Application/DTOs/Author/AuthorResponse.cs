@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.DTOs.Author;
+﻿namespace GoodReadsClone.Application.DTOs.Author;
 public class AuthorResponse
 {
     public required string Id { get; set; }

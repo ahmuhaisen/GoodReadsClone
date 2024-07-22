@@ -1,8 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.ShelfItem;
-using GoodReadersClone.Application.Features.ShelfItems.Commands;
+﻿using GoodReadersClone.Application.Features.ShelfItems.Commands;
 using GoodReadersClone.Application.Features.ShelfItems.Queries;
+using GoodReadsClone.Application.DTOs.ShelfItem;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]

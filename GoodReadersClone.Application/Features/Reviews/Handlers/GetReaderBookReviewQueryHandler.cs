@@ -1,7 +1,10 @@
 ﻿using GoodReadersClone.Application.DTOs.Review;
-using GoodReadersClone.Application.Features.Reviews.Queries;
+using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Reviews.Queries;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Reviews.Handlers;
+namespace GoodReadsClone.Application.Features.Reviews.Handlers;
 
 public class GetReaderBookReviewQueryHandler(
     IUnitOfWork _unitOfWork, UserManager<ApplicationUser> _userManager)

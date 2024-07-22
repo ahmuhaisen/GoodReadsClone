@@ -1,6 +1,10 @@
-﻿using GoodReadersClone.Application.Features.Books.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Books.Commands;
+using GoodReadsClone.Application.Helpers;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Books.Handlers;
+namespace GoodReadsClone.Application.Features.Books.Handlers;
 
 public class CreateBookCommandHandler(
     IUnitOfWork _unitOfWork,

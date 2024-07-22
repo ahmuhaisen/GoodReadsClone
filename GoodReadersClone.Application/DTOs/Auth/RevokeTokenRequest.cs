@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.DTOs.Auth;
+﻿namespace GoodReadsClone.Application.DTOs.Auth;
 public class RevokeTokenRequest
 {
     // Not required, can be reached by cookies

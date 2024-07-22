@@ -1,8 +1,8 @@
-﻿using GoodReadersClone.Domain.Models;
-using GoodReadersClone.Infrastructure.Utils;
+﻿using GoodReadsClone.Domain.Models;
+using GoodReadsClone.Infrastructure.Utils;
 using System.Linq.Expressions;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
 
 public interface IRepository<T> where T : class

@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Infrastructure.Utils;
+﻿namespace GoodReadsClone.Infrastructure.Utils;
 public class OrderByDirections
 {
     public const string ASC = "ASC";

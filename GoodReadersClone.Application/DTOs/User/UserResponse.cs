@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Application.DTOs.User;
+﻿using GoodReadsClone.Domain.Entities;
+
+namespace GoodReadsClone.Application.DTOs.User;
 public class UserResponse
 {
     public required string UserName { get; set; }

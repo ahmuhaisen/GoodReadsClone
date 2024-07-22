@@ -1,7 +1,7 @@
-﻿using GoodReadersClone.Domain.Entities;
+﻿using GoodReadsClone.Domain.Entities;
 using System.Linq.Expressions;
 
-namespace GoodReadersClone.Infrastructure.DataAccess.Abstractions;
+namespace GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 public interface IAuthorRepository : IRepository<Author>
 {
     Task<Author?> GetAsync(string id);

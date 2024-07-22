@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.DTOs.Review;
+﻿namespace GoodReadsClone.Application.DTOs.Review;
 public class ReviewResponse
 {
     public string? Text { get; set; }

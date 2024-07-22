@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Reviews.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Reviews.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Reviews.Handlers;
+namespace GoodReadsClone.Application.Features.Reviews.Handlers;
 
 public class EditReviewCommandHandler(IUnitOfWork _unitOfWork)
     : IRequestHandler<EditReviewCommand, ApiResponse>
@@ -14,7 +16,7 @@ public class EditReviewCommandHandler(IUnitOfWork _unitOfWork)
 
         reviewToUpdate.Rating = request.Review.Rating;
 
-        if(!request.Review.Text.IsNullOrEmpty())
+        if (!request.Review.Text.IsNullOrEmpty())
             reviewToUpdate.Text = request.Review.Text;
 
         reviewToUpdate.CreatedAt = DateTime.Now;

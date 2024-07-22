@@ -1,5 +1,4 @@
-﻿
-namespace GoodReadersClone.Api.Helpers;
+﻿namespace GoodReadsClone.Api.Helpers;
 
 public class AuthenticationHelper
 {

@@ -1,7 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.Books;
-using GoodReadersClone.Application.Features.Books.Queries;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.DTOs.Books;
+using GoodReadsClone.Application.Features.Books.Queries;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Books.Handlers;
+namespace GoodReadsClone.Application.Features.Books.Handlers;
 
 public class GetBookByIdQueryHanler(
     IUnitOfWork _unitOfWork

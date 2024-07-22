@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Domain.Enums;
+﻿namespace GoodReadsClone.Domain.Enums;
 
 
 public enum Shelf

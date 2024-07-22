@@ -1,7 +1,7 @@
-﻿using GoodReadersClone.Domain.Abstractions;
-using GoodReadersClone.Domain.Enums;
+﻿using GoodReadsClone.Domain.Abstractions;
+using GoodReadsClone.Domain.Enums;
 
-namespace GoodReadersClone.Domain.Entities;
+namespace GoodReadsClone.Domain.Entities;
 
 public class ShelfItem : IEntity
 {

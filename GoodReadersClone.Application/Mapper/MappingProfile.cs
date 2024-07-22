@@ -1,11 +1,13 @@
-﻿using GoodReadersClone.Application.DTOs.Author;
-using GoodReadersClone.Application.DTOs.Books;
-using GoodReadersClone.Application.DTOs.Genre;
-using GoodReadersClone.Application.DTOs.Quote;
-using GoodReadersClone.Application.DTOs.Review;
-using GoodReadersClone.Domain.Models;
+﻿using GoodReadsClone.Application.DTOs.Author;
+using GoodReadsClone.Application.DTOs.Books;
+using GoodReadsClone.Application.DTOs.Genre;
+using GoodReadsClone.Application.DTOs.Quote;
+using GoodReadsClone.Application.DTOs.Review;
+using GoodReadsClone.Application.DTOs.User;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Domain.Models;
 
-namespace GoodReadersClone.Application.Mapper;
+namespace GoodReadsClone.Application.Mapper;
 
 public class MappingProfile : Profile
 {

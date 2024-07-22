@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Domain.Models;
+﻿namespace GoodReadsClone.Domain.Models;
 public class RatingSummaryModel
 {
     public double OverallRating { get; set; }

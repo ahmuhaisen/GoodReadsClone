@@ -1,7 +1,8 @@
 ﻿using GoodReadersClone.Application.Features.Genres.Commands;
 using GoodReadersClone.Application.Features.Genres.Queries;
+using GoodReadsClone.Application.DTOs.Genre;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]

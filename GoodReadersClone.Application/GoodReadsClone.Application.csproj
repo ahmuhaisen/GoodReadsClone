@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoodReadersClone.Infrastructure\GoodReadersClone.Infrastructure.csproj" />
+    <ProjectReference Include="..\GoodReadersClone.Infrastructure\GoodReadsClone.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

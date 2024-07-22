@@ -1,6 +1,8 @@
-﻿using GoodReadersClone.Application.Features.Quotes.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Quotes.Commands;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Quotes.Handlers;
+namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 
 public class DeleteQuoteCommandHandler(
     IUnitOfWork _unitOfWork,
@@ -12,18 +14,18 @@ public class DeleteQuoteCommandHandler(
         //Extra unnecessary roundtrip
         if (request == null || request.Id <= 0 || !await _unitOfWork.QuoteRepository.IsExist(x => x.Id == request.Id))
             return new ApiResponse { Message = "Invalid Quote Id" };
-              
+
 
         var quoteToDelete = await _unitOfWork.QuoteRepository.GetByIdAsync(request.Id);
 
         var currentUserId = _httpContextAccessor.HttpContext.User.FindFirstValue("uid");
 
-        if(currentUserId != quoteToDelete!.UserId)
+        if (currentUserId != quoteToDelete!.UserId)
             return new ApiResponse { Message = "You cann't delete this quote" };
 
 
         _unitOfWork.QuoteRepository.Delete(quoteToDelete);
-       
+
         if (_unitOfWork.Save() == 0)
             return new ApiResponse { Message = "Failed to delete the quote" };
 

@@ -1,6 +1,10 @@
-﻿using GoodReadersClone.Application.Abstractions;
+﻿using GoodReadsClone.Application.Abstractions;
+using GoodReadsClone.Application.DTOs.Auth;
+using GoodReadsClone.Application.DTOs.User;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Application.Services;
+namespace GoodReadsClone.Application.Services;
 
 public class AuthService(
     IOptions<JwtOptions> _jwtOptions,

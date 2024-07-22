@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoodReadersClone.Application\GoodReadersClone.Application.csproj" />
+    <ProjectReference Include="..\GoodReadersClone.Application\GoodReadsClone.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

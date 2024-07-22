@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GoodReadsClone.Infrastructure.Utils;
+using System.ComponentModel.DataAnnotations;
 
-namespace GoodReadersClone.Application.DTOs.Auth;
+namespace GoodReadsClone.Application.DTOs.Auth;
 public class AddRoleRequest
 {
     public required string UserId { get; set; }

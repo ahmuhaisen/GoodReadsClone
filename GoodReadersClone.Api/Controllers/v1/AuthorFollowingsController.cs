@@ -1,8 +1,9 @@
-﻿using GoodReadersClone.Application.DTOs.AuthorFollowing;
-using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
+﻿using GoodReadersClone.Application.Features.AuthorFollowings.Commands;
 using GoodReadersClone.Application.Features.AuthorFollowings.Queries;
+using GoodReadsClone.Application.DTOs.AuthorFollowing;
+using GoodReadsClone.Infrastructure.Utils;
 
-namespace GoodReadersClone.Api.Controllers.v1;
+namespace GoodReadsClone.Api.Controllers.v1;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]")]

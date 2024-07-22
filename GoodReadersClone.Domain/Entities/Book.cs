@@ -1,6 +1,6 @@
-﻿using GoodReadersClone.Domain.Abstractions;
+﻿using GoodReadsClone.Domain.Abstractions;
 
-namespace GoodReadersClone.Domain.Entities;
+namespace GoodReadsClone.Domain.Entities;
 
 
 public class Book : IEntity

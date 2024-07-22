@@ -1,9 +1,12 @@
-﻿using GoodReadersClone.Application.Features.Quotes.Commands;
+﻿using GoodReadsClone.Application.DTOs;
+using GoodReadsClone.Application.Features.Quotes.Commands;
+using GoodReadsClone.Domain.Entities;
+using GoodReadsClone.Infrastructure.DataAccess.Abstractions;
 
-namespace GoodReadersClone.Application.Features.Quotes.Handlers;
+namespace GoodReadsClone.Application.Features.Quotes.Handlers;
 public class CreateQuoteCommandHandler(
     IUnitOfWork _unitOfWork,
-    UserManager<ApplicationUser> _userManager) 
+    UserManager<ApplicationUser> _userManager)
     : IRequestHandler<CreateQuoteCommand, ApiResponse>
 {
     public async Task<ApiResponse> Handle(CreateQuoteCommand request, CancellationToken cancellationToken)
@@ -11,10 +14,10 @@ public class CreateQuoteCommandHandler(
         if (request == null || request.Model == null)
             return new ApiResponse { Message = "Quote cann't be null" };
 
-        if(!await _userManager.Users.AnyAsync(x => x.Id == request.Model.UserId))
+        if (!await _userManager.Users.AnyAsync(x => x.Id == request.Model.UserId))
             return new ApiResponse { Message = "User Not Found" };
 
-        if(!await _unitOfWork.BookRepository.IsExist(x => x.Id == request.Model.BookId))
+        if (!await _unitOfWork.BookRepository.IsExist(x => x.Id == request.Model.BookId))
             return new ApiResponse { Message = "Book Not Found" };
 
         var quoteToAdd = new Quote
