@@ -1,4 +1,6 @@
 ﻿
+using System.Text.Json;
+
 namespace GoodReadersClone.Application.Behaviors;
 
 
@@ -17,9 +19,12 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("[Starting Request] {@RequestName}, {@DateTime}",
+        _logger.LogInformation("[Starting] {@RequestName}, {@DateTime}",
             typeof(TRequest).Name,
             DateTime.Now);
+
+        _logger.LogInformation("[Request Params] {@Params}",
+            JsonSerializer.Serialize(request));
 
         var result = await next();
 
@@ -29,7 +34,7 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
             result.Message,
             DateTime.Now);
 
-        _logger.LogInformation("[Completed Request] {@RequestName}, {@DateTime}",
+        _logger.LogInformation("[Completed] {@RequestName}, {@DateTime}",
             typeof(TRequest).Name,
             DateTime.Now);
 
