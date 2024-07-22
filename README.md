@@ -1,4 +1,4 @@
-# GoodReadersClone
+# GoodReadsClone
 
 ![Clone](https://github.com/user-attachments/assets/fcb19f96-7c91-4b1e-adc2-a746fec5f23b)
 
