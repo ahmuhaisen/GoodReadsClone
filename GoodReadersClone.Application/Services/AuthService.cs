@@ -1,4 +1,6 @@
-﻿namespace GoodReadersClone.Application.Services;
+﻿using GoodReadersClone.Application.Abstractions;
+
+namespace GoodReadersClone.Application.Services;
 
 public class AuthService(
     IOptions<JwtOptions> _jwtOptions,

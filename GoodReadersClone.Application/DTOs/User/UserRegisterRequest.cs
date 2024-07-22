@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GoodReadersClone.Application.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace GoodReadersClone.Application.DTOs.User;
 
@@ -19,6 +20,7 @@ public class UserRegisterRequest
     [DataType(DataType.Date)]
     public required DateTime DateOfBirth { get; set; }
 
+    [ReputableEmail]
     [EmailAddress]
     public required string Email { get; set; }
 

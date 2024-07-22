@@ -1,4 +1,4 @@
-﻿namespace GoodReadersClone.Application.Services;
+﻿namespace GoodReadersClone.Application.Abstractions;
 public interface IAuthService
 {
     Task<AuthenticationResponse> RegisterAsync(UserRegisterRequest request, string role);

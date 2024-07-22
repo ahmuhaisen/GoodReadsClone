@@ -10,6 +10,7 @@ using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 using GoodReadersClone.Api.ExceptionHandlers;
 using GoodReadersClone.Application.Mapper;
+using GoodReadersClone.Application.Abstractions;
 
 namespace GoodReadersClone.Api;
 
@@ -88,6 +89,8 @@ public static class SertvicesExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IEmailService, EmailService>();
 
         return services;
     }
@@ -100,13 +103,13 @@ public static class SertvicesExtensions
             options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
             options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         return services;
     }
 
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IAuthService, AuthService>();
         return services;
     }
 }
