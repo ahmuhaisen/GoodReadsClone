@@ -1,6 +1,6 @@
 # GoodReadsClone
 
-![Clone](https://github.com/user-attachments/assets/fcb19f96-7c91-4b1e-adc2-a746fec5f23b)
+![Clone (1)](https://github.com/user-attachments/assets/3f20b17e-77a2-447b-a959-7de0a7c87dc7)
 
 ---
 
