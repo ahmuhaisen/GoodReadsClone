@@ -62,7 +62,7 @@ public static class SertvicesExtensions
             setup.SwaggerGeneratorOptions.SwaggerDocs.Add("v1", new OpenApiInfo
             {
                 Version = "v1",
-                Title = "Good Readers Clone",
+                Title = "Good Reads Clone",
                 Description = "A Web API project using ASP.NET 8.0 demonistrates the basic features of GoodReaders website.",
                 Contact = new OpenApiContact { Name = "Ahmad Muhaisen", Email = "ahmuhaisen03@gmail.com" }
             });
@@ -90,7 +90,7 @@ public static class SertvicesExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(typeof(MappingProfile).Assembly);
-        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IAuthService, AuthenticationService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
 

@@ -2,7 +2,7 @@
 
 namespace GoodReadsClone.Application.Services;
 
-public class AuthService(
+public class AuthenticationService(
     IOptions<JwtOptions> _jwtOptions,
     UserManager<ApplicationUser> _userManager,
     RoleManager<IdentityRole> _roleManager)
