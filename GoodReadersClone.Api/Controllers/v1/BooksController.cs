@@ -44,7 +44,7 @@ public class BooksController(ISender _sender) : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = Roles.AUTHOR)]
-    public async Task<ActionResult> Post([FromForm] CreateBookRequest request)
+    public async Task<IActionResult> Post([FromForm] CreateBookRequest request)
     {
         request.AuthorId = User.FindFirst("uid")!.Value;
 
@@ -53,7 +53,7 @@ public class BooksController(ISender _sender) : ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        return Ok(result);
+        return Created("", result);
     }
 
     [HttpPut]

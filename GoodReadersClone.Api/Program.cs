@@ -28,6 +28,9 @@ try
         .AddApplicationServices()
         .AddPresentationServices(builder.Configuration);
 
+    //CORS
+    builder.Services.AddCors();
+
     builder.Services.AddProblemDetails();
 
     var app = builder.Build();
@@ -37,6 +40,14 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+    app.UseCors(cfg =>
+    {
+        cfg.AllowAnyHeader()
+           .AllowAnyMethod()
+           .AllowAnyOrigin();
+    });
+
+
     app.UseSerilogRequestLogging();
 
     app.UseMiddleware<MaintenanceMiddleware>();

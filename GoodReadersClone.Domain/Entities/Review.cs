@@ -7,9 +7,9 @@ public class Review
     public DateTime CreatedAt { get; set; }
 
     public string ReaderId { get; set; } = string.Empty;
-    public ApplicationUser Reader { get; set; } = new();
+    public ApplicationUser? Reader { get; set; }
 
     public int BookId { get; set; }
-    public Book Book { get; set; } = new();
+    public Book? Book { get; set; }
 }
 

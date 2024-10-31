@@ -4,7 +4,7 @@ using GoodReadsClone.Application.Features.Books.Queries;
 namespace GoodReadsClone.Application.Features.Books.Handlers;
 
 public class GetBookByIdQueryHanler(
-    IUnitOfWork _unitOfWork
+    IUnitOfWork _unitOfWork, IMapper _mapper
     )
     : IRequestHandler<GetBookByIdQuery, ApiResponse>
 {
@@ -15,7 +15,8 @@ public class GetBookByIdQueryHanler(
         if (book == null)
             return new ApiResponse { Message = "Book not found" };
 
-        var result = BookResponse.ConvertBookToBookModel(book);
+        //var result = BookResponse.ConvertBookToBookModel(book);
+        var result = _mapper.Map<BookResponse>(book);
 
 
         return new ApiResponse

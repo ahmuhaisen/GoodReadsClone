@@ -8,8 +8,8 @@ public class Quote : IEntity
     public string Body { get; set; } = string.Empty;
 
     public string UserId { get; set; } = string.Empty;
-    public ApplicationUser User { get; set; } = new();
+    public ApplicationUser? User { get; set; }
 
     public int BookId { get; set; }
-    public Book Book { get; set; } = new();
+    public Book? Book { get; set; } 
 }

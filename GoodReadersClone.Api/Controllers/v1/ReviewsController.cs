@@ -48,7 +48,7 @@ public class ReviewsController(ISender _sender) : ControllerBase
     }
 
     [HttpGet]
-    [Route("ratingSummary/{bookId}")]
+    [Route("book/{bookId}/summary")]
     public async Task<IActionResult> GetBookRatingSummary(int bookId)
     {
         var result = await _sender.Send(new GetBookRatingSummaryQuery(bookId));

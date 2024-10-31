@@ -12,6 +12,7 @@ public class GetAllBooksQueryHandler(IUnitOfWork _unitOfWork, IMapper _mapper)
 
         var result = _mapper.Map<PaginatedList<BookResponse>>(books);
 
+
         return new ApiResponse
         {
             Success = true,

@@ -103,7 +103,7 @@ public static class SertvicesExtensions
         services.AddDbContext<ApplicationDbContext>(options =>
         {
             options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]);
-            options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         });
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

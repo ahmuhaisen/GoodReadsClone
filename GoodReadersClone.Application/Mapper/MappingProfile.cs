@@ -33,7 +33,8 @@ public class MappingProfile : Profile
 
 
         CreateMap<Book, BookResponse>()
-                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => $"{src.Author.FirstName} {src.Author.LastName}"));
+                 .ForMember(dest => dest.Author, opt => opt.MapFrom(src => $"{src.Author.FirstName} {src.Author.LastName}"))
+            ;    // .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => string.Join(", ")));
 
         CreateMap<Book, CreateBookRequest>()
             .ForMember(x => x.Genres, f => f.Ignore());

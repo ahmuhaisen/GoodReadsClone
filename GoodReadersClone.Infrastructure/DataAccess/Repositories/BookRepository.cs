@@ -15,7 +15,9 @@ public class BookRepository : Repository<Book>, IBookRepository
     public new async Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
     {
         IQueryable<Book> booksQuery = _context.Books
-            .Include(b => b.Author);
+            .OrderBy(b => b.Title)
+            .Include(b => b.Author)
+            .Include(b => b.Genres);
 
         if (!string.IsNullOrWhiteSpace(searchTerm))
         {

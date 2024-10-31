@@ -1,4 +1,6 @@
-﻿namespace GoodReadsClone.Application.DTOs.Books;
+﻿using GoodReadsClone.Application.DTOs.Genre;
+
+namespace GoodReadsClone.Application.DTOs.Books;
 public class BookResponse
 {
     public int Id { get; set; }
@@ -9,7 +11,7 @@ public class BookResponse
     public string ISBN { get; set; } = string.Empty;
     public DateTime FirstPublished { get; set; }
 
-    public string? Genres { get; set; }
+    public List<GenreDto> Genres { get; set; }
 
     public static BookResponse ConvertBookToBookModel(Book book)
     {
@@ -22,7 +24,7 @@ public class BookResponse
             Title = book.Title,
             Author = author,
             Description = book.Description!,
-            Genres = genres,
+            //Genres = book.Genres,
             FirstPublished = book.FirstPublished,
             ISBN = book.ISBN,
             CoverURL = book.CoverURL
