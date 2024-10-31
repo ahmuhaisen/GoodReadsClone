@@ -21,6 +21,7 @@ This project replicates several functionalities of the original site using ASP.N
 - User Management with Identity
 - API Versioning
 - AutoMapper
+- Serilog
 ---
 
 ## Key features:
