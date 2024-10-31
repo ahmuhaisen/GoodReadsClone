@@ -12,7 +12,7 @@ public class BookRepository : Repository<Book>, IBookRepository
     public BookRepository(ApplicationDbContext context) : base(context) => _context = context;
 
 
-    public new async Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
+    public async Task<PaginatedList<Book>> GetAllAsync(string searchTerm, int pageIndex, int pageSize)
     {
         IQueryable<Book> booksQuery = _context.Books
             .OrderBy(b => b.Title)
@@ -25,5 +25,10 @@ public class BookRepository : Repository<Book>, IBookRepository
         }
 
         return await PaginatedList<Book>.CreateAsync(booksQuery, pageIndex, pageSize);
+    }
+
+    public async Task<bool> IsISBNUniqueAsync(string isbn)
+    {
+        return !await _context.Books.AnyAsync(b => b.ISBN == isbn);
     }
 }

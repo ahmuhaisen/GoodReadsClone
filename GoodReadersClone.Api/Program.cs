@@ -1,5 +1,6 @@
 using GoodReadsClone.Api;
 using GoodReadsClone.Api.Middlewares;
+using GoodReadsClone.Application;
 using Serilog;
 
 var config = new ConfigurationBuilder()

@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using FluentValidation;
 using GoodReadsClone.Application.Features.Books.Commands;
 using GoodReadsClone.Application.Features.Books.Queries;
 
@@ -8,7 +9,7 @@ namespace GoodReadsClone.Api.Controllers.v1;
 [ApiController]
 [ApiVersion(1)]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class BooksController(ISender _sender) : ControllerBase
+public class BooksController(ISender _sender, IValidator<CreateBookCommand> _validator) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] string? searchTerm, [FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
@@ -43,17 +44,27 @@ public class BooksController(ISender _sender) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = Roles.AUTHOR)]
-    public async Task<IActionResult> Post([FromForm] CreateBookRequest request)
+    //[Authorize(Roles = Roles.AUTHOR)]
+    public async Task<IResult> Post([FromForm] CreateBookRequest request)
     {
-        request.AuthorId = User.FindFirst("uid")!.Value;
+        //request.AuthorId = User.FindFirst("uid")!.Value;
 
-        var result = await _sender.Send(new CreateBookCommand(request));
+        var command = new CreateBookCommand(request);
+
+        var validationResult = await _validator.ValidateAsync(command);
+
+        if (!validationResult.IsValid)
+        {
+            var errors = validationResult.ToDictionary();
+            return Results.ValidationProblem(errors);
+        }
+
+        var result = await _sender.Send(command);
 
         if (!result.Success)
-            return BadRequest(result.Message);
+            return Results.BadRequest(result.Message);
 
-        return Created("", result);
+        return Results.Created("", result);
     }
 
     [HttpPut]

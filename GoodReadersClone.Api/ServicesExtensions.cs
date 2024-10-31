@@ -87,16 +87,6 @@ public static class SertvicesExtensions
         return services;
     }
 
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-    {
-        services.AddAutoMapper(typeof(MappingProfile).Assembly);
-        services.AddScoped<IAuthService, AuthenticationService>();
-        services.AddScoped<IEmailService, EmailService>();
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
-
-        return services;
-    }
-
     public static IServiceCollection AddInfrastructuerServices
     (this IServiceCollection services, IConfiguration configuration)
     {
