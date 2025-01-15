@@ -32,3 +32,7 @@ This project replicates several functionalities of the original site using ASP.N
 - Genres and Quotes: Explore various genres and discover memorable quotes. 
 - Reviews and Ratings: Users can review and rate books, sharing their insights with the community. 
 - Shelf Items Management: Organize books into different shelves for better categorization.
+
+- ## Live version:
+
+- [API Reference](http://goodreads-clone.runasp.net/swagger)
