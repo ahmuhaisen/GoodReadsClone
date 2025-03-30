@@ -6,7 +6,7 @@ This project replicates several functionalities of the original site using ASP.N
 
 ---
 
-## Some of the technologies, tools, and best practices used:
+## Some of the technologies, tools, and best practices used
 
 - ASP.NET 8.0 Web APIs
 - MS SQL Server
@@ -22,7 +22,7 @@ This project replicates several functionalities of the original site using ASP.N
 - Serilog
 ---
 
-## Key features:
+## Key features
 
 - User Management, Authentication and Authorization: Secure user management and access control. 
 - Books Management: Comprehensive endpoints for adding, updating, and managing books. 
